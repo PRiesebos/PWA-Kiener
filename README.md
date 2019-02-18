@@ -1,2 +1,2 @@
 # PWA-Kiener
-A progressive web app built with React and LESS.
+A progressive web app built with React and SASS.
