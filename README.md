@@ -1,2 +1,2 @@
 # PWA-Kiener
-A progressive web app built with React and SASS.
+A webshop built as a progressive web app, making use of React and SASS.
