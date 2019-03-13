@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
 import "./scss/custom.scss";
+import "./scss/style.scss";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
