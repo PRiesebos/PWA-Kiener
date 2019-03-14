@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <navbar/>
-    <router-view/>
-    <footerComp/>
-  </div>
+    <div id="app">
+        <navbar />
+        <router-view />
+        <footerComp />
+    </div>
 </template>
 
 <script>
@@ -18,5 +18,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
