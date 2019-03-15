@@ -7,10 +7,10 @@
         </h1>
         <p class="text-white text-center">
           Be part of our movement to make payments as effortless as possible.
-          What better way to tell our story than by wearing our beautiful
+          <br />What better way to tell our story than by wearing our beautiful
           merchandise?
         </p>
-        <div class="row mt-4 justify-content-center">
+        <div class="row mt-4 justify-content-center col-md-12">
           <div class="btn-group btn-group-lg">
             <a href="/about" class="btn btn-outline-light"
               >About Mollie payments</a
