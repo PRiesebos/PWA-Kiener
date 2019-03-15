@@ -3,13 +3,17 @@
     <nav class="navbar navbar-expand-sm navbar-white">
       <div class="container navbarComp">
         <a class="navbar-brand text-dark" href="/">PWA-Webshop</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarComp">
+        <button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarComp"
+        >
           <i class="fas fa-align-justify"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarComp">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <SearchBar/>
+              <SearchBar />
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
@@ -23,7 +27,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <router-link to="/products" class="text-dark">Products</router-link>
+                <router-link to="/products" class="text-dark"
+                  >Products</router-link
+                >
               </a>
             </li>
           </ul>
