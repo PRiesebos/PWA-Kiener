@@ -33,3 +33,25 @@ export default {
     components: {},
 };
 </script>
+<style lang="scss" scoped>
+.homepage {
+    background-position: right top;
+    height: calc(100vh - 56px);
+    background-size: auto 100%;
+    background-image: url("../assets/t-shirt-black-home.webp"),
+        linear-gradient(to bottom, #2f2f2f 0%, #1e1e1e 100%);
+    background-repeat: no-repeat;
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .homepage {
+        background-image: linear-gradient(to bottom, #2f2f2f 0%, #1e1e1e 100%);
+    }
+}
+
+.inline-content {
+    max-width: 33.5rem;
+    display: block;
+}
+</style>
