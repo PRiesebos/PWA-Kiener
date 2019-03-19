@@ -30,7 +30,7 @@
                             </ul>
                         </div>
                         <div
-                            id="accordion"
+                            id="accordion1"
                             role="tablist"
                             aria-multiselectable="true"
                             class="widget d-block d-sm-none"
@@ -41,7 +41,7 @@
                                 >
                                     <a
                                         data-toggle="collapse"
-                                        data-parent="#accordion"
+                                        data-parent="#accordion1"
                                         href="#collapseOne"
                                         aria-expanded="false"
                                         aria-controls="collapseOne"
@@ -104,7 +104,7 @@
                             </ul>
                         </div>
                         <div
-                            id="accordion"
+                            id="accordion2"
                             role="tablist"
                             aria-multiselectable="true"
                             class="widget d-block d-sm-none"
@@ -115,7 +115,7 @@
                                 >
                                     <a
                                         data-toggle="collapse"
-                                        data-parent="#accordion"
+                                        data-parent="#accordion2"
                                         href="#collapseTwo"
                                         aria-expanded="false"
                                         aria-controls="collapseTwo"
@@ -175,7 +175,7 @@
                             </ul>
                         </div>
                         <div
-                            id="accordion"
+                            id="accordion3"
                             role="tablist"
                             aria-multiselectable="true"
                             class="widget d-block d-sm-none"
@@ -186,7 +186,7 @@
                                 >
                                     <a
                                         data-toggle="collapse"
-                                        data-parent="#accordion"
+                                        data-parent="#accordion3"
                                         href="#collapseThree"
                                         aria-expanded="false"
                                         aria-controls="collapseThree"
@@ -248,7 +248,7 @@
                             </ul>
                         </div>
                         <div
-                            id="accordion"
+                            id="accordion4"
                             role="tablist"
                             aria-multiselectable="true"
                             class="widget d-block d-sm-none"
@@ -259,7 +259,7 @@
                                 >
                                     <a
                                         data-toggle="collapse"
-                                        data-parent="#accordion"
+                                        data-parent="#accordion4"
                                         href="#collapseFour"
                                         aria-expanded="false"
                                         aria-controls="collapseFour"
