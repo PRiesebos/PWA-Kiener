@@ -5,6 +5,10 @@ import store from "./store";
 import "./registerServiceWorker";
 import "./scss/custom.scss";
 import "./scss/style.scss";
+import $ from "jquery";
+window.jQuery = $;
+window.$ = $;
+import "bootstrap";
 
 Vue.config.productionTip = false;
 

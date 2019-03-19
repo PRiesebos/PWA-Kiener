@@ -13,7 +13,7 @@
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <img
-                            src="http://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
+                            src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                             class="card-img-top"
                             alt="..."
                         />
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card mb-3">
                         <img
-                            src="http://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
+                            src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                             class="card-img-top"
                             alt="..."
                         />
@@ -53,7 +53,7 @@
                     </div>
                     <div class="card mb-3">
                         <img
-                            src="http://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
+                            src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                             class="card-img-top"
                             alt="..."
                         />
@@ -75,7 +75,7 @@
                 <div class="col-md-6">
                     <div class="card mb-3">
                         <img
-                            src="http://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
+                            src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                             class="card-img-top"
                             alt="..."
                         />
@@ -95,7 +95,7 @@
                     </div>
                     <div class="card mb-3">
                         <img
-                            src="http://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
+                            src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                             class="card-img-top"
                             alt="..."
                         />
