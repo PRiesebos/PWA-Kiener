@@ -52,4 +52,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        padding: 0px;
+    }
+}
+</style>
