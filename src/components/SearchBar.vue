@@ -26,9 +26,9 @@
         width: 283px;
     }
 }
-@media (min-width: 965px) {
+@media (min-width: 938px) {
     .searchBar {
-        width: 403px;
+        width: 400px;
     }
 }
 @media (min-width: 992px) {

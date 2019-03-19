@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-md-4">
                 <h1>Products</h1>
                 <p class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10 p-0">
