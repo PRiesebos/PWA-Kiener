@@ -45,4 +45,7 @@ export default {};
 ul > li > a {
     color: black;
 }
+.dropdown-menu {
+    min-width: 200px;
+}
 </style>
