@@ -15,12 +15,8 @@
                         <li class="nav-item">
                             <SearchBar />
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/" class="text-dark"
-                                    >Home</router-link
-                                >
-                            </a>
+                        <li class="dropdown nav-item">
+                            <MyAccount />
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
@@ -45,10 +41,11 @@
 
 <script>
 import SearchBar from "@/components/SearchBar";
+import MyAccount from "@/components/MyAccount";
 export default {
     name: "Navbar",
     props: {},
-    components: { SearchBar },
+    components: { SearchBar, MyAccount },
 };
 </script>
 

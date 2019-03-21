@@ -45,6 +45,7 @@
                 <p class="font-weight-bold">I'm a new customer</p>
                 <hr class="w-100" />
                 <select class="form-control col-8 col-md-4 my-3" required>
+                    <option value="Iam">I am*</option>
                     <option value="Private customer">Private customer</option>
                     <option value="Company">Company</option>
                 </select>
