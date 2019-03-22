@@ -9,7 +9,7 @@
                     <div class="col-1 custom-rounded bg-danger d-inline py-3">
                         <i class="fas fa-times fa-2x custom-center"></i>
                     </div>
-                    <div class="col-11 d-inline small bg-red rounded py-3">
+                    <div class="col-11 d-inline small bgred rounded py-3">
                         {{ existingUser.error }}
                     </div>
                 </div>
@@ -206,12 +206,66 @@
                         <option value="Netherlands">Netherlands</option>
                     </select>
                 </div>
+                <!-- Button trigger modal -->
                 <button
-                    class="btn btn-primary col-6 col-md-3 float-right mt-3"
+                    type="button"
+                    class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
+                    data-toggle="modal"
+                    data-target="#registerModal"
                     @click="register"
                 >
-                    Continue >
+                    Register modal
                 </button>
+
+                <!-- Modal -->
+                <div
+                    class="modal fade"
+                    id="registerModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-hidden="true"
+                >
+                    <div
+                        class="modal-dialog modal-dialog-centered"
+                        role="document"
+                    >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Register
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div
+                                class="modal-body"
+                                v-bind:class="{ bgred: user.isError }"
+                            >
+                                <p v-if="user.error == ''">
+                                    You successfully registered!
+                                    <br />
+                                    {{ user.message }}
+                                </p>
+                                {{ user.error }}
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <p class="small">The fields marked with * are required</p>
             </div>
         </div>
@@ -231,6 +285,9 @@ export default {
             user: {
                 email: "",
                 password: "",
+                error: "",
+                message: "",
+                isError: "false",
             },
         };
     },
@@ -244,10 +301,13 @@ export default {
                 )
                 .then(
                     user => {
-                        alert(`Account created for ${user.email}`);
+                        this.user.isError = false;
+                        this.user.error = "";
+                        this.user.message = this.user.email;
                     },
                     err => {
-                        alert(err.message);
+                        this.user.isError = true;
+                        this.user.error = err.message;
                     }
                 );
         },
@@ -281,7 +341,7 @@ export default {
 .fa-times {
     color: white;
 }
-.bg-red {
+.bgred {
     background-color: #faeceb;
 }
 .custom-rounded {
