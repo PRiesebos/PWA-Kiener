@@ -2,6 +2,17 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 col-md-4">
+                <div
+                    class="mb-3 d-flex justify-content-between"
+                    v-if="existingUser.error != ''"
+                >
+                    <div class="col-1 custom-rounded bg-danger d-inline py-3">
+                        <i class="fas fa-times fa-2x custom-center"></i>
+                    </div>
+                    <div class="col-11 d-inline small bg-red rounded py-3">
+                        {{ existingUser.error }}
+                    </div>
+                </div>
                 <div class="jumbotron px-3 py-4">
                     <p class="font-weight-bold">I'm already a customer.</p>
                     <hr class="w-100" />
@@ -215,6 +226,7 @@ export default {
             existingUser: {
                 email: "",
                 password: "",
+                error: "",
             },
             user: {
                 email: "",
@@ -248,10 +260,10 @@ export default {
                 )
                 .then(
                     existingUser => {
-                        alert(`Logged in as ${existingUser.email}`);
+                        alert(`logged in as ${this.existingUser.email}`);
                     },
                     err => {
-                        alert(err.message);
+                        this.existingUser.error = err.message;
                     }
                 );
         },
@@ -259,4 +271,25 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+.fa-times {
+    color: white;
+}
+.bg-red {
+    background-color: #faeceb;
+}
+.custom-rounded {
+    border-radius: 0.25rem 0rem 0rem 0.25rem;
+}
+.custom-center {
+    right: 10px;
+    top: 3px;
+    position: relative;
+}
+</style>
