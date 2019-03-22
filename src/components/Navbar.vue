@@ -2,7 +2,9 @@
     <div>
         <nav class="navbar navbar-expand-sm navbar-white">
             <div class="container navbarComp">
-                <a class="navbar-brand text-dark" href="/">PWA-Webshop</a>
+                <router-link to="/" class="text-dark navbar-brand"
+                    >PWA-Webshop</router-link
+                >
                 <button
                     class="navbar-toggler"
                     data-toggle="collapse"
@@ -15,26 +17,20 @@
                         <li class="nav-item">
                             <SearchBar />
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/" class="text-dark"
-                                    >Home</router-link
-                                >
-                            </a>
+                        <li class="dropdown nav-item">
+                            <MyAccount />
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/about" class="text-dark"
-                                    >About</router-link
-                                >
-                            </a>
+                            <router-link to="/about" class="text-dark nav-link"
+                                >About</router-link
+                            >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/products" class="text-dark"
-                                    >Products</router-link
-                                >
-                            </a>
+                            <router-link
+                                to="/products"
+                                class="text-dark nav-link"
+                                >Products</router-link
+                            >
                         </li>
                     </ul>
                 </div>
@@ -45,11 +41,20 @@
 
 <script>
 import SearchBar from "@/components/SearchBar";
+import MyAccount from "@/components/MyAccount";
 export default {
     name: "Navbar",
     props: {},
-    components: { SearchBar },
+    components: { SearchBar, MyAccount },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@media (max-width: 992px) {
+    .container {
+        max-width: 100%;
+        width: 100%;
+        padding: 0px;
+    }
+}
+</style>

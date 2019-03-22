@@ -9,6 +9,7 @@
 <script>
 import Navbar from "@/components/Navbar";
 import FooterComp from "@/components/FooterComp";
+import db from "@/fb";
 
 export default {
     components: {

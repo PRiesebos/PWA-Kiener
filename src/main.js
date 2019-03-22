@@ -5,6 +5,9 @@ import store from "./store";
 import "./registerServiceWorker";
 import "./scss/custom.scss";
 import "./scss/style.scss";
+import "jquery";
+import "bootstrap";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 Vue.config.productionTip = false;
 
