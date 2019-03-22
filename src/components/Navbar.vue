@@ -2,7 +2,9 @@
     <div>
         <nav class="navbar navbar-expand-sm navbar-white">
             <div class="container navbarComp">
-                <a class="navbar-brand text-dark" href="/">PWA-Webshop</a>
+                <router-link to="/" class="text-dark navbar-brand"
+                    >PWA-Webshop</router-link
+                >
                 <button
                     class="navbar-toggler"
                     data-toggle="collapse"
@@ -19,18 +21,16 @@
                             <MyAccount />
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/about" class="text-dark"
-                                    >About</router-link
-                                >
-                            </a>
+                            <router-link to="/about" class="text-dark nav-link"
+                                >About</router-link
+                            >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <router-link to="/products" class="text-dark"
-                                    >Products</router-link
-                                >
-                            </a>
+                            <router-link
+                                to="/products"
+                                class="text-dark nav-link"
+                                >Products</router-link
+                            >
                         </li>
                     </ul>
                 </div>

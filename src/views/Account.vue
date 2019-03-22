@@ -5,21 +5,27 @@
                 <div class="jumbotron px-3 py-4">
                     <p class="font-weight-bold">I'm already a customer.</p>
                     <hr class="w-100" />
-                    <p>Log in with your email address and password.</p>
+                    <p class="small">
+                        Log in with your email address and password.
+                    </p>
                     <input
                         type="text"
                         class="form-control my-3"
                         placeholder="Your email adress"
+                        v-model="existingUser.email"
                     />
                     <input
                         type="password"
                         class="form-control"
                         placeholder="Your password"
+                        v-model="existingUser.password"
                     />
-                    <a href="http://" class="text-primary d-block my-3"
+                    <a class="text-primary d-block my-3"
                         >Forgot your password?</a
                     >
-                    <button class="btn btn-primary">Login ></button>
+                    <button class="btn btn-primary" @click="signin">
+                        Login >
+                    </button>
                 </div>
                 <p class="font-weight-bold">
                     My benefits
@@ -71,12 +77,14 @@
                     placeholder="Your email address*"
                     class="form-control my-3"
                     required
+                    v-model="user.email"
                 />
                 <input
                     type="password"
                     placeholder="Your password*"
                     class="form-control my-3"
                     required
+                    v-model="user.password"
                 />
                 <p class="small">
                     Your password must contain at least 8 characters.
@@ -188,9 +196,8 @@
                     </select>
                 </div>
                 <button
-                    type="submit"
                     class="btn btn-primary col-6 col-md-3 float-right mt-3"
-                    disabled
+                    @click="register"
                 >
                     Continue >
                 </button>
@@ -201,7 +208,55 @@
 </template>
 
 <script>
-export default {};
+import firebase from "firebase";
+export default {
+    data() {
+        return {
+            existingUser: {
+                email: "",
+                password: "",
+            },
+            user: {
+                email: "",
+                password: "",
+            },
+        };
+    },
+    methods: {
+        register() {
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(
+                    this.user.email,
+                    this.user.password
+                )
+                .then(
+                    user => {
+                        alert(`Account created for ${user.email}`);
+                    },
+                    err => {
+                        alert(err.message);
+                    }
+                );
+        },
+        signin() {
+            firebase
+                .auth()
+                .signInWithEmailAndPassword(
+                    this.existingUser.email,
+                    this.existingUser.password
+                )
+                .then(
+                    existingUser => {
+                        alert(`Logged in as ${existingUser.email}`);
+                    },
+                    err => {
+                        alert(err.message);
+                    }
+                );
+        },
+    },
+};
 </script>
 
 <style scoped></style>

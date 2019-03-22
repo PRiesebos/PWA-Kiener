@@ -4,10 +4,15 @@ import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: "history",
     base: process.env.BASE_URL,
     routes: [
+        {
+            path: "*",
+            name: "404",
+            component: () => import("./views/404.vue"),
+        },
         {
             path: "/",
             name: "home",
@@ -16,38 +21,27 @@ export default new Router({
         {
             path: "/about",
             name: "about",
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "about" */ "./views/About.vue"),
+            component: () => import("./views/About.vue"),
         },
         {
             path: "/test",
             name: "test",
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "about" */ "./views/Test.vue"),
+            component: () => import("./views/Test.vue"),
+            meta: {
+                requiresAuth: true,
+            },
         },
         {
             path: "/products",
             name: "products",
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "about" */ "./views/Products.vue"),
+            component: () => import("./views/Products.vue"),
         },
         {
             path: "/account",
             name: "account",
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import(/* webpackChunkName: "about" */ "./views/Account.vue"),
+            component: () => import("./views/Account.vue"),
         },
     ],
 });
+
+export default router;
