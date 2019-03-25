@@ -296,7 +296,6 @@ export default {
                 this.showModal = true;
             } else {
                 this.showModal = false;
-                console.log("User is created");
                 this.$router.push("/");
             }
         },
@@ -308,8 +307,6 @@ export default {
             if (result.message) {
                 this.existingUser.error = result.message;
             } else {
-                console.log("Logged in");
-
                 this.$router.push("/");
             }
         },
