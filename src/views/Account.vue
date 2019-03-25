@@ -4,7 +4,7 @@
             <div class="col-12 col-md-4">
                 <div
                     class="mb-3 d-flex justify-content-between"
-                    v-if="existingUser.error != ''"
+                    v-if="existingUser.error"
                 >
                     <div class="col-1 custom-rounded bg-danger d-inline py-3">
                         <i class="fas fa-times fa-2x custom-center"></i>
@@ -34,7 +34,7 @@
                     <a class="text-primary d-block my-3"
                         >Forgot your password?</a
                     >
-                    <button class="btn btn-primary" @click="signin">
+                    <button class="btn btn-primary" @click="signIn">
                         Login >
                     </button>
                 </div>
@@ -88,14 +88,14 @@
                     placeholder="Your email address*"
                     class="form-control my-3"
                     required
-                    v-model="user.email"
+                    v-model="newUser.email"
                 />
                 <input
                     type="password"
                     placeholder="Your password*"
                     class="form-control my-3"
                     required
-                    v-model="user.password"
+                    v-model="newUser.password"
                 />
                 <p class="small">
                     Your password must contain at least 8 characters.
@@ -212,9 +212,9 @@
                     class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
                     data-toggle="modal"
                     data-target="#registerModal"
-                    @click="register"
+                    @click="signUp"
                 >
-                    Register modal
+                    Continue >
                 </button>
 
                 <!-- Modal -->
@@ -243,16 +243,13 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div
-                                class="modal-body"
-                                v-bind:class="{ bgred: user.isError }"
-                            >
-                                <p v-if="user.error == ''">
+                            <div class="modal-body">
+                                <p v-if="!newUser.error">
                                     You successfully registered!
                                     <br />
-                                    {{ user.message }}
+                                    {{ newUser.email }}
                                 </p>
-                                {{ user.error }}
+                                {{ newUser.error }}
                             </div>
                             <div class="modal-footer">
                                 <button
@@ -273,7 +270,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import db from "@/db.js";
 export default {
     data() {
         return {
@@ -282,50 +279,42 @@ export default {
                 password: "",
                 error: "",
             },
-            user: {
+            newUser: {
                 email: "",
                 password: "",
                 error: "",
-                message: "",
-                isError: "false",
             },
         };
     },
-    methods: {
-        register() {
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(
-                    this.user.email,
-                    this.user.password
-                )
-                .then(
-                    user => {
-                        this.user.isError = false;
-                        this.user.error = "";
-                        this.user.message = this.user.email;
-                    },
-                    err => {
-                        this.user.isError = true;
-                        this.user.error = err.message;
-                    }
-                );
+    computed: {
+        currentUser() {
+            return this.$store.state.currentUser;
         },
-        signin() {
-            firebase
-                .auth()
-                .signInWithEmailAndPassword(
-                    this.existingUser.email,
-                    this.existingUser.password
-                )
-                .then(
-                    existingUser => {
-                        alert(`logged in as ${this.existingUser.email}`);
-                    },
-                    err => {
-                        this.existingUser.error = err.message;
-                    }
-                );
+    },
+    methods: {
+        async signUp() {
+            let result = await db.signUp(
+                this.newUser.email,
+                this.newUser.password
+            );
+            if (result.message) {
+                this.newUser.error = result.message;
+            } else {
+                console.log("User is created");
+            }
+        },
+        async signIn() {
+            let result = await db.signIn(
+                this.existingUser.email,
+                this.existingUser.password
+            );
+            if (result.message) {
+                this.existingUser.error = result.message;
+            } else {
+                console.log("Logged in");
+
+                this.$router.push("/");
+            }
         },
     },
 };

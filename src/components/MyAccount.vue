@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn btn-light" data-toggle="dropdown" @click="checkAuth">
+        <button class="btn btn-light" data-toggle="dropdown">
             <i class="far fa-user"></i>
             My account
         </button>
@@ -8,12 +8,11 @@
             <li class="px-3 py-2">
                 <form class="form" role="form">
                     <p class="font-weight-bold">My account</p>
-                    <div v-if="user == null">
+                    <div v-if="!currentUser">
                         <hr class="w-100 my-2" />
                         <router-link
                             to="/account"
                             class="btn btn-primary d-block col-md-12 mt-3"
-                            v-on:click.native="counter += 1"
                             >Sign in</router-link
                         >
                         <div class="form-group text-center mb-0">
@@ -34,11 +33,11 @@
                         <li><a href="#">Orders</a></li>
                         <li><a href="#">Instant downloads</a></li>
                         <li><a href="#">Wish list</a></li>
-                        <div v-if="user != null">
+                        <div v-if="currentUser != null">
                             <hr class="w-100" />
                             <button
                                 class="btn btn-primary w-100"
-                                @click="logout"
+                                @click="signOut"
                             >
                                 Log Out
                             </button>
@@ -51,26 +50,20 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import db from "@/db";
 export default {
     name: "MyAccount",
     data() {
-        return {
-            user: "",
-        };
+        return {};
+    },
+    computed: {
+        currentUser() {
+            return this.$store.state.currentUser;
+        },
     },
     methods: {
-        logout: function() {
-            firebase
-                .auth()
-                .signOut()
-                .then(() => console.log("Logged out"))
-                .catch(function(error) {
-                    console.log(error);
-                });
-        },
-        checkAuth: function() {
-            this.user = firebase.auth().currentUser;
+        async signOut() {
+            await db.signOut();
         },
     },
 };

@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import firebase from "firebase";
 import "./registerServiceWorker";
 import "./scss/custom.scss";
 import "./scss/style.scss";
@@ -11,8 +12,33 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 Vue.config.productionTip = false;
 
-new Vue({
-    router,
-    store,
-    render: h => h(App),
-}).$mount("#app");
+let app;
+
+const initialize = () => {
+    if (!app) {
+        new Vue({
+            router,
+            store,
+            render: h => h(App),
+        }).$mount("#app");
+    }
+};
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.auth && !store.state.currentUser) {
+        next({
+            path: "/account",
+        });
+    } else {
+        next();
+    }
+});
+
+firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        store.commit("setCurrentUser", user);
+    } else {
+        store.commit("setCurrentUser", null);
+    }
+    initialize();
+});
