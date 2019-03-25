@@ -208,60 +208,53 @@
                 </div>
                 <!-- Button trigger modal -->
                 <button
-                    type="button"
                     class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
-                    data-toggle="modal"
-                    data-target="#registerModal"
                     @click="signUp"
                 >
                     Continue >
                 </button>
 
                 <!-- Modal -->
-                <div
-                    class="modal fade"
-                    id="registerModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-hidden="true"
-                >
-                    <div
-                        class="modal-dialog modal-dialog-centered"
-                        role="document"
-                    >
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">
-                                    Register
-                                </h5>
-                                <button
-                                    type="button"
-                                    class="close"
-                                    data-dismiss="modal"
-                                    aria-label="Close"
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p v-if="!newUser.error">
-                                    You successfully registered!
-                                    <br />
-                                    {{ newUser.email }}
-                                </p>
-                                {{ newUser.error }}
-                            </div>
-                            <div class="modal-footer">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-dismiss="modal"
-                                >
-                                    Close
-                                </button>
+                <div v-if="showModal">
+                    <transition name="modal">
+                        <div class="modal-mask">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Register
+                                            </h5>
+                                            <button
+                                                type="button"
+                                                class="close"
+                                                data-dismiss="modal"
+                                                aria-label="Close"
+                                            >
+                                                <span
+                                                    aria-hidden="true"
+                                                    @click="showModal = false"
+                                                    >&times;</span
+                                                >
+                                            </button>
+                                        </div>
+                                        <div class="modal-body my-3">
+                                            <p>{{ newUser.error }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                @click="showModal = false"
+                                            >
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </transition>
                 </div>
                 <p class="small">The fields marked with * are required</p>
             </div>
@@ -284,6 +277,7 @@ export default {
                 password: "",
                 error: "",
             },
+            showModal: false,
         };
     },
     computed: {
@@ -299,8 +293,11 @@ export default {
             );
             if (result.message) {
                 this.newUser.error = result.message;
+                this.showModal = true;
             } else {
+                this.showModal = false;
                 console.log("User is created");
+                this.$router.push("/");
             }
         },
         async signIn() {
@@ -340,5 +337,21 @@ export default {
     right: 10px;
     top: 3px;
     position: relative;
+}
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
 }
 </style>
