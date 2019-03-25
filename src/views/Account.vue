@@ -13,7 +13,7 @@
                         {{ existingUser.error }}
                     </div>
                 </div>
-                <div class="jumbotron px-3 py-4">
+                <form class="jumbotron px-3 py-4" type="text" @submit.prevent>
                     <p class="font-weight-bold">I'm already a customer.</p>
                     <hr class="w-100" />
                     <p class="small">
@@ -37,7 +37,7 @@
                     <button class="btn btn-primary" @click="signIn">
                         Login >
                     </button>
-                </div>
+                </form>
                 <p class="font-weight-bold">
                     My benefits
                 </p>
@@ -61,158 +61,164 @@
             <div class="col-12 col-md-8 mt-4">
                 <p class="font-weight-bold">I'm a new customer</p>
                 <hr class="w-100" />
-                <select class="form-control col-8 col-md-4 my-3" required>
-                    <option value="Iam">I am*</option>
-                    <option value="Private customer">Private customer</option>
-                    <option value="Company">Company</option>
-                </select>
-                <select class="form-control col-8 col-md-4 my-3" required>
-                    <option value="Title">Title*</option>
-                    <option value="Mr">Mr</option>
-                    <option value="Ms">Ms</option>
-                </select>
-                <input
-                    type="text"
-                    placeholder="First name*"
-                    class="form-control my-3"
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Last name*"
-                    class="form-control my-3"
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Your email address*"
-                    class="form-control my-3"
-                    required
-                    v-model="newUser.email"
-                />
-                <input
-                    type="password"
-                    placeholder="Your password*"
-                    class="form-control my-3"
-                    required
-                    v-model="newUser.password"
-                />
-                <p class="small">
-                    Your password must contain at least 8 characters.
-                </p>
-                <p class="small">The password is case sensitive.</p>
-
-                <br />
-                <p class="font-weight-bold">Your address</p>
-                <hr class="w-100" />
-                <input
-                    type="text"
-                    placeholder="Street and number*"
-                    class="form-control my-3"
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Zipcode*"
-                    class="form-control d-inline col-4 col-md-4"
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="City*"
-                    class="form-control d-inline col-8 col-md-8"
-                    required
-                />
-                <select class="form-control col-8 col-md-4 my-3" required>
-                    <option value="Country">Country*</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Germany">Germany</option>
-                    <option value="GreatBritain">Great Britain</option>
-                    <option value="Netherlands">Netherlands</option>
-                </select>
-                <div class="form-check my-3 pl-0">
-                    <div class="checkbox">
-                        <label
-                            class="form-check-label"
-                            data-toggle="collapse"
-                            data-target="#collapseShipping"
-                            aria-expanded="false"
-                            aria-controls="collapseShipping"
+                <form type="text" @submit.prevent="checkForm">
+                    <select
+                        class="form-control col-8 col-md-4 my-3"
+                        v-model="newUser.customer"
+                    >
+                        <option value="Iam" disabled>I am*</option>
+                        <option value="Private customer"
+                            >Private customer</option
                         >
-                            <input type="checkbox" /> The shipping address does
-                            not match the billing address</label
-                        >
-                    </div>
-                </div>
-                <div
-                    id="collapseShipping"
-                    aria-expanded="false"
-                    class="collapse"
-                >
-                    <p class="font-weight-bold">
-                        Your alternative shipping address
-                    </p>
-                    <hr class="w-100" />
-                    <select class="form-control col-8 col-md-4 my-3" required>
-                        <option value="Title2">Title*</option>
-                        <option value="Mr2">Mr</option>
-                        <option value="Ms2">Ms</option>
+                        <option value="Company">Company</option>
                     </select>
-                    <input
-                        type="text"
-                        placeholder="Company"
-                        class="form-control my-3"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Department"
-                        class="form-control my-3"
-                    />
+                    <select
+                        class="form-control col-8 col-md-4 my-3"
+                        v-model="newUser.title"
+                    >
+                        <option value="Title" disabled>Title*</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Ms">Ms</option>
+                    </select>
                     <input
                         type="text"
                         placeholder="First name*"
                         class="form-control my-3"
-                        required
+                        v-model="newUser.fname"
                     />
                     <input
                         type="text"
                         placeholder="Last name*"
                         class="form-control my-3"
-                        required
+                        v-model="newUser.lname"
                     />
+                    <input
+                        type="email"
+                        placeholder="Your email address*"
+                        class="form-control my-3"
+                        v-model="newUser.email"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Your password*"
+                        class="form-control my-3"
+                        v-model="newUser.password"
+                    />
+                    <p class="small">
+                        Your password must contain at least 8 characters.
+                    </p>
+                    <p class="small">The password is case sensitive.</p>
+
+                    <br />
+                    <p class="font-weight-bold">Your address</p>
+                    <hr class="w-100" />
                     <input
                         type="text"
                         placeholder="Street and number*"
                         class="form-control my-3"
-                        required
+                        v-model="newUser.streetAndNumber"
                     />
                     <input
                         type="text"
                         placeholder="Zipcode*"
                         class="form-control d-inline col-4 col-md-4"
-                        required
+                        v-model="newUser.zip"
                     />
                     <input
                         type="text"
                         placeholder="City*"
                         class="form-control d-inline col-8 col-md-8"
-                        required
+                        v-model="newUser.city"
                     />
-                    <select class="form-control col-8 col-md-4 my-3" required>
-                        <option value="Country">Country*</option>
+                    <select
+                        class="form-control col-8 col-md-4 my-3"
+                        v-model="newUser.country"
+                    >
+                        <option value="Country" disabled>Country*</option>
                         <option value="Belgium">Belgium</option>
                         <option value="Germany">Germany</option>
                         <option value="GreatBritain">Great Britain</option>
                         <option value="Netherlands">Netherlands</option>
                     </select>
-                </div>
-                <!-- Button trigger modal -->
-                <button
-                    class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
-                    @click="signUp"
-                >
-                    Continue >
-                </button>
+                    <div class="form-check my-3 pl-0">
+                        <div class="checkbox">
+                            <label
+                                class="form-check-label"
+                                data-toggle="collapse"
+                                data-target="#collapseShipping"
+                                aria-expanded="false"
+                                aria-controls="collapseShipping"
+                            >
+                                <input type="checkbox" /> The shipping address
+                                does not match the billing address</label
+                            >
+                        </div>
+                    </div>
+                    <div
+                        id="collapseShipping"
+                        aria-expanded="false"
+                        class="collapse"
+                    >
+                        <p class="font-weight-bold">
+                            Your alternative shipping address
+                        </p>
+                        <hr class="w-100" />
+                        <select class="form-control col-8 col-md-4 my-3">
+                            <option value="Title2" disabled>Title*</option>
+                            <option value="Mr2">Mr</option>
+                            <option value="Ms2">Ms</option>
+                        </select>
+                        <input
+                            type="text"
+                            placeholder="Company"
+                            class="form-control my-3"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Department"
+                            class="form-control my-3"
+                        />
+                        <input
+                            type="text"
+                            placeholder="First name*"
+                            class="form-control my-3"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Last name*"
+                            class="form-control my-3"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Street and number*"
+                            class="form-control my-3"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Zipcode*"
+                            class="form-control d-inline col-4 col-md-4"
+                        />
+                        <input
+                            type="text"
+                            placeholder="City*"
+                            class="form-control d-inline col-8 col-md-8"
+                        />
+                        <select class="form-control col-8 col-md-4 my-3">
+                            <option value="Country">Country*</option>
+                            <option value="Belgium">Belgium</option>
+                            <option value="Germany">Germany</option>
+                            <option value="GreatBritain">Great Britain</option>
+                            <option value="Netherlands">Netherlands</option>
+                        </select>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button
+                        class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
+                        @click="signUp"
+                    >
+                        Continue >
+                    </button>
+                </form>
 
                 <!-- Modal -->
                 <div v-if="showModal">
@@ -256,7 +262,7 @@
                         </div>
                     </transition>
                 </div>
-                <p class="small">The fields marked with * are required</p>
+                <p class="small">The fields marked with * are required.</p>
             </div>
         </div>
     </div>
@@ -273,8 +279,17 @@ export default {
                 error: "",
             },
             newUser: {
+                errors: [],
+                customer: "",
+                title: "",
+                fname: "",
+                lname: "",
                 email: "",
                 password: "",
+                streetAndNumber: "",
+                zip: "",
+                city: "",
+                country: "",
                 error: "",
             },
             showModal: false,
@@ -297,6 +312,7 @@ export default {
             } else {
                 this.showModal = false;
                 this.$router.push("/");
+                console.log(this.newUser);
             }
         },
         async signIn() {
@@ -308,6 +324,20 @@ export default {
                 this.existingUser.error = result.message;
             } else {
                 this.$router.push("/");
+            }
+        },
+        checkForm() {
+            if (this.newUser.fname && this.newUser.lname) {
+                return true;
+            }
+
+            this.errors = [];
+
+            if (!this.newUser.fname) {
+                this.errors.push("First name required.");
+            }
+            if (!this.newUser.lname) {
+                this.errors.push("Last name required");
             }
         },
     },

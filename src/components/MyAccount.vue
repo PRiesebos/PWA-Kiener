@@ -21,7 +21,6 @@
                             <router-link
                                 to="/account"
                                 class="btn btn-link d-inline pl-1"
-                                data-toggle="dropdown"
                                 >Register</router-link
                             >
                         </div>

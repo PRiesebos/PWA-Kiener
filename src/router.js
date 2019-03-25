@@ -41,6 +41,11 @@ let router = new Router({
             name: "account",
             component: () => import("./views/Account.vue"),
         },
+        {
+            path: "/account/profile",
+            name: "profile",
+            component: () => import("./views/Profile.vue"),
+        },
     ],
 });
 
