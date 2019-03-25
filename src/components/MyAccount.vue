@@ -13,6 +13,7 @@
                         <router-link
                             to="/account"
                             class="btn btn-primary d-block col-md-12 mt-3"
+                            data-toggle="dropdown"
                             >Sign in</router-link
                         >
                         <div class="form-group text-center mb-0">
@@ -20,6 +21,7 @@
                             <router-link
                                 to="/account"
                                 class="btn btn-link d-inline pl-1"
+                                data-toggle="dropdown"
                                 >Register</router-link
                             >
                         </div>
