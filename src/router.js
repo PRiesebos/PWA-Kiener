@@ -42,9 +42,9 @@ let router = new Router({
             component: () => import("./views/Account.vue"),
         },
         {
-            path: "/account/profile",
+            path: "/account/overview",
             name: "profile",
-            component: () => import("./views/Profile.vue"),
+            component: () => import("./views/Overview.vue"),
         },
     ],
 });

@@ -27,8 +27,20 @@
                     </div>
                     <hr class="w-100 my-2" />
                     <ul class="list-group list-unstyled">
-                        <li><a href="#">Overview</a></li>
-                        <li><a href="#">Profile</a></li>
+                        <li>
+                            <router-link
+                                to="/account/overview"
+                                data-toggle="dropdown"
+                                >Overview</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link
+                                to="/account/profile"
+                                data-toggle="dropdown"
+                                >profile</router-link
+                            >
+                        </li>
                         <li><a href="#">Addresses</a></li>
                         <li><a href="#">Payment methods</a></li>
                         <li><a href="#">Orders</a></li>

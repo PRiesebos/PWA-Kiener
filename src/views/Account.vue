@@ -1,6 +1,7 @@
 <template>
     <div class="container mt-4">
         <div class="row">
+            <!-- sign in form -->
             <div class="col-12 col-md-4">
                 <div
                     class="mb-3 d-flex justify-content-between"
@@ -19,18 +20,22 @@
                     <p class="small">
                         Log in with your email address and password.
                     </p>
-                    <input
-                        type="text"
-                        class="form-control my-3"
-                        placeholder="Your email adress"
-                        v-model="existingUser.email"
-                    />
-                    <input
-                        type="password"
-                        class="form-control"
-                        placeholder="Your password"
-                        v-model="existingUser.password"
-                    />
+                    <div>
+                        <input
+                            type="text"
+                            class="form-control my-3"
+                            placeholder="Your email adress"
+                            v-model="existingUser.email"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Your password"
+                            v-model="existingUser.password"
+                        />
+                    </div>
                     <a class="text-primary d-block my-3"
                         >Forgot your password?</a
                     >
@@ -38,108 +43,131 @@
                         Login >
                     </button>
                 </form>
-                <p class="font-weight-bold">
-                    My benefits
-                </p>
+                <div>
+                    <p class="font-weight-bold">
+                        My benefits
+                    </p>
 
-                <p class="my-1 small">
-                    <i class="fas fa-check"></i> Express shopping
-                </p>
-                <p class="my-1 small">
-                    <i class="fas fa-check"></i> Save your user data and
-                    settings
-                </p>
-                <p class="my-1 small">
-                    <i class="fas fa-check"></i> Overview of your orders incl.
-                    shipping informations
-                </p>
-                <p class="my-1 small">
-                    <i class="fas fa-check"></i> Manage your newsletter
-                    subscription
-                </p>
+                    <p class="my-1 small">
+                        <i class="fas fa-check"></i> Express shopping
+                    </p>
+                    <p class="my-1 small">
+                        <i class="fas fa-check"></i> Save your user data and
+                        settings
+                    </p>
+                    <p class="my-1 small">
+                        <i class="fas fa-check"></i> Overview of your orders
+                        incl. shipping informations
+                    </p>
+                    <p class="my-1 small">
+                        <i class="fas fa-check"></i> Manage your newsletter
+                        subscription
+                    </p>
+                </div>
             </div>
+            <!-- register form -->
             <div class="col-12 col-md-8 mt-4">
                 <p class="font-weight-bold">I'm a new customer</p>
                 <hr class="w-100" />
-                <form type="text" @submit.prevent="checkForm">
-                    <select
-                        class="form-control col-8 col-md-4 my-3"
-                        v-model="newUser.customer"
-                    >
-                        <option value="Iam" disabled>I am*</option>
-                        <option value="Private customer"
-                            >Private customer</option
+                <form type="text" @submit.prevent>
+                    <div>
+                        <select
+                            class="form-control col-8 col-md-4 my-3"
+                            v-model="newUser.customer"
                         >
-                        <option value="Company">Company</option>
-                    </select>
-                    <select
-                        class="form-control col-8 col-md-4 my-3"
-                        v-model="newUser.title"
-                    >
-                        <option value="Title" disabled>Title*</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Ms">Ms</option>
-                    </select>
-                    <input
-                        type="text"
-                        placeholder="First name*"
-                        class="form-control my-3"
-                        v-model="newUser.fname"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Last name*"
-                        class="form-control my-3"
-                        v-model="newUser.lname"
-                    />
+                            <option value="Iam" disabled>I am*</option>
+                            <option value="Private customer"
+                                >Private customer</option
+                            >
+                            <option value="Company">Company</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select
+                            class="form-control col-8 col-md-4 my-3"
+                            v-model="newUser.title"
+                        >
+                            <option value="Title" disabled>Title*</option>
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="First name*"
+                            class="form-control my-3"
+                            v-model="newUser.fname"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Last name*"
+                            class="form-control my-3"
+                            v-model="newUser.lname"
+                        />
+                    </div>
                     <input
                         type="email"
                         placeholder="Your email address*"
                         class="form-control my-3"
                         v-model="newUser.email"
                     />
-                    <input
-                        type="password"
-                        placeholder="Your password*"
-                        class="form-control my-3"
-                        v-model="newUser.password"
-                    />
-                    <p class="small">
-                        Your password must contain at least 8 characters.
-                    </p>
-                    <p class="small">The password is case sensitive.</p>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Your password*"
+                            class="form-control my-3"
+                            v-model="newUser.password"
+                        />
+                    </div>
+                    <div>
+                        <p class="small">
+                            Your password must contain at least 6 characters.
+                        </p>
+                        <p class="small">The password is case sensitive.</p>
 
-                    <br />
-                    <p class="font-weight-bold">Your address</p>
-                    <hr class="w-100" />
-                    <input
-                        type="text"
-                        placeholder="Street and number*"
-                        class="form-control my-3"
-                        v-model="newUser.streetAndNumber"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Zipcode*"
-                        class="form-control d-inline col-4 col-md-4"
-                        v-model="newUser.zip"
-                    />
-                    <input
-                        type="text"
-                        placeholder="City*"
-                        class="form-control d-inline col-8 col-md-8"
-                        v-model="newUser.city"
-                    />
-                    <select
-                        class="form-control col-8 col-md-4 my-3"
-                        v-model="newUser.country"
-                    >
-                        <option value="Country" disabled>Country*</option>
-                        <option value="Belgium">Belgium</option>
-                        <option value="Germany">Germany</option>
-                        <option value="GreatBritain">Great Britain</option>
-                        <option value="Netherlands">Netherlands</option>
-                    </select>
+                        <br />
+                        <p class="font-weight-bold">Your address</p>
+                        <hr class="w-100" />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Street and number*"
+                            class="form-control my-3"
+                            v-model="newUser.streetAndNumber"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Zipcode*"
+                            class="form-control d-inline col-4 col-md-4"
+                            v-model="newUser.zip"
+                        />
+
+                        <input
+                            type="text"
+                            placeholder="City*"
+                            class="form-control d-inline col-8 col-md-8"
+                            v-model="newUser.city"
+                        />
+                    </div>
+                    <div>
+                        <select
+                            class="form-control col-8 col-md-4 my-3"
+                            v-model="newUser.country"
+                        >
+                            <option value="Country" disabled>Country*</option>
+                            <option value="Belgium">Belgium</option>
+                            <option value="Germany">Germany</option>
+                            <option value="GreatBritain">Great Britain</option>
+                            <option value="Netherlands">Netherlands</option>
+                        </select>
+                    </div>
+                    <!-- alternative shipping adress -->
                     <div class="form-check my-3 pl-0">
                         <div class="checkbox">
                             <label
@@ -163,58 +191,77 @@
                             Your alternative shipping address
                         </p>
                         <hr class="w-100" />
-                        <select class="form-control col-8 col-md-4 my-3">
-                            <option value="Title2" disabled>Title*</option>
-                            <option value="Mr2">Mr</option>
-                            <option value="Ms2">Ms</option>
-                        </select>
-                        <input
-                            type="text"
-                            placeholder="Company"
-                            class="form-control my-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Department"
-                            class="form-control my-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="First name*"
-                            class="form-control my-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Last name*"
-                            class="form-control my-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Street and number*"
-                            class="form-control my-3"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Zipcode*"
-                            class="form-control d-inline col-4 col-md-4"
-                        />
-                        <input
-                            type="text"
-                            placeholder="City*"
-                            class="form-control d-inline col-8 col-md-8"
-                        />
-                        <select class="form-control col-8 col-md-4 my-3">
-                            <option value="Country">Country*</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Germany">Germany</option>
-                            <option value="GreatBritain">Great Britain</option>
-                            <option value="Netherlands">Netherlands</option>
-                        </select>
+                        <div>
+                            <select class="form-control col-8 col-md-4 my-3">
+                                <option value="Title2" disabled>Title*</option>
+                                <option value="Mr2">Mr</option>
+                                <option value="Ms2">Ms</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Company"
+                                class="form-control my-3"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Department"
+                                class="form-control my-3"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="First name*"
+                                class="form-control my-3"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Last name*"
+                                class="form-control my-3"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Street and number*"
+                                class="form-control my-3"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Zipcode*"
+                                class="form-control d-inline col-4 col-md-4"
+                            />
+
+                            <input
+                                type="text"
+                                placeholder="City*"
+                                class="form-control d-inline col-8 col-md-8"
+                            />
+                        </div>
+                        <div>
+                            <select class="form-control col-8 col-md-4 my-3">
+                                <option value="Country">Country*</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Germany">Germany</option>
+                                <option value="GreatBritain"
+                                    >Great Britain</option
+                                >
+                                <option value="Netherlands">Netherlands</option>
+                            </select>
+                        </div>
                     </div>
                     <!-- Button trigger modal -->
                     <button
                         class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
-                        @click="signUp"
+                        @click="checkForm"
                     >
                         Continue >
                     </button>
@@ -244,8 +291,24 @@
                                                 >
                                             </button>
                                         </div>
-                                        <div class="modal-body my-3">
-                                            <p>{{ newUser.error }}</p>
+                                        <div class="modal-body">
+                                            <div v-if="errors.length">
+                                                <b
+                                                    >Please correct the
+                                                    following error(s):</b
+                                                >
+                                                <ul>
+                                                    <li
+                                                        v-for="errors in errors"
+                                                        :key="errors"
+                                                    >
+                                                        {{ errors }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div v-else>
+                                                <b>You succesfully registerd</b>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button
@@ -279,9 +342,8 @@ export default {
                 error: "",
             },
             newUser: {
-                errors: [],
-                customer: "",
-                title: "",
+                customer: "Iam",
+                title: "Title",
                 fname: "",
                 lname: "",
                 email: "",
@@ -289,16 +351,12 @@ export default {
                 streetAndNumber: "",
                 zip: "",
                 city: "",
-                country: "",
+                country: "Country",
                 error: "",
             },
+            errors: [],
             showModal: false,
         };
-    },
-    computed: {
-        currentUser() {
-            return this.$store.state.currentUser;
-        },
     },
     methods: {
         async signUp() {
@@ -307,12 +365,10 @@ export default {
                 this.newUser.password
             );
             if (result.message) {
-                this.newUser.error = result.message;
-                this.showModal = true;
+                this.errors.push(result.message);
             } else {
                 this.showModal = false;
                 this.$router.push("/");
-                console.log(this.newUser);
             }
         },
         async signIn() {
@@ -323,21 +379,45 @@ export default {
             if (result.message) {
                 this.existingUser.error = result.message;
             } else {
-                this.$router.push("/");
+                this.$router.push("/account/overview");
             }
         },
         checkForm() {
-            if (this.newUser.fname && this.newUser.lname) {
-                return true;
-            }
-
             this.errors = [];
+            this.showModal = true;
 
+            if (!this.newUser.customer || this.newUser.customer == "Iam") {
+                this.errors.push("Customer type required.");
+            }
+            if (!this.newUser.title || this.newUser.title == "Title") {
+                this.errors.push("Customer title required.");
+            }
             if (!this.newUser.fname) {
                 this.errors.push("First name required.");
             }
             if (!this.newUser.lname) {
-                this.errors.push("Last name required");
+                this.errors.push("Last name required.");
+            }
+            if (!this.newUser.email) {
+                this.errors.push("Email required.");
+            }
+            if (!this.newUser.password) {
+                this.errors.push("Password required.");
+            }
+            if (!this.newUser.streetAndNumber) {
+                this.errors.push("Street and streetnumber required.");
+            }
+            if (!this.newUser.zip) {
+                this.errors.push("Zip code required.");
+            }
+            if (!this.newUser.city) {
+                this.errors.push("City required.");
+            }
+            if (!this.newUser.country || this.newUser.country == "Country") {
+                this.errors.push("Country required");
+            }
+            if (this.errors.length == 0) {
+                this.signUp();
             }
         },
     },
