@@ -76,7 +76,9 @@ export default {
     },
     methods: {
         async signOut() {
-            await db.signOut();
+            await db.signOut().then(() => {
+                this.$router.push("/");
+            });
         },
     },
 };

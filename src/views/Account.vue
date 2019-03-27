@@ -36,9 +36,12 @@
                             v-model="existingUser.password"
                         />
                     </div>
-                    <a class="text-primary d-block my-3"
-                        >Forgot your password?</a
+                    <button
+                        class="btn btn-link text-primary d-block my-3 pl-0"
+                        @click.once="resetPassword"
                     >
+                        Forgot your password?
+                    </button>
                     <button class="btn btn-primary" @click="signIn">
                         Login >
                     </button>
@@ -333,6 +336,7 @@
 
 <script>
 import db from "@/db.js";
+import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -369,6 +373,17 @@ export default {
             } else {
                 this.showModal = false;
                 this.$router.push("/");
+                firebase
+                    .auth()
+                    .currentUser.sendEmailVerification()
+                    .then(
+                        function() {
+                            console.log("email send");
+                        },
+                        function(error) {
+                            console.log(error);
+                        }
+                    );
             }
         },
         async signIn() {
@@ -381,6 +396,18 @@ export default {
             } else {
                 this.$router.push("/account/overview");
             }
+        },
+        resetPassword() {
+            firebase
+                .auth()
+                .sendPasswordResetEmail(this.existingUser.email)
+                .then(function() {
+                    this.existingUser.error = "Password reset email send";
+                    alert("Password reset email has been send");
+                })
+                .catch(function(error) {
+                    this.existingUser.error = error;
+                });
         },
         checkForm() {
             this.errors = [];
