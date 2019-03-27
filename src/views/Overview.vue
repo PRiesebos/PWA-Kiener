@@ -78,6 +78,12 @@
                                 Mollie newsletter. You have the possibility to
                                 unsubscribe at any time.</label
                             >
+                            <button
+                                class="btn btn-warning mt-3"
+                                @click.once="deleteAccount"
+                            >
+                                Delete account
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -88,6 +94,8 @@
 
 <script>
 import AccountPanel from "@/components/AccountPanel";
+import firebase from "firebase/app";
+import db from "@/db";
 export default {
     computed: {
         currentUser() {
@@ -95,6 +103,37 @@ export default {
         },
     },
     components: { AccountPanel },
+    methods: {
+        deleteAccount() {
+            var user = firebase.auth().currentUser;
+
+            user.delete()
+                .then(function() {
+                    alert("Account deleted");
+                    this.signOut();
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
+        async signOut() {
+            await db
+                .signOut()
+                .then(() => {
+                    this.$router.push("/");
+                })
+                .catch(function(error) {
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    if (errorCode == "auth/invalid-email") {
+                        alert(errorMessage);
+                    } else if (errorCode == "auth/user-not-found") {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
+                });
+        },
+    },
 };
 </script>
 

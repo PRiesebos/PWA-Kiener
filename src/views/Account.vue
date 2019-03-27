@@ -38,7 +38,7 @@
                     </div>
                     <button
                         class="btn btn-link text-primary d-block my-3 pl-0"
-                        @click.once="resetPassword"
+                        @click="resetPassword"
                     >
                         Forgot your password?
                     </button>
@@ -402,11 +402,17 @@ export default {
                 .auth()
                 .sendPasswordResetEmail(this.existingUser.email)
                 .then(function() {
-                    this.existingUser.error = "Password reset email send";
-                    alert("Password reset email has been send");
+                    alert("Password Reset Email Sent!");
                 })
                 .catch(function(error) {
-                    this.existingUser.error = error;
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    if (errorCode == "auth/invalid-email") {
+                        alert(errorMessage);
+                    } else if (errorCode == "auth/user-not-found") {
+                        alert(errorMessage);
+                    }
+                    console.log(error);
                 });
         },
         checkForm() {
