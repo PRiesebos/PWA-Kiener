@@ -2,8 +2,8 @@
     <div class="sticky-top">
         <div class="border rounded col-md-12">
             <div>
-                <p class="font-weight-bold mt-3">
-                    Hey, {{ currentUser.email }}
+                <p class="font-weight-bold mt-3 text-break">
+                    Hey, {{ currentUser.displayName }}
                 </p>
                 <hr class="w-100" />
                 <ul class="list-group list-unstyled text-left">
@@ -69,9 +69,7 @@ export default {
         async signOut() {
             await db
                 .signOut()
-                .then(() => {
-                    this.$router.push("/");
-                })
+                .then(() => {})
                 .catch(function(error) {
                     let errorCode = error.code;
                     let errorMessage = error.message;
@@ -82,6 +80,7 @@ export default {
                     }
                     console.log(error);
                 });
+            this.$router.push({ name: "home" });
         },
     },
 };

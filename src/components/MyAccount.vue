@@ -21,6 +21,7 @@
                             <router-link
                                 to="/account"
                                 class="btn btn-link d-inline pl-1"
+                                data-toggle="dropdown"
                                 >Register</router-link
                             >
                         </div>
@@ -76,9 +77,8 @@ export default {
     },
     methods: {
         async signOut() {
-            await db.signOut().then(() => {
-                this.$router.push("/");
-            });
+            await db.signOut();
+            this.$router.go({ name: "home" });
         },
     },
 };

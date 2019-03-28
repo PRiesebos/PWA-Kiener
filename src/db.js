@@ -13,6 +13,52 @@ var config = {
 };
 
 const db = firebase.initializeApp(config);
+const dbf = firebase.firestore();
+const docRef = dbf.collection("users");
+
+db.addUser = async (
+    userObject,
+    username,
+    customerType,
+    title,
+    first,
+    last,
+    email
+) => {
+    try {
+        await dbf
+            .collection("users")
+            .doc(username)
+            .set({
+                id: userObject,
+                username,
+                customerType,
+                title,
+                first,
+                last,
+                email,
+            });
+    } catch (error) {
+        return error;
+    }
+};
+
+db.getUser = async user => {
+    try {
+        await docRef
+            .doc(user)
+            .get()
+            .then(function(doc) {
+                if (doc.exists && store.setCurrentUserData == null) {
+                    store.commit("setCurrentUserData", doc.data());
+                } else {
+                    console.log("No such document or data already stored");
+                }
+            });
+    } catch (error) {
+        return error;
+    }
+};
 
 db.signUp = async (email, password) => {
     try {

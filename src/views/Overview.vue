@@ -3,7 +3,9 @@
         <div class="row mt-5">
             <div class="col-4 col-md-4 col-lg-2 pl-0"><AccountPanel /></div>
             <div class="col-8 col-md-8 col-lg-10 text-center">
-                <p class="h1 my-5">Welcome, {{ currentUser.email }}</p>
+                <p class="h1 my-5 text-break">
+                    Welcome, {{ currentUser.displayName }}
+                </p>
                 <div class="text-left">
                     <p>
                         This is your account dashboard which enables you to view
@@ -15,7 +17,11 @@
                         <div class="overview-block">
                             <p class="font-weight-bold">Profile</p>
                             <hr class="w-100 my-3" />
-                            <p class="my-1">Titel FName LName</p>
+                            <p class="my-1">
+                                {{ currentUserData.title }}.
+                                {{ currentUserData.first }}
+                                {{ currentUserData.last }}
+                            </p>
                             <p class="my-1">Email@email.nl</p>
                         </div>
                         <button class="btn btn-outline-dark mt-5">
@@ -46,7 +52,11 @@
                                 Primary billing address
                             </p>
                             <hr class="w-100 my-3" />
-                            <p class="my-1">Titel FName LName</p>
+                            <p class="my-1">
+                                {{ currentUserData.title }}.
+                                {{ currentUserData.first }}
+                                {{ currentUserData.last }}
+                            </p>
                             <p class="my-1">Street + number</p>
                             <p class="my-1">Zip + city</p>
                             <p class="my-1">Country</p>
@@ -95,52 +105,49 @@
 <script>
 import AccountPanel from "@/components/AccountPanel";
 import firebase from "firebase/app";
-import db from "@/db";
+import db from "@/db.js";
+
 export default {
+    data() {
+        return {
+            userData: "",
+        };
+    },
     computed: {
         currentUser() {
             return this.$store.state.currentUser;
         },
+        currentUserData() {
+            return this.$store.state.currentUserData;
+        },
     },
     components: { AccountPanel },
+    created() {
+        this.getUser();
+    },
     methods: {
         deleteAccount() {
             var user = firebase.auth().currentUser;
 
             user.delete()
-                .then(function() {
-                    alert("Account deleted");
-                    this.signOut();
-                })
+                .then(function() {})
                 .catch(function(error) {
                     console.log(error);
                 });
+            this.$router.push("/");
+            window.scrollTo(0, 0);
         },
-        async signOut() {
-            await db
-                .signOut()
-                .then(() => {
-                    this.$router.push("/");
-                })
-                .catch(function(error) {
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    if (errorCode == "auth/invalid-email") {
-                        alert(errorMessage);
-                    } else if (errorCode == "auth/user-not-found") {
-                        alert(errorMessage);
-                    }
-                    console.log(error);
-                });
+        async getUser() {
+            let result = await db.getUser(this.currentUser.email.split("@")[0]);
+            if (result.message) {
+                console.log(result.message);
+            }
         },
     },
 };
 </script>
 
 <style scoped>
-p {
-    word-wrap: break-word;
-}
 .overview-block {
     height: 150px;
 }

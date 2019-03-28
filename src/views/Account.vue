@@ -14,7 +14,11 @@
                         {{ existingUser.error }}
                     </div>
                 </div>
-                <form class="jumbotron px-3 py-4" type="text" @submit.prevent>
+                <form
+                    class="jumbotron px-3 py-4"
+                    type="text"
+                    @submit.prevent="signIn"
+                >
                     <p class="font-weight-bold">I'm already a customer.</p>
                     <hr class="w-100" />
                     <p class="small">
@@ -23,6 +27,7 @@
                     <div>
                         <input
                             type="text"
+                            name="LoginEmail"
                             class="form-control my-3"
                             placeholder="Your email adress"
                             v-model="existingUser.email"
@@ -31,19 +36,21 @@
                     <div>
                         <input
                             type="password"
+                            name="LoginPassword"
                             class="form-control"
                             placeholder="Your password"
                             v-model="existingUser.password"
                         />
                     </div>
+                    <button class="btn btn-primary my-3" @click="signIn">
+                        Login >
+                    </button>
                     <button
-                        class="btn btn-link text-primary d-block my-3 pl-0"
+                        class="btn btn-link text-primary d-block pl-0"
+                        @submit.prevent
                         @click="resetPassword"
                     >
                         Forgot your password?
-                    </button>
-                    <button class="btn btn-primary" @click="signIn">
-                        Login >
                     </button>
                 </form>
                 <div>
@@ -112,7 +119,8 @@
                         />
                     </div>
                     <input
-                        type="email"
+                        type="text"
+                        name="RegisterEmail"
                         placeholder="Your email address*"
                         class="form-control my-3"
                         v-model="newUser.email"
@@ -120,6 +128,7 @@
                     <div>
                         <input
                             type="password"
+                            name="RegisterPassword"
                             placeholder="Your password*"
                             class="form-control my-3"
                             v-model="newUser.password"
@@ -268,6 +277,9 @@
                     >
                         Continue >
                     </button>
+                    <button class="btn btn-warning" @click="fieldValues">
+                        Field values
+                    </button>
                 </form>
 
                 <!-- Modal -->
@@ -337,6 +349,8 @@
 <script>
 import db from "@/db.js";
 import firebase from "firebase/app";
+import router from "../router.js";
+import { error } from "util";
 export default {
     data() {
         return {
@@ -362,6 +376,11 @@ export default {
             showModal: false,
         };
     },
+    computed: {
+        currentUser() {
+            return this.$store.state.currentUser;
+        },
+    },
     methods: {
         async signUp() {
             let result = await db.signUp(
@@ -371,14 +390,16 @@ export default {
             if (result.message) {
                 this.errors.push(result.message);
             } else {
-                this.showModal = false;
-                this.$router.push("/");
+                this.addUser();
+                firebase.auth().currentUser.sendEmailVerification();
                 firebase
                     .auth()
-                    .currentUser.sendEmailVerification()
+                    .currentUser.updateProfile({
+                        displayName: this.newUser.fname,
+                    })
                     .then(
                         function() {
-                            console.log("email send");
+                            router.push("/account/overview");
                         },
                         function(error) {
                             console.log(error);
@@ -395,6 +416,22 @@ export default {
                 this.existingUser.error = result.message;
             } else {
                 this.$router.push("/account/overview");
+            }
+        },
+        async addUser() {
+            let result = await db.addUser(
+                this.currentUser.uid,
+                this.newUser.email.split("@")[0],
+                this.newUser.customer,
+                this.newUser.title,
+                this.newUser.fname,
+                this.newUser.lname,
+                this.newUser.email
+            );
+            if (result.message) {
+                console.log(result.message);
+            } else {
+                console.log(error);
             }
         },
         resetPassword() {
@@ -452,6 +489,9 @@ export default {
             if (this.errors.length == 0) {
                 this.signUp();
             }
+        },
+        fieldValues() {
+            console.log(this.newUser);
         },
     },
 };

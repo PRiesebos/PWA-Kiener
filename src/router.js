@@ -45,6 +45,9 @@ let router = new Router({
             path: "/account/overview",
             name: "profile",
             component: () => import("./views/Overview.vue"),
+            meta: {
+                auth: true,
+            },
         },
     ],
 });

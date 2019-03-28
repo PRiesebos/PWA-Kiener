@@ -9,6 +9,9 @@ export default new Vuex.Store({
         setCurrentUser(state, payload) {
             state.currentUser = payload;
         },
+        setCurrentUserData(state, payload) {
+            state.currentUserData = payload;
+        },
     },
     actions: {},
 });
