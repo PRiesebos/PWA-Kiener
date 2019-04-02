@@ -4,7 +4,7 @@ import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-const router = new Router({
+let router = new Router({
     mode: "history",
     base: process.env.BASE_URL,
     routes: [
@@ -28,7 +28,7 @@ const router = new Router({
             name: "test",
             component: () => import("./views/Test.vue"),
             meta: {
-                requiresAuth: true,
+                auth: true,
             },
         },
         {
@@ -41,7 +41,22 @@ const router = new Router({
             name: "account",
             component: () => import("./views/Account.vue"),
         },
+        {
+            path: "/account/overview",
+            name: "profile",
+            component: () => import("./views/Overview.vue"),
+            meta: {
+                auth: true,
+            },
+        },
     ],
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { x: 0, y: 0 };
+        }
+    },
 });
 
 export default router;

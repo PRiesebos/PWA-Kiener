@@ -12,11 +12,11 @@
                 </p>
                 <div class="row mt-4 mx-auto col-12">
                     <div class="btn-group btn-group-lg">
-                        <a href="/about" class="btn btn-outline-light"
-                            >About Mollie payments</a
+                        <router-link to="/about" class="btn btn-outline-light"
+                            >About Mollie payments</router-link
                         >
-                        <a href="/products" class="btn btn-primary ml-2"
-                            >Explore our merchandise</a
+                        <router-link to="/products" class="btn btn-primary ml-2"
+                            >Explore our merchandise</router-link
                         >
                     </div>
                 </div>

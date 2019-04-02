@@ -10,7 +10,7 @@
                     data-toggle="collapse"
                     data-target="#navbarComp"
                 >
-                    <i class="fas fa-align-justify"></i>
+                    <font-awesome-icon icon="align-justify" />
                 </button>
                 <div class="collapse navbar-collapse" id="navbarComp">
                     <ul class="navbar-nav ml-auto">

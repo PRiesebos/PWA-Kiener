@@ -8,7 +8,7 @@
         />
         <div class="input-group-append mr-2">
             <span class="input-group-text lighten-2" id="basic-text1">
-                <i class="fas fa-search text-grey" aria-hidden="true"></i>
+                <font-awesome-icon icon="search" />
             </span>
         </div>
     </div>
