@@ -12,31 +12,37 @@ var config = {
     messagingSenderId: "897220143817",
 };
 
-const db = firebase.initializeApp(config);
-const dbf = firebase.firestore();
-const docRef = dbf.collection("users");
+firebase.initializeApp(config);
+const db = firebase.firestore();
+const docRef = db.collection("users");
 
 db.addUser = async (
     userObject,
-    username,
     customerType,
     title,
     first,
     last,
-    email
+    email,
+    streetAndNumber,
+    zip,
+    city,
+    country
 ) => {
     try {
-        await dbf
+        await db
             .collection("users")
-            .doc(username)
+            .doc(userObject)
             .set({
                 id: userObject,
-                username,
                 customerType,
                 title,
                 first,
                 last,
                 email,
+                streetAndNumber,
+                zip,
+                city,
+                country,
             });
     } catch (error) {
         return error;
@@ -49,7 +55,7 @@ db.getUser = async user => {
             .doc(user)
             .get()
             .then(function(doc) {
-                if (doc.exists && store.setCurrentUserData == null) {
+                if (doc.exists) {
                     store.commit("setCurrentUserData", doc.data());
                 } else {
                     console.log("No such document or data already stored");
@@ -89,6 +95,7 @@ db.signOut = async () => {
         await firebase.auth().signOut();
 
         store.commit("setCurrentUser", null);
+        store.commit("setCurrentUserData", null);
 
         return true;
     } catch (error) {

@@ -4,7 +4,7 @@
             <div class="col-4 col-md-4 col-lg-2 pl-0"><AccountPanel /></div>
             <div class="col-8 col-md-8 col-lg-10 text-center">
                 <p class="h1 my-5 text-break">
-                    Welcome, {{ currentUser.displayName }}
+                    Welcome, {{ currentUserData.first.slice(0, 1) }}
                 </p>
                 <div class="text-left">
                     <p>
@@ -22,7 +22,10 @@
                                 {{ currentUserData.first }}
                                 {{ currentUserData.last }}
                             </p>
-                            <p class="my-1">Email@email.nl</p>
+                            <p class="my-1">{{ currentUserData.email }}</p>
+                            <p class="my-1">
+                                Verified email: {{ currentUser.emailVerified }}
+                            </p>
                         </div>
                         <button class="btn btn-outline-dark mt-5">
                             Change profile
@@ -57,9 +60,14 @@
                                 {{ currentUserData.first }}
                                 {{ currentUserData.last }}
                             </p>
-                            <p class="my-1">Street + number</p>
-                            <p class="my-1">Zip + city</p>
-                            <p class="my-1">Country</p>
+                            <p class="my-1">
+                                {{ currentUserData.streetAndNumber }}
+                            </p>
+                            <p class="my-1">
+                                {{ currentUserData.zip }}
+                                {{ currentUserData.city }}
+                            </p>
+                            <p class="my-1">{{ currentUserData.country }}</p>
                         </div>
                         <button class="btn btn-outline-dark mt-5">
                             Change billing address
@@ -105,13 +113,10 @@
 <script>
 import AccountPanel from "@/components/AccountPanel";
 import firebase from "firebase/app";
-import db from "@/db.js";
 
 export default {
     data() {
-        return {
-            userData: "",
-        };
+        return {};
     },
     computed: {
         currentUser() {
@@ -122,9 +127,6 @@ export default {
         },
     },
     components: { AccountPanel },
-    created() {
-        this.getUser();
-    },
     methods: {
         deleteAccount() {
             var user = firebase.auth().currentUser;
@@ -136,12 +138,6 @@ export default {
                 });
             this.$router.push("/");
             window.scrollTo(0, 0);
-        },
-        async getUser() {
-            let result = await db.getUser(this.currentUser.email.split("@")[0]);
-            if (result.message) {
-                console.log(result.message);
-            }
         },
     },
 };

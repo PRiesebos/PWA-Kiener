@@ -1,8 +1,7 @@
 <template>
     <div>
         <button class="btn btn-light" data-toggle="dropdown">
-            <i class="far fa-user"></i>
-            My account
+            <font-awesome-icon :icon="['far', 'user']" /> My account
         </button>
         <ul class="dropdown-menu dropdown-menu-right mt-2">
             <li class="px-3 py-2">
@@ -77,8 +76,10 @@ export default {
     },
     methods: {
         async signOut() {
-            await db.signOut();
-            this.$router.go({ name: "home" });
+            let result = await db.signOut();
+            if (result.message) {
+                console.log(result.message);
+            }
         },
     },
 };

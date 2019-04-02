@@ -349,8 +349,6 @@
 <script>
 import db from "@/db.js";
 import firebase from "firebase/app";
-import router from "../router.js";
-import { error } from "util";
 export default {
     data() {
         return {
@@ -380,6 +378,9 @@ export default {
         currentUser() {
             return this.$store.state.currentUser;
         },
+        currentUserData() {
+            return this.$store.state.currentUserData;
+        },
     },
     methods: {
         async signUp() {
@@ -387,24 +388,13 @@ export default {
                 this.newUser.email,
                 this.newUser.password
             );
-            if (result.message) {
-                this.errors.push(result.message);
-            } else {
+            if (result) {
+                this.errors.push(result);
+                console.log("signed up");
+                console.log(this.newUser);
                 this.addUser();
-                firebase.auth().currentUser.sendEmailVerification();
-                firebase
-                    .auth()
-                    .currentUser.updateProfile({
-                        displayName: this.newUser.fname,
-                    })
-                    .then(
-                        function() {
-                            router.push("/account/overview");
-                        },
-                        function(error) {
-                            console.log(error);
-                        }
-                    );
+            } else {
+                console.log("something went wrong with signup");
             }
         },
         async signIn() {
@@ -414,24 +404,40 @@ export default {
             );
             if (result.message) {
                 this.existingUser.error = result.message;
+                console.log("something went wrong with signin");
             } else {
-                this.$router.push("/account/overview");
+                this.getUser();
+                console.log("signed in");
             }
         },
         async addUser() {
             let result = await db.addUser(
                 this.currentUser.uid,
-                this.newUser.email.split("@")[0],
                 this.newUser.customer,
                 this.newUser.title,
                 this.newUser.fname,
                 this.newUser.lname,
-                this.newUser.email
+                this.newUser.email,
+                this.newUser.streetAndNumber,
+                this.newUser.zip,
+                this.newUser.city,
+                this.newUser.country
             );
-            if (result.message) {
-                console.log(result.message);
+            if (result) {
+                this.errors.push(result);
+                console.log("something went wrong with adding the user");
             } else {
-                console.log(error);
+                this.getUser();
+                console.log("User added");
+            }
+        },
+        async getUser() {
+            let result = await db.getUser(this.currentUser.uid);
+            if (result) {
+                console.log("Couldn't load data");
+            } else {
+                this.$router.push("/account/overview");
+                console.log("loaded user data");
             }
         },
         resetPassword() {

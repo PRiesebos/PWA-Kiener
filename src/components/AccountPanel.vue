@@ -67,20 +67,13 @@ export default {
     },
     methods: {
         async signOut() {
-            await db
-                .signOut()
-                .then(() => {})
-                .catch(function(error) {
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    if (errorCode == "auth/invalid-email") {
-                        alert(errorMessage);
-                    } else if (errorCode == "auth/user-not-found") {
-                        alert(errorMessage);
-                    }
-                    console.log(error);
-                });
-            this.$router.push({ name: "home" });
+            let result = await db.signOut();
+            if (result.message) {
+                this.$router.push("/account");
+                console.log(result.message);
+            } else {
+                this.$router.push("/account");
+            }
         },
     },
 };
