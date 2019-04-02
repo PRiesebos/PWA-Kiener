@@ -59,19 +59,20 @@
                     </p>
 
                     <p class="my-1 small">
-                        <i class="fas fa-check"></i> Express shopping
+                        <font-awesome-icon :icon="['fas', 'check']" /> Express
+                        shopping
                     </p>
                     <p class="my-1 small">
-                        <i class="fas fa-check"></i> Save your user data and
-                        settings
+                        <font-awesome-icon :icon="['fas', 'check']" /> Save your
+                        user data and settings
                     </p>
                     <p class="my-1 small">
-                        <i class="fas fa-check"></i> Overview of your orders
-                        incl. shipping informations
+                        <font-awesome-icon :icon="['fas', 'check']" /> Overview
+                        of your orders incl. shipping informations
                     </p>
                     <p class="my-1 small">
-                        <i class="fas fa-check"></i> Manage your newsletter
-                        subscription
+                        <font-awesome-icon :icon="['fas', 'check']" /> Manage
+                        your newsletter subscription
                     </p>
                 </div>
             </div>
