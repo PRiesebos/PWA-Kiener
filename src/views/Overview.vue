@@ -4,7 +4,7 @@
             <div class="col-4 col-md-4 col-lg-2 pl-0"><AccountPanel /></div>
             <div class="col-8 col-md-8 col-lg-10 text-center">
                 <p class="h1 my-5 text-break">
-                    Welcome, {{ currentUserData.first.slice(0, 1) }}
+                    Welcome, {{ currentUserData.first }}
                 </p>
                 <div class="text-left">
                     <p>

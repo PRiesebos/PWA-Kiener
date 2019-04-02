@@ -3,7 +3,7 @@
         <div class="border rounded col-md-12">
             <div>
                 <p class="font-weight-bold mt-3 text-break">
-                    Hey, {{ currentUser.displayName }}
+                    Hey, {{ currentUserData.first }}
                 </p>
                 <hr class="w-100" />
                 <ul class="list-group list-unstyled text-left">
@@ -61,8 +61,8 @@ export default {
         return {};
     },
     computed: {
-        currentUser() {
-            return this.$store.state.currentUser;
+        currentUserData() {
+            return this.$store.state.currentUserData;
         },
     },
     methods: {
