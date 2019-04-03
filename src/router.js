@@ -37,12 +37,12 @@ let router = new Router({
             component: () => import("./views/Products.vue"),
         },
         {
-            path: "/account",
+            path: "/account/:choice",
             name: "account",
             component: () => import("./views/Account.vue"),
         },
         {
-            path: "/account/overview",
+            path: "/account/user/overview",
             name: "profile",
             component: () => import("./views/Overview.vue"),
             meta: {

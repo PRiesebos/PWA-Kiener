@@ -14,11 +14,12 @@ import {
     faAlignJustify,
     faSearch,
     faCheck,
+    faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faAlignJustify, faSearch, faCheck, faUser);
+library.add(faAlignJustify, faSearch, faCheck, faTimes, faUser);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

@@ -10,7 +10,7 @@
                     <div v-if="!currentUser">
                         <hr class="w-100 my-2" />
                         <router-link
-                            to="/account"
+                            to="/account/signin"
                             class="btn btn-primary d-block col-md-12 mt-3"
                             data-toggle="dropdown"
                             >Sign in</router-link
@@ -18,7 +18,7 @@
                         <div class="form-group text-center mb-0">
                             <p class="d-inline">or</p>
                             <router-link
-                                to="/account"
+                                to="/account/register"
                                 class="btn btn-link d-inline pl-1"
                                 data-toggle="dropdown"
                                 >Register</router-link
@@ -29,14 +29,14 @@
                     <ul class="list-group list-unstyled">
                         <li>
                             <router-link
-                                to="/account/overview"
+                                to="/account/user/overview"
                                 data-toggle="dropdown"
                                 >Overview</router-link
                             >
                         </li>
                         <li>
                             <router-link
-                                to="/account/profile"
+                                to="/account/user/profile"
                                 data-toggle="dropdown"
                                 >profile</router-link
                             >

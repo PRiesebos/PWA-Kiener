@@ -1,21 +1,32 @@
 <template>
     <div class="container mt-4">
-        <div class="row">
+        <div>
             <!-- sign in form -->
-            <div class="col-12 col-md-4">
+            <div
+                class="row justify-content-center mb-4 mt-5"
+                v-if="
+                    route == '/account/signin' ||
+                        currentRoute() == '/account/signin'
+                "
+            >
                 <div
                     class="mb-3 d-flex justify-content-between"
                     v-if="existingUser.error"
                 >
                     <div class="col-1 custom-rounded bg-danger d-inline py-3">
-                        <i class="fas fa-times fa-2x custom-center"></i>
+                        <font-awesome-icon
+                            icon="times"
+                            size="2x"
+                            style="color: white;"
+                            class="custom-center"
+                        />
                     </div>
                     <div class="col-11 d-inline small bgred rounded py-3">
                         {{ existingUser.error }}
                     </div>
                 </div>
                 <form
-                    class="jumbotron px-3 py-4"
+                    class="jumbotron px-3 py-4 col-md-4 col-12 mb-5"
                     type="text"
                     @submit.prevent="signIn"
                 >
@@ -53,7 +64,7 @@
                         Forgot your password?
                     </button>
                 </form>
-                <div>
+                <div class="col-12 col-md-3 mb-5">
                     <p class="font-weight-bold">
                         My benefits
                     </p>
@@ -77,159 +88,45 @@
                 </div>
             </div>
             <!-- register form -->
-            <div class="col-12 col-md-8 mt-4">
-                <p class="font-weight-bold">I'm a new customer</p>
-                <hr class="w-100" />
-                <form type="text" @submit.prevent>
-                    <div>
-                        <select
-                            class="form-control col-8 col-md-4 my-3"
-                            v-model="newUser.customer"
-                        >
-                            <option value="Iam" disabled>I am*</option>
-                            <option value="Private customer"
-                                >Private customer</option
-                            >
-                            <option value="Company">Company</option>
-                        </select>
-                    </div>
-                    <div>
-                        <select
-                            class="form-control col-8 col-md-4 my-3"
-                            v-model="newUser.title"
-                        >
-                            <option value="Title" disabled>Title*</option>
-                            <option value="Mr">Mr</option>
-                            <option value="Ms">Ms</option>
-                        </select>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="First name*"
-                            class="form-control my-3"
-                            v-model="newUser.fname"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Last name*"
-                            class="form-control my-3"
-                            v-model="newUser.lname"
-                        />
-                    </div>
-                    <input
-                        type="text"
-                        name="RegisterEmail"
-                        placeholder="Your email address*"
-                        class="form-control my-3"
-                        v-model="newUser.email"
-                    />
-                    <div>
-                        <input
-                            type="password"
-                            name="RegisterPassword"
-                            placeholder="Your password*"
-                            class="form-control my-3"
-                            v-model="newUser.password"
-                        />
-                    </div>
-                    <div>
-                        <p class="small">
-                            Your password must contain at least 6 characters.
-                        </p>
-                        <p class="small">The password is case sensitive.</p>
-
-                        <br />
-                        <p class="font-weight-bold">Your address</p>
-                        <hr class="w-100" />
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Street and number*"
-                            class="form-control my-3"
-                            v-model="newUser.streetAndNumber"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Zipcode*"
-                            class="form-control d-inline col-4 col-md-4"
-                            v-model="newUser.zip"
-                        />
-
-                        <input
-                            type="text"
-                            placeholder="City*"
-                            class="form-control d-inline col-8 col-md-8"
-                            v-model="newUser.city"
-                        />
-                    </div>
-                    <div>
-                        <select
-                            class="form-control col-8 col-md-4 my-3"
-                            v-model="newUser.country"
-                        >
-                            <option value="Country" disabled>Country*</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Germany">Germany</option>
-                            <option value="GreatBritain">Great Britain</option>
-                            <option value="Netherlands">Netherlands</option>
-                        </select>
-                    </div>
-                    <!-- alternative shipping adress -->
-                    <div class="form-check my-3 pl-0">
-                        <div class="checkbox">
-                            <label
-                                class="form-check-label"
-                                data-toggle="collapse"
-                                data-target="#collapseShipping"
-                                aria-expanded="false"
-                                aria-controls="collapseShipping"
-                            >
-                                <input type="checkbox" /> The shipping address
-                                does not match the billing address</label
-                            >
-                        </div>
-                    </div>
-                    <div
-                        id="collapseShipping"
-                        aria-expanded="false"
-                        class="collapse"
-                    >
-                        <p class="font-weight-bold">
-                            Your alternative shipping address
-                        </p>
-                        <hr class="w-100" />
+            <div class="row justify-content-center">
+                <div
+                    class="col-12 col-md-8 mt-4"
+                    v-if="
+                        route == '/account/register' ||
+                            currentRoute() == '/account/register'
+                    "
+                >
+                    <p class="font-weight-bold">I'm a new customer</p>
+                    <hr class="w-100" />
+                    <form type="text" @submit.prevent>
                         <div>
-                            <select class="form-control col-8 col-md-4 my-3">
-                                <option value="Title2" disabled>Title*</option>
-                                <option value="Mr2">Mr</option>
-                                <option value="Ms2">Ms</option>
+                            <select
+                                class="form-control col-8 col-md-4 my-3"
+                                v-model="newUser.customer"
+                            >
+                                <option value="Iam" disabled>I am*</option>
+                                <option value="Private customer"
+                                    >Private customer</option
+                                >
+                                <option value="Company">Company</option>
                             </select>
                         </div>
                         <div>
-                            <input
-                                type="text"
-                                placeholder="Company"
-                                class="form-control my-3"
-                            />
-                        </div>
-                        <div>
-                            <input
-                                type="text"
-                                placeholder="Department"
-                                class="form-control my-3"
-                            />
+                            <select
+                                class="form-control col-8 col-md-4 my-3"
+                                v-model="newUser.title"
+                            >
+                                <option value="Title" disabled>Title*</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Ms">Ms</option>
+                            </select>
                         </div>
                         <div>
                             <input
                                 type="text"
                                 placeholder="First name*"
                                 class="form-control my-3"
+                                v-model="newUser.fname"
                             />
                         </div>
                         <div>
@@ -237,13 +134,42 @@
                                 type="text"
                                 placeholder="Last name*"
                                 class="form-control my-3"
+                                v-model="newUser.lname"
                             />
+                        </div>
+                        <input
+                            type="text"
+                            name="RegisterEmail"
+                            placeholder="Your email address*"
+                            class="form-control my-3"
+                            v-model="newUser.email"
+                        />
+                        <div>
+                            <input
+                                type="password"
+                                name="RegisterPassword"
+                                placeholder="Your password*"
+                                class="form-control my-3"
+                                v-model="newUser.password"
+                            />
+                        </div>
+                        <div>
+                            <p class="small">
+                                Your password must contain at least 6
+                                characters.
+                            </p>
+                            <p class="small">The password is case sensitive.</p>
+
+                            <br />
+                            <p class="font-weight-bold">Your address</p>
+                            <hr class="w-100" />
                         </div>
                         <div>
                             <input
                                 type="text"
                                 placeholder="Street and number*"
                                 class="form-control my-3"
+                                v-model="newUser.streetAndNumber"
                             />
                         </div>
                         <div>
@@ -251,17 +177,24 @@
                                 type="text"
                                 placeholder="Zipcode*"
                                 class="form-control d-inline col-4 col-md-4"
+                                v-model="newUser.zip"
                             />
 
                             <input
                                 type="text"
                                 placeholder="City*"
                                 class="form-control d-inline col-8 col-md-8"
+                                v-model="newUser.city"
                             />
                         </div>
                         <div>
-                            <select class="form-control col-8 col-md-4 my-3">
-                                <option value="Country">Country*</option>
+                            <select
+                                class="form-control col-8 col-md-4 my-3"
+                                v-model="newUser.country"
+                            >
+                                <option value="Country" disabled
+                                    >Country*</option
+                                >
                                 <option value="Belgium">Belgium</option>
                                 <option value="Germany">Germany</option>
                                 <option value="GreatBritain"
@@ -270,78 +203,180 @@
                                 <option value="Netherlands">Netherlands</option>
                             </select>
                         </div>
-                    </div>
-                    <!-- Button trigger modal -->
-                    <button
-                        class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
-                        @click="checkForm"
-                    >
-                        Continue >
-                    </button>
-                    <button class="btn btn-warning" @click="fieldValues">
-                        Field values
-                    </button>
-                </form>
+                        <!-- alternative shipping adress -->
+                        <div class="form-check my-3 pl-0">
+                            <div class="checkbox">
+                                <label
+                                    class="form-check-label"
+                                    data-toggle="collapse"
+                                    data-target="#collapseShipping"
+                                    aria-expanded="false"
+                                    aria-controls="collapseShipping"
+                                >
+                                    <input type="checkbox" /> The shipping
+                                    address does not match the billing
+                                    address</label
+                                >
+                            </div>
+                        </div>
+                        <div
+                            id="collapseShipping"
+                            aria-expanded="false"
+                            class="collapse"
+                        >
+                            <p class="font-weight-bold">
+                                Your alternative shipping address
+                            </p>
+                            <hr class="w-100" />
+                            <div>
+                                <select
+                                    class="form-control col-8 col-md-4 my-3"
+                                >
+                                    <option value="Title2" disabled
+                                        >Title*</option
+                                    >
+                                    <option value="Mr2">Mr</option>
+                                    <option value="Ms2">Ms</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Company"
+                                    class="form-control my-3"
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Department"
+                                    class="form-control my-3"
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="First name*"
+                                    class="form-control my-3"
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Last name*"
+                                    class="form-control my-3"
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Street and number*"
+                                    class="form-control my-3"
+                                />
+                            </div>
+                            <div>
+                                <input
+                                    type="text"
+                                    placeholder="Zipcode*"
+                                    class="form-control d-inline col-4 col-md-4"
+                                />
 
-                <!-- Modal -->
-                <div v-if="showModal">
-                    <transition name="modal">
-                        <div class="modal-mask">
-                            <div class="modal-wrapper">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">
-                                                Register
-                                            </h5>
-                                            <button
-                                                type="button"
-                                                class="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close"
-                                            >
-                                                <span
-                                                    aria-hidden="true"
-                                                    @click="showModal = false"
-                                                    >&times;</span
+                                <input
+                                    type="text"
+                                    placeholder="City*"
+                                    class="form-control d-inline col-8 col-md-8"
+                                />
+                            </div>
+                            <div>
+                                <select
+                                    class="form-control col-8 col-md-4 my-3"
+                                >
+                                    <option value="Country">Country*</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="GreatBritain"
+                                        >Great Britain</option
+                                    >
+                                    <option value="Netherlands"
+                                        >Netherlands</option
+                                    >
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button
+                            class="btn btn-primary col-6 col-md-3 float-right mt-3 mx-3"
+                            @click="checkForm"
+                        >
+                            Continue >
+                        </button>
+                    </form>
+
+                    <!-- Modal -->
+                    <div v-if="showModal">
+                        <transition name="modal">
+                            <div class="modal-mask">
+                                <div class="modal-wrapper">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    Register
+                                                </h5>
+                                                <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close"
                                                 >
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div v-if="errors.length">
-                                                <b
-                                                    >Please correct the
-                                                    following error(s):</b
-                                                >
-                                                <ul>
-                                                    <li
-                                                        v-for="errors in errors"
-                                                        :key="errors"
+                                                    <span
+                                                        aria-hidden="true"
+                                                        @click="
+                                                            showModal = false
+                                                        "
+                                                        >&times;</span
                                                     >
-                                                        {{ errors }}
-                                                    </li>
-                                                </ul>
+                                                </button>
                                             </div>
-                                            <div v-else>
-                                                <b>You succesfully registerd</b>
+                                            <div class="modal-body">
+                                                <div v-if="errors.length">
+                                                    <b
+                                                        >Please correct the
+                                                        following error(s):</b
+                                                    >
+                                                    <ul>
+                                                        <li
+                                                            v-for="errors in errors"
+                                                            :key="errors"
+                                                        >
+                                                            {{ errors }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div v-else>
+                                                    <b
+                                                        >You succesfully
+                                                        registerd</b
+                                                    >
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button
-                                                type="button"
-                                                class="btn btn-secondary"
-                                                @click="showModal = false"
-                                            >
-                                                Close
-                                            </button>
+                                            <div class="modal-footer">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-secondary"
+                                                    @click="showModal = false"
+                                                >
+                                                    Close
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </transition>
+                        </transition>
+                    </div>
+                    <p class="small">The fields marked with * are required.</p>
                 </div>
-                <p class="small">The fields marked with * are required.</p>
             </div>
         </div>
     </div>
@@ -373,6 +408,7 @@ export default {
             },
             errors: [],
             showModal: false,
+            route: "",
         };
     },
     computed: {
@@ -381,6 +417,12 @@ export default {
         },
         currentUserData() {
             return this.$store.state.currentUserData;
+        },
+    },
+    watch: {
+        $route(to) {
+            this.route = to.path;
+            console.log(this.route);
         },
     },
     methods: {
@@ -437,7 +479,7 @@ export default {
             if (result) {
                 console.log("Couldn't load data");
             } else {
-                this.$router.push("/account/overview");
+                this.$router.push("/account/user/overview");
                 console.log("loaded user data");
             }
         },
@@ -497,8 +539,8 @@ export default {
                 this.signUp();
             }
         },
-        fieldValues() {
-            console.log(this.newUser);
+        currentRoute() {
+            this.route = this.$router.currentRoute.path;
         },
     },
 };
@@ -511,9 +553,7 @@ export default {
         width: 100%;
     }
 }
-.fa-times {
-    color: white;
-}
+
 .bgred {
     background-color: #faeceb;
 }
