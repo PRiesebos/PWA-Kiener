@@ -12,7 +12,8 @@
                         <router-link
                             to="/account/signin"
                             class="btn btn-primary d-block col-md-12 mt-3"
-                            data-toggle="dropdown"
+                            data-toggle="collapse"
+                            data-target=".navbar-collapse.show"
                             >Sign in</router-link
                         >
                         <div class="form-group text-center mb-0">
@@ -20,7 +21,8 @@
                             <router-link
                                 to="/account/register"
                                 class="btn btn-link d-inline pl-1"
-                                data-toggle="dropdown"
+                                data-toggle="collapse"
+                                data-target=".navbar-collapse.show"
                                 >Register</router-link
                             >
                         </div>
