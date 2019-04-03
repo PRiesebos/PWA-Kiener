@@ -422,7 +422,6 @@ export default {
     watch: {
         $route(to) {
             this.route = to.path;
-            console.log(this.route);
         },
     },
     methods: {
