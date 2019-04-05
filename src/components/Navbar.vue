@@ -76,4 +76,15 @@ export default {
         padding: 0px;
     }
 }
+@media (max-width: 567px) {
+    .dropdown {
+        margin-top: 10px;
+    }
+}
+.navbar-toggler:focus {
+    outline: 0px;
+}
+.navbar-toggler:hover {
+    color: gray;
+}
 </style>

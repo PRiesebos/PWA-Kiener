@@ -24,11 +24,15 @@
                                             v-bind:class="{
                                                 'form-control': true,
                                                 'is-invalid':
-                                                    !validEmail(email) &&
-                                                    emailBlured,
+                                                    emailBlured &&
+                                                    (errors.showEmailError ||
+                                                        !validEmail(email)),
                                             }"
                                             v-on:blur="emailBlured = true"
                                         />
+                                        <div class="invalid-feedback">
+                                            {{ errors.email }}
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -52,11 +56,17 @@
                                             v-bind:class="{
                                                 'form-control': true,
                                                 'is-invalid':
-                                                    !validPassword(password) &&
-                                                    passwordBlured,
+                                                    passwordBlured &&
+                                                    (errors.showPasswordError ||
+                                                        !validPassword(
+                                                            password
+                                                        )),
                                             }"
                                             v-on:blur="passwordBlured = true"
                                         />
+                                        <div class="invalid-feedback">
+                                            {{ errors.password }}
+                                        </div>
                                     </div>
 
                                     <button
@@ -121,7 +131,6 @@
 
 <script>
 import db from "@/db.js";
-import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -130,7 +139,12 @@ export default {
             valid: false,
             emailBlured: false,
             passwordBlured: false,
-            errors: [],
+            errors: {
+                email: "Enter a valid email address",
+                showEmailError: false,
+                password: "Enter a valid password",
+                showPasswordError: false,
+            },
         };
     },
     computed: {
@@ -141,12 +155,26 @@ export default {
     methods: {
         async signIn() {
             let result = await db.signIn(this.email, this.password);
-            if (result.message) {
-                this.errors = result.message;
-                console.log("something went wrong with signin");
-            } else {
-                this.getUser();
-                console.log("signed in");
+            let errorCode = result.code;
+            let errorMessage = result.message;
+            if (result) {
+                if (
+                    errorCode == "auth/invalid-email" ||
+                    errorCode == "auth/user-not-found"
+                ) {
+                    this.errors.email = errorMessage;
+                    this.errors.showEmailError = true;
+                } else if (
+                    errorCode == "auth/invalid-password" ||
+                    errorCode == "auth/wrong-password"
+                ) {
+                    this.errors.password = errorMessage;
+                    this.errors.showPasswordError = true;
+                } else {
+                    if (this.currentUser.uid != null) {
+                        this.getUser();
+                    }
+                }
             }
         },
         async getUser() {
@@ -155,26 +183,21 @@ export default {
                 console.log("Couldn't load data");
             } else {
                 this.$router.push("/account/overview");
-                console.log("loaded user data");
             }
         },
-        resetPassword() {
-            firebase
-                .auth()
-                .sendPasswordResetEmail(this.email)
-                .then(function() {
-                    alert("Password Reset Email Sent!");
-                })
-                .catch(function(error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    if (errorCode == "auth/invalid-email") {
-                        alert(errorMessage);
-                    } else if (errorCode == "auth/user-not-found") {
-                        alert(errorMessage);
-                    }
-                    console.log(error);
-                });
+        async resetPassword() {
+            let result = await db.resetPassword(this.email);
+            let errorCode = result.code;
+            let errorMessage = result.message;
+            if (result) {
+                if (errorCode == "auth/invalid-email") {
+                    this.errors.showEmailError = true;
+                    this.errors.email = errorMessage;
+                } else {
+                    this.errors.showEmailError = true;
+                    this.errors.email = errorMessage;
+                }
+            }
         },
         validate() {
             this.emailBlured = true;
@@ -187,7 +210,7 @@ export default {
             }
         },
         validEmail(email) {
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
         },
         validPassword(password) {

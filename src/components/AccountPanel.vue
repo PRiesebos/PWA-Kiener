@@ -67,12 +67,10 @@ export default {
     },
     methods: {
         async signOut() {
+            this.$router.push({ name: "home" });
             let result = await db.signOut();
             if (result.message) {
-                this.$router.push({ name: "home" });
                 console.log(result.message);
-            } else {
-                this.$router.push({ name: "home" });
             }
         },
     },

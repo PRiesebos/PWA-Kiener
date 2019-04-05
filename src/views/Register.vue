@@ -32,6 +32,9 @@
                                             }"
                                             v-on:blur="nameBlured = true"
                                         />
+                                        <div class="invalid-feedback">
+                                            Enter your name
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-0" for="inputEmail"
@@ -50,6 +53,9 @@
                                             }"
                                             v-on:blur="emailBlured = true"
                                         />
+                                        <div class="invalid-feedback">
+                                            Enter a valid email address
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -70,6 +76,11 @@
                                             }"
                                             v-on:blur="passwordBlured = true"
                                         />
+                                        <div class="invalid-feedback">
+                                            Password must be 8 characters long ,
+                                            contain a capital letter and a
+                                            number
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="mb-0" for="inputPassword"
@@ -91,6 +102,9 @@
                                                 passwordCheckBlured = true
                                             "
                                         />
+                                        <div class="invalid-feedback">
+                                            Passwords must match
+                                        </div>
                                     </div>
 
                                     <button
@@ -98,6 +112,12 @@
                                         @click="submit"
                                     >
                                         Create your PWA-Webshop account
+                                    </button>
+                                    <button
+                                        class="btn btn-md btn-warning btn-block mb-3"
+                                        @click="submitUser"
+                                    >
+                                        Add user
                                     </button>
                                     <p class="small">
                                         By creating an account, you agree to
@@ -171,27 +191,21 @@ export default {
         async signUp() {
             let result = await db.signUp(this.email, this.password);
             if (result) {
-                console.log("signed up");
                 this.addUser();
             } else {
-                console.log("something went wrong with signup");
+                console.log(result.message);
             }
         },
         async addUser() {
             let result = await db.addUser(
                 this.currentUser.uid,
-                this.currentUser.email,
+                this.email,
                 this.name
             );
             if (result) {
                 this.errors.push(result);
-                console.log(
-                    "something went wrong with adding the user",
-                    console.log(result.message)
-                );
             } else {
                 this.getUser();
-                console.log("User added");
             }
         },
         async getUser() {
@@ -218,11 +232,11 @@ export default {
             }
         },
         validEmail(email) {
-            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email.toLowerCase());
         },
         validName(name) {
-            let re = /^(?!\s*$).+/;
+            let re = /^(?=.{1,25}$)[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/;
             return re.test(name);
         },
         validPassword(password) {
@@ -243,6 +257,15 @@ export default {
                 this.signUp();
             } else {
                 alert("Data is not valid!");
+            }
+        },
+        submitUser() {
+            if (this.valid) {
+                this.addUser();
+            } else {
+                alert(
+                    "Fill in the fields with the exact same information again"
+                );
             }
         },
     },

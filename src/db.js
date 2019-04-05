@@ -51,9 +51,6 @@ db.getUser = async user => {
 db.signUp = async (email, password) => {
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-
-        store.commit("setCurrentUser", firebase.auth().currentUser);
-
         return true;
     } catch (error) {
         return error;
@@ -63,9 +60,6 @@ db.signUp = async (email, password) => {
 db.signIn = async (email, password) => {
     try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
-
-        store.commit("setCurrentUser", firebase.auth().currentUser);
-
         return true;
     } catch (error) {
         return error;
@@ -76,10 +70,17 @@ db.signOut = async () => {
     try {
         await firebase.auth().signOut();
 
-        store.commit("setCurrentUser", null);
         store.commit("setCurrentUserData", null);
 
         return true;
+    } catch (error) {
+        return error;
+    }
+};
+
+db.resetPassword = async email => {
+    try {
+        await firebase.auth().sendPasswordResetEmail(email);
     } catch (error) {
         return error;
     }

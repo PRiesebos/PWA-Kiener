@@ -42,15 +42,17 @@
                             <hr class="w-100 my-2" />
                             <li>
                                 <router-link
-                                    to="/account/user/overview"
-                                    data-toggle="dropdown"
+                                    to="/account/overview"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Overview</router-link
                                 >
                             </li>
                             <li>
                                 <router-link
-                                    to="/account/user/profile"
-                                    data-toggle="dropdown"
+                                    to="/account/profile"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >profile</router-link
                                 >
                             </li>
@@ -62,6 +64,8 @@
                                 <button
                                     class="btn btn-primary w-100"
                                     @click="signOut"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                 >
                                     Log Out
                                 </button>
