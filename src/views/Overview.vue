@@ -4,7 +4,7 @@
             <div class="col-4 col-md-4 col-lg-2 pl-0"><AccountPanel /></div>
             <div class="col-8 col-md-8 col-lg-10 text-center">
                 <p class="h1 my-5 text-break">
-                    Welcome, {{ currentUserData.first }}
+                    Welcome, {{ currentUserData.name.split(" ", 1).toString() }}
                 </p>
                 <div class="text-left">
                     <p>
@@ -18,9 +18,7 @@
                             <p class="font-weight-bold">Profile</p>
                             <hr class="w-100 my-3" />
                             <p class="my-1">
-                                {{ currentUserData.title }}.
-                                {{ currentUserData.first }}
-                                {{ currentUserData.last }}
+                                {{ currentUserData.name }}
                             </p>
                             <p class="my-1">{{ currentUserData.email }}</p>
                             <p class="my-1">
@@ -56,9 +54,7 @@
                             </p>
                             <hr class="w-100 my-3" />
                             <p class="my-1">
-                                {{ currentUserData.title }}.
-                                {{ currentUserData.first }}
-                                {{ currentUserData.last }}
+                                {{ currentUserData.name }}
                             </p>
                             <p class="my-1">
                                 {{ currentUserData.streetAndNumber }}

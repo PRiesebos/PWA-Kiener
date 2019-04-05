@@ -16,33 +16,15 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 const docRef = db.collection("users");
 
-db.addUser = async (
-    userObject,
-    customerType,
-    title,
-    first,
-    last,
-    email,
-    streetAndNumber,
-    zip,
-    city,
-    country
-) => {
+db.addUser = async (userObject, email, name) => {
     try {
         await db
             .collection("users")
             .doc(userObject)
             .set({
                 id: userObject,
-                customerType,
-                title,
-                first,
-                last,
                 email,
-                streetAndNumber,
-                zip,
-                city,
-                country,
+                name,
             });
     } catch (error) {
         return error;

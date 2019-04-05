@@ -1,24 +1,22 @@
 <template>
-    <div class="home">
-        <div class="homepage">
-            <div class="m-auto inline-content">
-                <h1 class="h1 text-white text-center mb-4">
-                    Effortless <br />merchandise
-                </h1>
-                <p class="text-white text-center">
-                    Be part of our movement to make payments as effortless as
-                    possible. What better way to tell our story than by wearing
-                    our beautiful merchandise?
-                </p>
-                <div class="row mt-4 mx-auto col-12">
-                    <div class="btn-group btn-group-lg">
-                        <router-link to="/about" class="btn btn-outline-light"
-                            >About Mollie payments</router-link
-                        >
-                        <router-link to="/products" class="btn btn-primary ml-2"
-                            >Explore our merchandise</router-link
-                        >
-                    </div>
+    <div class="homepage">
+        <div class="m-auto inline-content">
+            <h1 class="h1 text-white text-center mb-4">
+                Effortless <br />merchandise
+            </h1>
+            <p class="text-white text-center">
+                Be part of our movement to make payments as effortless as
+                possible. What better way to tell our story than by wearing our
+                beautiful merchandise?
+            </p>
+            <div class="row mt-4 mx-auto col-12">
+                <div class="btn-group btn-group-lg">
+                    <router-link to="/about" class="btn btn-outline-light"
+                        >About Mollie payments</router-link
+                    >
+                    <router-link to="/products" class="btn btn-primary ml-2"
+                        >Explore our merchandise</router-link
+                    >
                 </div>
             </div>
         </div>
@@ -26,10 +24,7 @@
 </template>
 
 <script>
-export default {
-    name: "home",
-    components: {},
-};
+export default {};
 </script>
 <style lang="scss" scoped>
 .homepage {

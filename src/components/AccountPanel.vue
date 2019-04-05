@@ -3,7 +3,7 @@
         <div class="border rounded col-md-12">
             <div>
                 <p class="font-weight-bold mt-3 text-break">
-                    Hey, {{ currentUserData.first }}
+                    Hey, {{ currentUserData.name.split(" ", 1).toString() }}
                 </p>
                 <hr class="w-100" />
                 <ul class="list-group list-unstyled text-left">
@@ -69,10 +69,10 @@ export default {
         async signOut() {
             let result = await db.signOut();
             if (result.message) {
-                this.$router.push("/account");
+                this.$router.push({ name: "home" });
                 console.log(result.message);
             } else {
-                this.$router.push("/account");
+                this.$router.push({ name: "home" });
             }
         },
     },

@@ -6,13 +6,13 @@
         <div>
             <ul class="dropdown-menu dropdown-menu-right mt-2">
                 <li class="px-3 py-2">
-                    <form class="form" role="form">
+                    <form class="form" role="form" @submit.prevent>
                         <p class="font-weight-bold">My account</p>
                         <div v-if="!currentUser">
                             <hr class="w-100 my-2" />
                             <div>
                                 <router-link
-                                    to="/account/signin"
+                                    to="/signin"
                                     class="btn btn-primary d-block col-md-12 mt-3"
                                     data-toggle="collapse"
                                     data-target=".navbar-collapse.show, .dropdown-menu"
@@ -23,7 +23,7 @@
                                 <p class="d-inline">or</p>
                                 <div class="d-inline">
                                     <router-link
-                                        to="/account/register"
+                                        to="/register"
                                         class="btn btn-link d-inline pl-1"
                                         data-toggle="collapse"
                                         data-target=".navbar-collapse.show, .dropdown-menu"
@@ -31,9 +31,15 @@
                                     >
                                 </div>
                             </div>
+                            <div v-if="currentUser == null">
+                                <hr class="w-100" />
+                                <p>
+                                    Sing up or register to buy our merchandise.
+                                </p>
+                            </div>
                         </div>
-                        <hr class="w-100 my-2" />
-                        <ul class="list-group list-unstyled">
+                        <ul class="list-group list-unstyled" v-if="currentUser">
+                            <hr class="w-100 my-2" />
                             <li>
                                 <router-link
                                     to="/account/user/overview"
@@ -51,8 +57,6 @@
                             <li><a href="#">Addresses</a></li>
                             <li><a href="#">Payment methods</a></li>
                             <li><a href="#">Orders</a></li>
-                            <li><a href="#">Instant downloads</a></li>
-                            <li><a href="#">Wish list</a></li>
                             <div v-if="currentUser != null">
                                 <hr class="w-100" />
                                 <button
@@ -84,6 +88,7 @@ export default {
     },
     methods: {
         async signOut() {
+            this.$router.push({ name: "home" });
             let result = await db.signOut();
             if (result.message) {
                 console.log(result.message);
