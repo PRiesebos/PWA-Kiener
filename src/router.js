@@ -43,6 +43,7 @@ let router = new Router({
             name: "profile",
             component: () => import("./views/Profile.vue"),
             meta: {
+                layout: "userpanel",
                 auth: true,
             },
         },

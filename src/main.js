@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import Default from "./layouts/Default.vue";
 import Bare from "./layouts/Bare.vue";
+import UserPanel from "./layouts/UserPanel.vue";
 
 import firebase from "firebase/app";
 import "./registerServiceWorker";
@@ -26,6 +27,7 @@ library.add(faAlignJustify, faSearch, faCheck, faTimes, faUser);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("default-layout", Default);
 Vue.component("bare-layout", Bare);
+Vue.component("userpanel-layout", UserPanel);
 
 Vue.config.productionTip = false;
 

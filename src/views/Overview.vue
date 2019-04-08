@@ -38,9 +38,11 @@
                                 Verified email: {{ currentUser.emailVerified }}
                             </p>
                         </div>
-                        <button class="btn btn-outline-dark mt-5">
-                            Change profile
-                        </button>
+                        <router-link to="profile">
+                            <button class="btn btn-outline-dark mt-5">
+                                Change profile
+                            </button>
+                        </router-link>
                     </div>
                     <div class="col-12 col-md-6 my-3 text-left">
                         <div class="overview-block">
@@ -54,9 +56,11 @@
                                 card only
                             </p>
                         </div>
-                        <button class="btn btn-outline-dark mt-5">
-                            Change payment method
-                        </button>
+                        <router-link to="paymentmethods">
+                            <button class="btn btn-outline-dark mt-5">
+                                Change payment method
+                            </button>
+                        </router-link>
                     </div>
                 </div>
                 <div class="row">
@@ -84,9 +88,11 @@
                                 {{ currentUserData.country }}
                             </p>
                         </div>
-                        <button class="btn btn-outline-dark mt-5">
-                            Change billing address
-                        </button>
+                        <router-link to="addresses">
+                            <button class="btn btn-outline-dark mt-5">
+                                Change billing address
+                            </button>
+                        </router-link>
                     </div>
                     <div class="col-12 col-md-6 my-3 text-left">
                         <div class="overview-block">
@@ -102,9 +108,11 @@
                             </p>
                             <p v-else>No shipping address set</p>
                         </div>
-                        <button class="btn btn-outline-dark mt-5">
-                            Add different billing address
-                        </button>
+                        <router-link to="addresses">
+                            <button class="btn btn-outline-dark mt-5">
+                                Add different billing address
+                            </button>
+                        </router-link>
                     </div>
                 </div>
                 <div class="row">

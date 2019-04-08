@@ -16,17 +16,17 @@
                         <router-link to="/account/profile">Profile</router-link>
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview"
+                        <router-link to="/account/addresses"
                             >Addresses</router-link
                         >
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview"
+                        <router-link to="/account/paymentmethods"
                             >Payment methods</router-link
                         >
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview">Orders</router-link>
+                        <router-link to="/account/orders">Orders</router-link>
                     </li>
                     <div>
                         <hr class="w-100" />

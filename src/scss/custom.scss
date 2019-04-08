@@ -1,4 +1,8 @@
 $font-family-sans-serif: "Roboto", Arial, Verdana;
 
+ul > li > a.router-link-active {
+    color: blue;
+}
+
 @import "./font-face.scss";
 @import "~bootstrap/scss/bootstrap";

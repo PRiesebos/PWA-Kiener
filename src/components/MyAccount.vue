@@ -56,9 +56,21 @@
                                     >profile</router-link
                                 >
                             </li>
-                            <li><a href="#">Addresses</a></li>
-                            <li><a href="#">Payment methods</a></li>
-                            <li><a href="#">Orders</a></li>
+                            <li>
+                                <router-link to="/account/addresses"
+                                    >Addresses</router-link
+                                >
+                            </li>
+                            <li>
+                                <router-link to="/account/paymentmethods"
+                                    >Payment methods</router-link
+                                >
+                            </li>
+                            <li>
+                                <router-link to="/account/orders"
+                                    >Orders</router-link
+                                >
+                            </li>
                             <div v-if="currentUser != null">
                                 <hr class="w-100" />
                                 <button
