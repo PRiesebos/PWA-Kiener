@@ -53,7 +53,7 @@
                                     to="/account/profile"
                                     data-toggle="collapse"
                                     data-target=".navbar-collapse.show, .dropdown-menu"
-                                    >profile</router-link
+                                    >Profile</router-link
                                 >
                             </li>
                             <li>

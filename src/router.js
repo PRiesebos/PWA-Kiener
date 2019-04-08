@@ -35,6 +35,7 @@ let router = new Router({
             name: "overview",
             component: () => import("./views/Overview.vue"),
             meta: {
+                layout: "userpanel",
                 auth: true,
             },
         },
