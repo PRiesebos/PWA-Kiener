@@ -28,16 +28,6 @@
                     <li class="my-1">
                         <router-link to="/account/overview">Orders</router-link>
                     </li>
-                    <li class="my-1">
-                        <router-link to="/account/overview"
-                            >Instant downloads</router-link
-                        >
-                    </li>
-                    <li class="my-1">
-                        <router-link to="/account/overview"
-                            >Wish list</router-link
-                        >
-                    </li>
                     <div>
                         <hr class="w-100" />
                         <button

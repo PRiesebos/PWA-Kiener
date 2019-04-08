@@ -7,10 +7,7 @@
                         <div class="card card-signin mt-5 mb-3">
                             <div class="card-body">
                                 <h3 class="card-title text-center">Sign in</h3>
-                                <form
-                                    class="form-signin"
-                                    @submit.prevent="submit"
-                                >
+                                <form class="form-signin" @submit.prevent>
                                     <div class="form-group">
                                         <label class="mb-0" for="inputEmail"
                                             >Email</label
@@ -131,6 +128,7 @@
 
 <script>
 import db from "@/db.js";
+import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -178,7 +176,8 @@ export default {
             }
         },
         async getUser() {
-            let result = await db.getUser(this.currentUser.uid);
+            let user = await firebase.auth().currentUser;
+            let result = await db.getUser(user.uid);
             if (result) {
                 console.log("Couldn't load data");
             } else {

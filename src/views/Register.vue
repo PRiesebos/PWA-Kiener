@@ -12,7 +12,7 @@
                                 <form
                                     class="form-signin"
                                     autocomplete="new-password"
-                                    @submit.prevent="submit"
+                                    @submit.prevent
                                 >
                                     <div class="form-group">
                                         <label class="mb-0" for="inputName"
@@ -113,12 +113,6 @@
                                     >
                                         Create your PWA-Webshop account
                                     </button>
-                                    <button
-                                        class="btn btn-md btn-warning btn-block mb-3"
-                                        @click="submitUser"
-                                    >
-                                        Add user
-                                    </button>
                                     <p class="small">
                                         By creating an account, you agree to
                                         PWA-Webshop's Conditions of Use and
@@ -167,6 +161,7 @@
 
 <script>
 import db from "@/db.js";
+import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -182,11 +177,6 @@ export default {
             errors: [],
         };
     },
-    computed: {
-        currentUser() {
-            return this.$store.state.currentUser;
-        },
-    },
     methods: {
         async signUp() {
             let result = await db.signUp(this.email, this.password);
@@ -197,11 +187,8 @@ export default {
             }
         },
         async addUser() {
-            let result = await db.addUser(
-                this.currentUser.uid,
-                this.email,
-                this.name
-            );
+            let user = await firebase.auth().currentUser;
+            let result = await db.addUser(user.uid, this.email, this.name);
             if (result) {
                 this.errors.push(result);
             } else {
@@ -209,7 +196,8 @@ export default {
             }
         },
         async getUser() {
-            let result = await db.getUser(this.currentUser.uid);
+            let user = await firebase.auth().currentUser;
+            let result = await db.getUser(user.uid);
             if (result) {
                 console.log("Couldn't load data");
             } else {
@@ -257,15 +245,6 @@ export default {
                 this.signUp();
             } else {
                 alert("Data is not valid!");
-            }
-        },
-        submitUser() {
-            if (this.valid) {
-                this.addUser();
-            } else {
-                alert(
-                    "Fill in the fields with the exact same information again"
-                );
             }
         },
     },
