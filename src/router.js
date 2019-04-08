@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
@@ -9,14 +8,9 @@ let router = new Router({
     base: process.env.BASE_URL,
     routes: [
         {
-            path: "*",
-            name: "404",
-            component: () => import("./views/404.vue"),
-        },
-        {
             path: "/",
             name: "home",
-            component: Home,
+            component: require("@/views/Home.vue").default,
         },
         {
             path: "/about",
@@ -37,17 +31,40 @@ let router = new Router({
             component: () => import("./views/Products.vue"),
         },
         {
-            path: "/account",
-            name: "account",
-            component: () => import("./views/Account.vue"),
-        },
-        {
             path: "/account/overview",
-            name: "profile",
+            name: "overview",
             component: () => import("./views/Overview.vue"),
             meta: {
+                layout: "userpanel",
                 auth: true,
             },
+        },
+        {
+            path: "/account/profile",
+            name: "profile",
+            component: () => import("./views/Profile.vue"),
+            meta: {
+                layout: "userpanel",
+                auth: true,
+            },
+        },
+        {
+            path: "/signin",
+            name: "signin",
+            meta: { layout: "bare" },
+            component: () => import("./views/Signin.vue"),
+        },
+        {
+            path: "/register",
+            name: "register",
+            meta: { layout: "bare" },
+            component: () => import("./views/Register.vue"),
+        },
+        {
+            path: "*",
+            name: "404",
+            meta: { layout: "bare" },
+            component: () => import("./views/404.vue"),
         },
     ],
     scrollBehavior(to, from, savedPosition) {

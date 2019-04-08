@@ -3,7 +3,7 @@
         <div class="border rounded col-md-12">
             <div>
                 <p class="font-weight-bold mt-3 text-break">
-                    Hey, {{ currentUserData.first }}
+                    Hey, {{ currentUserData.name.split(" ", 1).toString() }}
                 </p>
                 <hr class="w-100" />
                 <ul class="list-group list-unstyled text-left">
@@ -16,27 +16,17 @@
                         <router-link to="/account/profile">Profile</router-link>
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview"
+                        <router-link to="/account/addresses"
                             >Addresses</router-link
                         >
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview"
+                        <router-link to="/account/paymentmethods"
                             >Payment methods</router-link
                         >
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/overview">Orders</router-link>
-                    </li>
-                    <li class="my-1">
-                        <router-link to="/account/overview"
-                            >Instant downloads</router-link
-                        >
-                    </li>
-                    <li class="my-1">
-                        <router-link to="/account/overview"
-                            >Wish list</router-link
-                        >
+                        <router-link to="/account/orders">Orders</router-link>
                     </li>
                     <div>
                         <hr class="w-100" />
@@ -67,12 +57,10 @@ export default {
     },
     methods: {
         async signOut() {
+            this.$router.push({ name: "home" });
             let result = await db.signOut();
             if (result.message) {
-                this.$router.push("/account");
                 console.log(result.message);
-            } else {
-                this.$router.push("/account");
             }
         },
     },

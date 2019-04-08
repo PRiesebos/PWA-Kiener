@@ -1,21 +1,19 @@
 <template>
     <div id="app">
-        <navbar />
-        <router-view />
-        <footerComp />
+        <component :is="layout">
+            <router-view />
+        </component>
     </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar";
-import FooterComp from "@/components/FooterComp";
+const default_layout = "default";
 import "@/db";
 export default {
-    components: {
-        Navbar,
-        FooterComp,
+    computed: {
+        layout() {
+            return (this.$route.meta.layout || default_layout) + "-layout";
+        },
     },
 };
 </script>
-
-<style lang="scss"></style>

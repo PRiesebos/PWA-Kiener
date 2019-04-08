@@ -2,21 +2,32 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Default from "./layouts/Default.vue";
+import Bare from "./layouts/Bare.vue";
+import UserPanel from "./layouts/UserPanel.vue";
+
 import firebase from "firebase/app";
 import "./registerServiceWorker";
 import "./scss/custom.scss";
-import "./scss/style.scss";
 import "jquery";
 import "bootstrap";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faAlignJustify, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+    faAlignJustify,
+    faSearch,
+    faCheck,
+    faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faAlignJustify, faSearch, faUser);
+library.add(faAlignJustify, faSearch, faCheck, faTimes, faUser);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("default-layout", Default);
+Vue.component("bare-layout", Bare);
+Vue.component("userpanel-layout", UserPanel);
 
 Vue.config.productionTip = false;
 
@@ -35,7 +46,7 @@ const initialize = () => {
 router.beforeEach((to, from, next) => {
     if (to.meta.auth && !store.state.currentUser) {
         next({
-            path: "/account",
+            path: "/account/register",
         });
     } else {
         next();

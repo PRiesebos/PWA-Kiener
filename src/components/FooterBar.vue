@@ -299,8 +299,7 @@
                 </div>
             </div>
             <div class="footer-copyright text-center py-3">
-                © 2019 Copyright:
-                <a href="localhost:8080/">PWAWebsite.com</a>
+                <router-link to="/">© 2018-2019, PWA-Webshop</router-link>
             </div>
         </footer>
     </div>
