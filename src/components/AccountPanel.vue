@@ -16,7 +16,7 @@
                         <router-link to="/account/profile">Profile</router-link>
                     </li>
                     <li class="my-1">
-                        <router-link to="/account/addresses"
+                        <router-link to="/account/address"
                             >Addresses</router-link
                         >
                     </li>

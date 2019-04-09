@@ -298,7 +298,7 @@
                     <hr class="w-100 mt-3" />
                 </div>
             </div>
-            <div class="footer-copyright text-center py-3">
+            <div class="footer-copyright text-center pt-3">
                 <router-link to="/">© 2018-2019, PWA-Webshop</router-link>
             </div>
         </footer>

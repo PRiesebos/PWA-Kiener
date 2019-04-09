@@ -18,11 +18,19 @@ import {
     faSearch,
     faCheck,
     faTimes,
+    faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faAlignJustify, faSearch, faCheck, faTimes, faUser);
+library.add(
+    faAlignJustify,
+    faSearch,
+    faCheck,
+    faTimes,
+    faUser,
+    faExclamationTriangle
+);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("default-layout", Default);

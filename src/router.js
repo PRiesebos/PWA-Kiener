@@ -49,6 +49,33 @@ let router = new Router({
             },
         },
         {
+            path: "/account/address",
+            name: "address",
+            component: () => import("./views/Address.vue"),
+            meta: {
+                layout: "userpanel",
+                auth: true,
+            },
+        },
+        {
+            path: "/account/paymentmethods",
+            name: "paymentmethods",
+            component: () => import("./views/PaymentMethods.vue"),
+            meta: {
+                layout: "userpanel",
+                auth: true,
+            },
+        },
+        {
+            path: "/account/orders",
+            name: "orders",
+            component: () => import("./views/Orders.vue"),
+            meta: {
+                layout: "userpanel",
+                auth: true,
+            },
+        },
+        {
             path: "/signin",
             name: "signin",
             meta: { layout: "bare" },

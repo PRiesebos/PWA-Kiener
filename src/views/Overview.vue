@@ -13,7 +13,7 @@
                 </button>
             </div>
         </div>
-        <p class="h1 my-5 text-break">
+        <p class="h1 mb-5 text-break">
             Welcome, {{ currentUserData.name.split(" ", 1).toString() }}
         </p>
         <div class="text-left">
@@ -119,12 +119,6 @@
                         PWA-Webshop newsletter. You have the possibility to
                         unsubscribe at any time.</label
                     >
-                    <button
-                        class="btn btn-warning mt-3"
-                        @click.once="deleteAccount"
-                    >
-                        Delete account
-                    </button>
                 </div>
             </div>
         </div>
@@ -132,8 +126,6 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-
 export default {
     data() {
         return {
@@ -148,24 +140,11 @@ export default {
             return this.$store.state.currentUserData;
         },
     },
-    methods: {
-        deleteAccount() {
-            var user = firebase.auth().currentUser;
-
-            user.delete()
-                .then(function() {})
-                .catch(function(error) {
-                    console.log(error);
-                });
-            this.$router.push("/");
-            window.scrollTo(0, 0);
-        },
-    },
 };
 </script>
 
 <style scoped>
 .overview-block {
-    height: 150px;
+    height: 155px;
 }
 </style>
