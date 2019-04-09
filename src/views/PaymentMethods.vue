@@ -22,6 +22,7 @@
                         <img
                             class="ml-3"
                             src="https://www.mollie.com/external/icons/payment-methods/creditcard.png"
+                            alt="Credit card icon"
                         />
                     </div>
                     <hr class="w-100 my-2" />
@@ -41,6 +42,7 @@
                         <img
                             class="ml-3"
                             src="https://www.mollie.com/external/icons/payment-methods/paypal.png"
+                            alt="Paypal icon"
                         />
                     </div>
                     <hr class="w-100 my-2" />
@@ -79,6 +81,7 @@
                         <img
                             class="ml-3"
                             src="https://www.mollie.com/external/icons/payment-methods/bancontact.png"
+                            alt="Bancontact icon"
                         />
                     </div>
                     <hr class="w-100 my-2" />
@@ -98,6 +101,7 @@
                         <img
                             class="ml-3"
                             src="https://www.mollie.com/external/icons/payment-methods/ideal.png"
+                            alt="IDEAL icon"
                         />
                     </div>
                     <hr class="w-100 my-2" />

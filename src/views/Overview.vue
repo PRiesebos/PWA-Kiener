@@ -82,7 +82,7 @@
                         {{ currentUserData.country }}
                     </p>
                 </div>
-                <router-link to="addresses">
+                <router-link to="address">
                     <button class="btn btn-outline-dark mt-5">
                         Change billing address
                     </button>
@@ -99,7 +99,7 @@
                     </p>
                     <p v-else>No shipping address set</p>
                 </div>
-                <router-link to="addresses">
+                <router-link to="address">
                     <button class="btn btn-outline-dark mt-5">
                         Add different billing address
                     </button>

@@ -83,7 +83,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="mb-0" for="inputPassword"
+                                        <label
+                                            class="mb-0"
+                                            for="inputPasswordCheck"
                                             >Re-enter password</label
                                         >
                                         <input

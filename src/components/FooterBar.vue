@@ -3,119 +3,131 @@
         <div class="d-none d-md-block">
             <hr class="w-100" />
             <div class="d-flex justify-content-between">
-                <ul class="list-unstyled mb-0">
+                <div>
                     <p class="h3 mb-3">PWA-Webshop</p>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Payments</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Recurring</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Pricing</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Developers</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Partners</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Enterprise</router-link
-                        >
-                    </li>
-                </ul>
-                <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Payments</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Recurring</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Pricing</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Developers</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Partners</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Enterprise</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
                     <p class="h3 mb-3">Features</p>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Overview</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Dashboard</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Checkout</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Multicurrency</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Security</router-link
-                        >
-                    </li>
-                </ul>
-                <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Overview</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Dashboard</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Checkout</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Multicurrency</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Security</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
                     <p class="h3 mb-3">Support</p>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Support</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Paid with Mollie</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Status</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Changelog</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Contact Support</router-link
-                        >
-                    </li>
-                </ul>
-                <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Support</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Paid with Mollie</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Status</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Changelog</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Contact Support</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
                     <p class="h3 mb-3">Company</p>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >About</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Careers</router-link
-                        >
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark">Blog</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark">News</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/" class="text-dark"
-                            >Contact</router-link
-                        >
-                    </li>
-                </ul>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >About</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Careers</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Blog</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >News</router-link
+                            >
+                        </li>
+                        <li>
+                            <router-link to="/" class="text-dark"
+                                >Contact</router-link
+                            >
+                        </li>
+                    </ul>
+                </div>
             </div>
             <hr class="w-100" />
         </div>

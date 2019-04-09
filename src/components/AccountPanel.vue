@@ -28,16 +28,13 @@
                     <li class="my-1">
                         <router-link to="/account/orders">Orders</router-link>
                     </li>
-                    <div>
-                        <hr class="w-100" />
-                        <button
-                            class="btn btn-primary mb-2 w-100"
-                            @click="signOut"
-                        >
-                            Log Out
-                        </button>
-                    </div>
                 </ul>
+                <div>
+                    <hr class="w-100" />
+                    <button class="btn btn-primary mb-2 w-100" @click="signOut">
+                        Log Out
+                    </button>
+                </div>
             </div>
         </div>
     </div>
