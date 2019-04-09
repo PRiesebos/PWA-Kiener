@@ -57,7 +57,7 @@
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/addresses"
+                                <router-link to="/account/address"
                                     >Addresses</router-link
                                 >
                             </li>
