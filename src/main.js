@@ -54,7 +54,7 @@ const initialize = () => {
 router.beforeEach((to, from, next) => {
     if (to.meta.auth && !store.state.currentUser) {
         next({
-            path: "/account/register",
+            path: "/register",
         });
     } else {
         next();

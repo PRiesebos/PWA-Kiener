@@ -23,6 +23,7 @@ let router = new Router({
             component: () => import("./views/Test.vue"),
             meta: {
                 auth: true,
+                layout: "bare",
             },
         },
         {
