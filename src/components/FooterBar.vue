@@ -3,48 +3,125 @@
         <div class="d-none d-md-block">
             <hr class="w-100" />
             <div class="d-flex justify-content-between">
-                <ul class="list-unstyled">
-                    <p class="h3">PWA-Webshop</p>
+                <ul class="list-unstyled mb-0">
+                    <p class="h3 mb-3">PWA-Webshop</p>
                     <li>
-                        <router-link to="/" class="text-dark">Home</router-link>
+                        <router-link to="/" class="text-dark"
+                            >Payments</router-link
+                        >
                     </li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Recurring</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Pricing</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Developers</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Partners</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Enterprise</router-link
+                        >
+                    </li>
                 </ul>
-                <ul class="list-unstyled">
-                    <p class="h3">Features</p>
+                <ul class="list-unstyled mb-0">
+                    <p class="h3 mb-3">Features</p>
                     <li>
-                        <router-link to="/" class="text-dark">Home</router-link>
+                        <router-link to="/" class="text-dark"
+                            >Overview</router-link
+                        >
                     </li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Dashboard</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Checkout</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Multicurrency</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Security</router-link
+                        >
+                    </li>
                 </ul>
-                <ul class="list-unstyled">
-                    <p class="h3">Support</p>
+                <ul class="list-unstyled mb-0">
+                    <p class="h3 mb-3">Support</p>
                     <li>
-                        <router-link to="/" class="text-dark">Home</router-link>
+                        <router-link to="/" class="text-dark"
+                            >Support</router-link
+                        >
                     </li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Paid with Mollie</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Status</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Changelog</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Contact Support</router-link
+                        >
+                    </li>
                 </ul>
-                <ul class="list-unstyled">
-                    <p class="h3">Company</p>
+                <ul class="list-unstyled mb-0">
+                    <p class="h3 mb-3">Company</p>
                     <li>
-                        <router-link to="/" class="text-dark">Home</router-link>
+                        <router-link to="/" class="text-dark"
+                            >About</router-link
+                        >
                     </li>
-                    <li></li>
-                    <li></li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Careers</router-link
+                        >
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark">Blog</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark">News</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/" class="text-dark"
+                            >Contact</router-link
+                        >
+                    </li>
                 </ul>
             </div>
             <hr class="w-100" />
-            <div class="footer-copyright text-center py-3">
-                <router-link to="/" class="text-dark"
-                    >© 2018-2019, PWA-Webshop</router-link
-                >
-            </div>
         </div>
         <!-- Mobile footer -->
         <div class="row m-0">
+            <hr class="w-100 d-block d-md-none" />
             <!-- first block -->
             <div class="col-sm-12">
                 <div
@@ -75,11 +152,35 @@
                     >
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Payments</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Payments</router-link
+                                    >
                                 </li>
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Recurring</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Recurring</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Pricing</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Developers</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Partners</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Enterprise</router-link
+                                    >
                                 </li>
                             </ul>
                         </div>
@@ -116,11 +217,30 @@
                     >
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Payments</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Overview</router-link
+                                    >
                                 </li>
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Recurring</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Dashboard</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Checkout</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Multicurrency</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Security</router-link
+                                    >
                                 </li>
                             </ul>
                         </div>
@@ -157,11 +277,30 @@
                     >
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Payments</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Support</router-link
+                                    >
                                 </li>
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Recurring</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Paid with Mollie</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Status</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Changelog</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Contact Support</router-link
+                                    >
                                 </li>
                             </ul>
                         </div>
@@ -198,17 +337,42 @@
                     >
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Payments</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >About</router-link
+                                    >
                                 </li>
-                                <li class="mb-2 text-left">
-                                    <a href="#!">Recurring</a>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Careers</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Blog</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >News</router-link
+                                    >
+                                </li>
+                                <li>
+                                    <router-link to="/" class="text-dark"
+                                        >Contact</router-link
+                                    >
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            <hr class="w-100 d-block d-md-none" />
+        </div>
+        <div class="footer-copyright text-center py-3">
+            <router-link to="/" class="text-dark"
+                >© 2018-2019, PWA-Webshop</router-link
+            >
         </div>
     </div>
 </template>
@@ -228,11 +392,14 @@ export default {
         padding: 0px;
     }
 }
-h3,
-a,
-p {
+a {
     color: #1f2124;
 }
+
+li {
+    margin-bottom: 0.5rem;
+}
+
 .widget-list {
     li {
         a {

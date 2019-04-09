@@ -8,9 +8,7 @@
                     <div class="col-auto align-self-start">
                         <font-awesome-icon icon="exclamation-triangle" />
                     </div>
-                    <div class="col">
-                        You have not recently ordered.
-                    </div>
+                    You have not recently ordered.
                 </div>
             </div>
         </div>

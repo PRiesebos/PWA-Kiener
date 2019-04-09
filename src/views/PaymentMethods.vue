@@ -102,7 +102,7 @@
                     </div>
                     <hr class="w-100 my-2" />
                 </div>
-                <div class="mt-4">
+                <div class="my-4">
                     <router-link to="overview" class="btn btn-light"
                         >Back</router-link
                     >
@@ -110,7 +110,6 @@
                 </div>
             </div>
         </div>
-        <p class="mb-5"></p>
     </div>
 </template>
 

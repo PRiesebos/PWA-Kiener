@@ -54,14 +54,10 @@
                     </ul>
                 </div>
                 <hr class="w-100" />
-                <div class="footer-copyright text-center py-3">
-                    <router-link to="/" class="text-dark"
-                        >© 2018-2019, PWA-Webshop</router-link
-                    >
-                </div>
             </div>
             <!-- Mobile footer -->
             <div class="row m-0">
+                <hr class="w-100 d-block d-md-none" />
                 <!-- first block -->
                 <div class="col-sm-12">
                     <div
@@ -226,6 +222,12 @@
                         </div>
                     </div>
                 </div>
+                <hr class="w-100 d-block d-md-none" />
+            </div>
+            <div class="footer-copyright text-center py-3">
+                <router-link to="/" class="text-dark"
+                    >© 2018-2019, PWA-Webshop</router-link
+                >
             </div>
         </div>
     </div>

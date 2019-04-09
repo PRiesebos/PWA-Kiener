@@ -28,7 +28,6 @@
                 </button>
             </div>
         </div>
-        <p class="mb-5"></p>
     </div>
 </template>
 

@@ -95,7 +95,6 @@
                     <button class="btn btn-primary mb-5" type="submit">
                         Save changes
                     </button>
-                    <p class="mb-5"></p>
                 </form>
             </div>
         </div>
