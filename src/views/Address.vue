@@ -1,31 +1,45 @@
 <template>
     <div>
-        <div class="text-center mb-5">
-            <p class="h1 font-weight-bold">Addresses</p>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-6 mt-2">
-                <p class="font-weight-bold mb-1">Default shipping address</p>
-                <p class="font-weight-bold">Default billing address</p>
-                <hr class="w-100" />
-                <div v-if="currentUserData.zip">
-                    <p>
-                        {{ currentUserData.fname }}{{ currentUserData.lname }}
-                    </p>
-                    <p>{{ currentUserData.StreetAndNumber }}</p>
-                    <p>{{ currentUserData.zip }} {{ currentUserData.city }}</p>
-                    <p>{{ currentUserData.country }}</p>
-                    <button class="btn btn-light my-3">Change</button>
-                </div>
-                <div v-else>
-                    <p class="mb-5">No existing billing/shipping address</p>
-                    <button class="btn btn-light my-5" disabled>Change</button>
-                </div>
+        <p class="h1 ml-2 mb-3">Addresses</p>
+        <div class="row ml-2">
+            <div class="custom-card col-lg-4 col-md-5 col-12 mr-3 px-0">
+                <a href="">
+                    <div class="custom-card-body">
+                        <div class="m-auto py-5">
+                            <font-awesome-icon
+                                class="text-secondary"
+                                icon="plus"
+                                size="3x"
+                            />
+                            <p class="font-weight-bold h3 text-secondary">
+                                Add Address
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="col-12 col-lg-6">
-                <button class="btn btn-primary btn-block">
-                    Create new address
-                </button>
+            <div class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0">
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="font-weight-bold">John Doe</li>
+                        <li>De Hoogte 3</li>
+                        <li>1234 AB, Leek, Drenthe</li>
+                        <li>Netherlands</li>
+                        <li>Phone number: +31507384219</li>
+                    </ul>
+                    <div class="row pl-2">
+                        <button class="btn btn-link btn-sm pt-0">
+                            Edit
+                        </button>
+                        |
+                        <button class="btn btn-link btn-sm pt-0">
+                            Delete</button
+                        >|
+                        <button class="btn btn-link btn-sm pt-0">
+                            Default
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -43,3 +57,41 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+@media (max-width: 767px) {
+    .custom-card,
+    .custom-card-body .custom-card-plain {
+        height: 250px;
+        padding-top: 30px;
+        margin-bottom: 15px;
+    }
+    .list-unstyled {
+        margin-bottom: 63px;
+    }
+}
+@media (min-width: 768px) {
+    .custom-card-body {
+        padding: 2.85rem;
+    }
+    .list-unstyled {
+        margin-bottom: 90px;
+    }
+}
+
+.custom-card {
+    border-style: dashed;
+    border-width: 2px;
+    text-align: center;
+    display: table-cell;
+    border-radius: 4px;
+    border-color: #c7c7c7;
+}
+.custom-card-plain {
+    box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.16);
+}
+
+a:hover {
+    text-decoration: none;
+}
+</style>

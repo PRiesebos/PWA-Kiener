@@ -22,8 +22,8 @@ let router = new Router({
             name: "test",
             component: () => import("./views/Test.vue"),
             meta: {
+                layout: "userpanel",
                 auth: true,
-                layout: "bare",
             },
         },
         {

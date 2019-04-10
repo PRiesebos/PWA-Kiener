@@ -62,6 +62,7 @@
                         <img
                             class="ml-3"
                             src="https://www.mollie.com/external/icons/payment-methods/banktransfer.png"
+                            alt="Banktransfer icon"
                         />
                     </div>
                     <hr class="w-100 my-2" />

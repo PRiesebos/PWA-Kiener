@@ -15,7 +15,7 @@ export default {
         <nav-bar />
         <div class="content container">
             <div class="row mt-5">
-                <div class="col-4 col-md-4 col-lg-2 pl-0">
+                <div class="col-4 col-md-4 col-lg-2 pr-0">
                     <account-panel />
                 </div>
                 <div class="col-8 col-md-8 col-lg-10">
