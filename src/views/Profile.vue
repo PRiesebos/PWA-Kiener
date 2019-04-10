@@ -5,22 +5,27 @@
             <p class="font-weight-bold text-left mt-3">Profile</p>
             <hr class="w-100 mb-4" />
             <form @submit.prevent>
-                <float-label :dispatch="false">
-                    <select class="form-control col-6 col-md-4" required>
+                <float-label :dispatch="false" for="inputSalutation">
+                    <select
+                        class="form-control col-6 col-md-4"
+                        id="inputSalutation"
+                        required
+                    >
                         <option disabled selected>Salutation*</option>
                         <option value="Mr">Mr</option>
                         <option value="Ms">Ms</option>
                     </select>
                 </float-label>
-                <float-label>
+                <float-label for="inputFirstName">
                     <input
                         type="text"
                         class="form-control my-4"
                         placeholder="First name*"
+                        id="inputFirstName"
                         required
                     />
                 </float-label>
-                <float-label>
+                <float-label for="inputLastName">
                     <input
                         type="text"
                         class="form-control my-4"
@@ -45,7 +50,7 @@
                 <p class="font-weight-bold small mb-1">Current email address</p>
                 <p class="small">{{ currentUserData.email }}</p>
                 <form @submit.prevent>
-                    <float-label>
+                    <float-label for="inputNewEmail">
                         <input
                             type="email"
                             class="form-control my-4"
@@ -54,7 +59,7 @@
                             required
                         />
                     </float-label>
-                    <float-label>
+                    <float-label for="inputEmailCheck">
                         <input
                             type="email"
                             class="form-control my-4"
@@ -63,7 +68,7 @@
                             required
                         />
                     </float-label>
-                    <float-label>
+                    <float-label for="inputEmailPassword">
                         <input
                             type="password"
                             class="form-control my-4"
@@ -86,7 +91,7 @@
                 <hr class="w-100" />
                 <form @submit.prevent>
                     <div class="custom-align">
-                        <float-label>
+                        <float-label for="inputNewPassword">
                             <input
                                 type="password"
                                 class="form-control my-4"
@@ -95,7 +100,7 @@
                                 required
                             />
                         </float-label>
-                        <float-label>
+                        <float-label for="inputPasswordCheck">
                             <input
                                 type="password"
                                 class="form-control my-4"
@@ -104,7 +109,7 @@
                                 required
                             />
                         </float-label>
-                        <float-label>
+                        <float-label for="inputOldPassword">
                             <input
                                 type="password"
                                 class="form-control my-4"

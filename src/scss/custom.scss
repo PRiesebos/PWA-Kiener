@@ -4,5 +4,9 @@ ul > li > a.router-link-active {
     color: blue;
 }
 
+$theme-colors: (
+  "primary": #0000ff,
+);
+
 @import "./font-face.scss";
 @import "~bootstrap/scss/bootstrap";
