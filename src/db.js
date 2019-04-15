@@ -18,14 +18,11 @@ const docRef = db.collection("users");
 
 db.addUser = async (userObject, email, name) => {
     try {
-        await db
-            .collection("users")
-            .doc(userObject)
-            .set({
-                id: userObject,
-                email,
-                name,
-            });
+        await docRef.doc(userObject).set({
+            id: userObject,
+            email,
+            name,
+        });
     } catch (error) {
         return error;
     }
@@ -43,6 +40,30 @@ db.getUser = async user => {
                     console.log("No such document or data already stored");
                 }
             });
+    } catch (error) {
+        return error;
+    }
+};
+
+db.updateUserInfo = async (id, salutation, fname, lname) => {
+    try {
+        await docRef.doc(id).update({
+            Salutation: salutation,
+            FirstName: fname,
+            LastName: lname,
+        });
+        return true;
+    } catch (error) {
+        return error;
+    }
+};
+
+db.updateUserEmail = async (id, email) => {
+    try {
+        await docRef.doc(id).update({
+            email: email,
+        });
+        return true;
     } catch (error) {
         return error;
     }
