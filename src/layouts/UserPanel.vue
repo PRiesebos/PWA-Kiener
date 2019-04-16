@@ -47,4 +47,7 @@ html {
 .content {
     flex-grow: 1;
 }
+.sticky-top {
+    top: 10px !important;
+}
 </style>

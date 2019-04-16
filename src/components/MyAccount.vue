@@ -120,5 +120,6 @@ ul > li > a {
 }
 .dropdown-menu {
     min-width: 200px;
+    z-index: 1021;
 }
 </style>

@@ -59,6 +59,15 @@ let router = new Router({
             },
         },
         {
+            path: "/account/address/edit",
+            name: "addressEdit",
+            component: () => import("./views/AddressEdit.vue"),
+            meta: {
+                layout: "default",
+                auth: true,
+            },
+        },
+        {
             path: "/account/paymentmethods",
             name: "paymentmethods",
             component: () => import("./views/PaymentMethods.vue"),

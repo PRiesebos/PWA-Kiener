@@ -1,6 +1,46 @@
 <template>
+    <!-- Profile change form -->
     <div>
-        <!-- Profile change form -->
+        <!-- Succes alert -->
+        <div
+            class="alert alert-success sticky-top"
+            role="alert"
+            v-if="validEmailBool || validPasswordBool || validUserBool"
+        >
+            <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+                @click="
+                    validEmailBool = validPasswordBool = validUserBool = false
+                "
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <b>You succesfully changed your credentials</b>
+        </div>
+        <!-- Sticky error alert -->
+        <div
+            class="alert alert-warning sticky-top"
+            role="alert"
+            v-if="errors.length"
+        >
+            <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <b>Please correct the following error(s):</b>
+            <ul class="list-unstyled">
+                <li v-for="errorProfile in errors" :key="errorProfile">
+                    {{ errorProfile }}
+                </li>
+            </ul>
+        </div>
         <div>
             <p class="font-weight-bold text-left mt-3">Profile</p>
             <hr class="w-100 mb-4" />
@@ -269,6 +309,8 @@ export default {
             passwordBlured: false,
             passwordCheckBlured: false,
             passwordOldBlured: false,
+            errors: [],
+            succes: false,
         };
     },
     components: { FloatLabel },
@@ -281,9 +323,11 @@ export default {
         },
     },
     mounted: function() {
-        this.salutation = this.currentUserData.Salutation;
-        this.fname = this.currentUserData.FirstName;
-        this.lname = this.currentUserData.LastName;
+        if (this.currentUserData.firstName) {
+            this.salutation = this.currentUserData.salutation;
+            this.fname = this.currentUserData.firstName;
+            this.lname = this.currentUserData.lastName;
+        }
     },
     methods: {
         // Update methods
@@ -295,39 +339,46 @@ export default {
                 this.fname,
                 this.lname
             );
-            if (result) {
-                console.log(result.message);
+            if (result.message) {
+                this.errors.push(result.message);
             }
         },
-        // Email update
-        async updateUserEmail() {
+        // Credentials update
+        async updateCredentials(type) {
+            var user = firebase.auth().currentUser;
             let result = await db.signIn(
                 this.currentUser.email,
-                this.currentPasswordEmail
+                this.currentPasswordEmail || this.currentPassword
             );
-            var user = firebase.auth().currentUser;
-            if (result) {
-                console.log(result);
+            if (result.code == "auth/requires-recent-login") {
+                this.errors.push("Needs recent login");
+                this.validEmailBool = this.validPasswordBool = false;
+            } else if (result.code == "auth/wrong-password") {
+                this.errors.push("Incorrect password");
+                this.validEmailBool = this.validPasswordBool = false;
+            } else if (type == "email") {
+                this.errors.push(result.message);
                 user.updateEmail(this.newEmail);
-                let result2 = await db.updateUserEmail(
+                let dbinfo = await db.updateUserEmail(
                     this.currentUserData.id,
                     this.newEmail
                 );
-                if (result2) {
-                    console.log(result2);
+                if (dbinfo) {
+                    console.log(dbinfo);
+                    this.errors = 0;
+                    this.newEmail = "";
+                    this.newEmailCheck = "";
+                    this.currentPasswordEmail = "";
+                    this.emailBlured = this.emailCheckBlured = this.emailPasswordBlured = false;
                 }
-            }
-        },
-        // password update
-        async updateUserPassword() {
-            let result = await db.signIn(
-                this.currentUser.email,
-                this.currentPassword
-            );
-            var user = firebase.auth().currentUser;
-            if (result) {
-                console.log(result);
-                user.updatePassword(this.newPassword);
+            } else if (type == "password") {
+                this.errors = 0;
+                let resultPassword = user.updatePassword(this.newPassword);
+                this.errors.push(resultPassword.message);
+                this.newEmail = "";
+                this.newEmailCheck = "";
+                this.currentPasswordEmail = "";
+                this.passwordBlured = this.passwordCheckBlured = this.passwordOldBlured = false;
             }
         },
         // Data validation
@@ -335,9 +386,14 @@ export default {
             this.salutationBlured = true;
             this.fnameBlured = true;
             this.lnameBlured = true;
-            if (this.salutation != "" && this.fname != "" && this.lname != "") {
+            if (
+                this.salutation != "" &&
+                this.fname != "" &&
+                this.lname != "" &&
+                this.fname != this.currentUserData.firstName &&
+                this.lname != this.currentUserData.lastName
+            ) {
                 this.validUserBool = true;
-                this.updateUserInfo();
             }
         },
         validateEmail() {
@@ -387,7 +443,7 @@ export default {
         submitUserInfo() {
             this.validateUserInfo();
             if (this.validUserBool) {
-                console.log("Succes User Info");
+                this.updateUserInfo();
             } else {
                 alert("Data is not valid!");
             }
@@ -395,7 +451,7 @@ export default {
         submitEmail() {
             this.validateEmail();
             if (this.validEmailBool) {
-                this.updateUserEmail();
+                this.updateCredentials("email");
             } else {
                 alert("Data is not valid!");
             }
@@ -403,8 +459,7 @@ export default {
         submitPassword() {
             this.validatePassword();
             if (this.validPasswordBool) {
-                console.log("Succes Password");
-                this.updateUserPassword();
+                this.updateCredentials("password");
             } else {
                 alert("Data is not valid!");
             }
@@ -418,5 +473,8 @@ export default {
     .custom-align {
         height: 278px;
     }
+}
+.sticky-top {
+    top: 10px;
 }
 </style>

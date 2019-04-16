@@ -28,12 +28,16 @@
                         <li>Phone number: +31507384219</li>
                     </ul>
                     <div class="row pl-2">
-                        <button class="btn btn-link btn-sm pt-0">
-                            Edit
-                        </button>
+                        <router-link
+                            to="/account/address/edit"
+                            class="btn btn-link btn-sm pt-0"
+                            >Edit</router-link
+                        >
                         |
-                        <button class="btn btn-link btn-sm pt-0">
-                            Delete</button
+                        <router-link
+                            to="/account/address/edit"
+                            class="btn btn-link btn-sm pt-0"
+                            >Delete</router-link
                         >|
                         <button class="btn btn-link btn-sm pt-0">
                             Default
@@ -54,6 +58,9 @@ export default {
         currentUserData() {
             return this.$store.state.currentUserData;
         },
+    },
+    methods: {
+        addAddress() {},
     },
 };
 </script>

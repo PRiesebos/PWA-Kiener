@@ -14,11 +14,11 @@ var config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
-const docRef = db.collection("users");
+const docUser = db.collection("users");
 
 db.addUser = async (userObject, email, name) => {
     try {
-        await docRef.doc(userObject).set({
+        await docUser.doc(userObject).set({
             id: userObject,
             email,
             name,
@@ -28,9 +28,37 @@ db.addUser = async (userObject, email, name) => {
     }
 };
 
+db.addAddress = async (
+    userObject,
+    number,
+    street,
+    city,
+    zip,
+    country,
+    ship,
+    bill
+) => {
+    try {
+        await docUser
+            .doc(userObject)
+            .collection("Addresses")
+            .doc(number)
+            .set({
+                street,
+                city,
+                zip,
+                country,
+                shipping: ship,
+                billing: bill,
+            });
+    } catch (error) {
+        return error;
+    }
+};
+
 db.getUser = async user => {
     try {
-        await docRef
+        await docUser
             .doc(user)
             .get()
             .then(function(doc) {
@@ -47,11 +75,21 @@ db.getUser = async user => {
 
 db.updateUserInfo = async (id, salutation, fname, lname) => {
     try {
-        await docRef.doc(id).update({
-            Salutation: salutation,
-            FirstName: fname,
-            LastName: lname,
+        await docUser.doc(id).update({
+            salutation: salutation,
+            firstName: fname,
+            lastName: lname,
         });
+        await docUser
+            .doc(id)
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    store.commit("setCurrentUserData", doc.data());
+                } else {
+                    console.log("No such document or data already stored");
+                }
+            });
         return true;
     } catch (error) {
         return error;
@@ -60,9 +98,19 @@ db.updateUserInfo = async (id, salutation, fname, lname) => {
 
 db.updateUserEmail = async (id, email) => {
     try {
-        await docRef.doc(id).update({
+        await docUser.doc(id).update({
             email: email,
         });
+        await docUser
+            .doc(id)
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    store.commit("setCurrentUserData", doc.data());
+                } else {
+                    console.log("No such document or data already stored");
+                }
+            });
         return true;
     } catch (error) {
         return error;
