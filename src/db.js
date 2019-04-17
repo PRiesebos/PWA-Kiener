@@ -31,6 +31,9 @@ db.addUser = async (userObject, email, name) => {
 db.addAddress = async (
     userObject,
     number,
+    type,
+    fname,
+    lname,
     street,
     city,
     zip,
@@ -44,6 +47,9 @@ db.addAddress = async (
             .collection("Addresses")
             .doc(number)
             .set({
+                type,
+                fname,
+                lname,
                 street,
                 city,
                 zip,

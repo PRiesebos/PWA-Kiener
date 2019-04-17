@@ -13,12 +13,12 @@ export default {
 <template>
     <div class="wrapper">
         <nav-bar />
-        <div class="content container">
+        <div class="content container mt-5">
             <div class="row mt-5">
                 <div class="col-4 col-md-4 col-lg-2 pr-0">
                     <account-panel />
                 </div>
-                <div class="col-8 col-md-8 col-lg-10">
+                <div class="col-8 col-md-8 col-lg-10 pr-0">
                     <slot />
                 </div>
             </div>
@@ -46,8 +46,5 @@ html {
 
 .content {
     flex-grow: 1;
-}
-.sticky-top {
-    top: 10px !important;
 }
 </style>

@@ -12,7 +12,7 @@ export default {
 <template>
     <div class="wrapper">
         <nav-bar />
-        <div class="content">
+        <div class="content mt-5">
             <slot />
         </div>
         <footer-bar />

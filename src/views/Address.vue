@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class="h1 ml-2 mb-3">Addresses</p>
-        <div class="row ml-2">
+        <div class="row ml-2 mr-1">
             <div class="custom-card col-lg-4 col-md-5 col-12 mr-3 px-0">
                 <a href="">
                     <div class="custom-card-body">

@@ -1,5 +1,11 @@
 <template>
-    <div class="sticky-top">
+    <div
+        class="sticky-top"
+        :class="{
+            'custom-margin-top': showNavbar,
+            'custom-margin-top2': !showNavbar,
+        }"
+    >
         <div class="border rounded col-md-12">
             <div>
                 <p class="font-weight-bold mt-3 text-break">
@@ -45,12 +51,21 @@ import db from "@/db";
 export default {
     name: "AccountPanel",
     data() {
-        return {};
+        return {
+            showNavbar: true,
+        };
     },
     computed: {
         currentUserData() {
             return this.$store.state.currentUserData;
         },
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll2);
+    },
+
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.onScroll2);
     },
     methods: {
         async signOut() {
@@ -60,6 +75,24 @@ export default {
                 console.log(result.message);
             }
         },
+        onScroll2() {
+            if (window.innerWidth >= 575) {
+                const currentScrollPosition =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScrollPosition < 0) {
+                    return;
+                }
+                if (
+                    Math.abs(currentScrollPosition - this.lastScrollPosition) <
+                    56
+                ) {
+                    return;
+                }
+                this.showNavbar =
+                    currentScrollPosition < this.lastScrollPosition;
+                this.lastScrollPosition = currentScrollPosition;
+            }
+        },
     },
 };
 </script>
@@ -67,5 +100,11 @@ export default {
 <style scoped>
 ul > li > a {
     color: black;
+}
+.custom-margin-top {
+    top: 66px !important;
+}
+.custom-margin-top2 {
+    top: 10px !important;
 }
 </style>

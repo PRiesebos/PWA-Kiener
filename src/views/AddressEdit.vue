@@ -27,14 +27,14 @@
                     <!-- Address form -->
                     <div>
                         <form @submit.prevent>
-                            <!-- Salutation -->
-                            <label for="inputSalutation" class="mb-0"
+                            <!-- Type -->
+                            <label for="inputType" class="mb-0"
                                 >Customer type</label
                             >
                             <select
                                 class="form-control mb-2"
-                                id="inputSalutation"
-                                v-model="salutation"
+                                id="inputType"
+                                v-model="type"
                             >
                                 <option value="Private customer"
                                     >Private customer</option
@@ -168,7 +168,7 @@ import db from "@/db.js";
 export default {
     data() {
         return {
-            salutation: "",
+            type: "",
             title: "",
             fname: "",
             lname: "",
@@ -200,6 +200,9 @@ export default {
             let result = await db.addAddress(
                 this.currentUser.uid,
                 number,
+                this.type,
+                this.fname,
+                this.lname,
                 this.streetAndNumber,
                 this.city,
                 this.zip,

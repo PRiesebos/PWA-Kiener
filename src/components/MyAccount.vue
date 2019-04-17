@@ -57,17 +57,26 @@
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/address"
+                                <router-link
+                                    to="/account/address"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Addresses</router-link
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/paymentmethods"
+                                <router-link
+                                    to="/account/paymentmethods"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Payment methods</router-link
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/orders"
+                                <router-link
+                                    to="/account/orders"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Orders</router-link
                                 >
                             </li>
