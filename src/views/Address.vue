@@ -3,7 +3,7 @@
         <p class="h1 ml-2 mb-3">Addresses</p>
         <div class="row ml-2 mr-1">
             <div class="custom-card col-lg-4 col-md-5 col-12 mr-3 px-0">
-                <a href="">
+                <router-link to="/account/address/edit">
                     <div class="custom-card-body">
                         <div class="m-auto py-5">
                             <font-awesome-icon
@@ -16,7 +16,7 @@
                             </p>
                         </div>
                     </div>
-                </a>
+                </router-link>
             </div>
             <div class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0">
                 <div class="card-body">
@@ -27,6 +27,10 @@
                         <li>Netherlands</li>
                         <li>Phone number: +31507384219</li>
                     </ul>
+                    <!-- address type (bill,ship,both) -->
+                    <p class="small font-weight-bold">
+                        Billing and shipping address
+                    </p>
                     <div class="row pl-2">
                         <router-link
                             to="/account/address/edit"
@@ -38,10 +42,7 @@
                             to="/account/address/edit"
                             class="btn btn-link btn-sm pt-0"
                             >Delete</router-link
-                        >|
-                        <button class="btn btn-link btn-sm pt-0">
-                            Default
-                        </button>
+                        >
                     </div>
                 </div>
             </div>
@@ -79,7 +80,7 @@ export default {
 }
 @media (min-width: 768px) {
     .custom-card-body {
-        padding: 2.85rem;
+        padding: 3.9rem;
     }
     .list-unstyled {
         margin-bottom: 90px;

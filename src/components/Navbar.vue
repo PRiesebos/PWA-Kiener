@@ -168,7 +168,7 @@ export default {
     }
     .custom-margin-account {
         margin-left: 1rem;
-        margin-right: 1.5rem;
+        margin-right: 1rem;
     }
 }
 .navbar-toggler:focus {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container mb-4">
             <div class="row col-lg-6 col-12 mx-auto px-0">
                 <div class="w-100">
                     <!-- Page navigation -->
@@ -54,30 +54,38 @@
                                 <option value="Mr">Mr</option>
                                 <option value="Ms">Ms</option>
                             </select>
-                            <hr class="w-100 my-4" />
+                            <hr class="w-100 my-3" />
+                            <!-- labels for first and last name -->
+                            <div class="d-block">
+                                <label
+                                    for="inputFirstName"
+                                    class="mb-0 col-6 px-0"
+                                >
+                                    First name
+                                </label>
+                                <label
+                                    for="inputLastName"
+                                    class="mb-0 col-6 px-0"
+                                >
+                                    Last name
+                                </label>
+                            </div>
                             <!-- First name -->
-                            <label for="inputFirstName" class="mb-0">
-                                First name
-                            </label>
                             <input
                                 type="text"
                                 name="inputFirstName"
                                 id="inputFirstName"
-                                class="form-control mb-2"
+                                class="form-control mb-2 w-50 d-inline test-width mr-5px"
                                 v-model="fname"
                             />
                             <!-- Last name -->
-                            <label for="inputLastName" class="mb-0">
-                                Last name
-                            </label>
                             <input
                                 type="text"
                                 name="inputLastName"
                                 id="inputLastName"
-                                class="form-control mb-3"
+                                class="form-control mb-3 w-50 d-inline test-width"
                                 v-model="lname"
                             />
-                            <hr class="w-100 my-4" />
                             <!-- Street and number -->
                             <label for="inputStreetAndNumber" class="mb-0">
                                 Street and number
@@ -89,26 +97,29 @@
                                 class="form-control mb-2"
                                 v-model="streetAndNumber"
                             />
+                            <!-- labels for zip code and city -->
+                            <div class="d-block">
+                                <label for="inputZip" class="mb-0 col-6 px-0">
+                                    Zipcode
+                                </label>
+                                <label for="inputCity" class="mb-0 col-6 px-0">
+                                    City
+                                </label>
+                            </div>
                             <!-- Zip code -->
-                            <label for="inputZip" class="mb-0">
-                                Zipcode
-                            </label>
                             <input
                                 type="text"
                                 name="inputZip"
                                 id="inputZip"
-                                class="form-control mb-2"
+                                class="form-control mb-2 d-inline test-width mr-5px"
                                 v-model="zip"
                             />
                             <!-- City -->
-                            <label for="inputCity" class="mb-0">
-                                City
-                            </label>
                             <input
                                 type="text"
                                 name="inputCity"
                                 id="inputCity"
-                                class="form-control mb-2"
+                                class="form-control mb-2 d-inline test-width"
                                 v-model="city"
                             />
                             <!-- Country -->
@@ -116,7 +127,7 @@
                                 >Country</label
                             >
                             <select
-                                class="form-control mb-5"
+                                class="form-control mb-4"
                                 id="inputCountry"
                                 v-model="country"
                             >
@@ -217,3 +228,11 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+.test-width {
+    width: calc(50% - 2.5px) !important;
+}
+.mr-5px {
+    margin-right: 5px;
+}
+</style>
