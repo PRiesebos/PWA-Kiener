@@ -17,10 +17,10 @@
                             >Addresses >
                         </router-link>
                         &nbsp;
-                        <p class="text-primary small d-inline">Edit Address</p>
+                        <p class="text-primary small d-inline">Add Address</p>
                     </div>
                     <p class="h2 col-12 text-left my-3 pl-0 font-weight-bold">
-                        Edit your address
+                        Add an address
                     </p>
                     <!-- Address form -->
                     <div>
@@ -140,7 +140,10 @@
                                 <option value="Netherlands">Netherlands</option>
                             </select>
                             <!-- Default shipping address -->
-                            <label class="font-weight-bold col-6 col-md-8 pl-0">
+                            <label
+                                class="font-weight-bold col-6 col-md-8 pl-0"
+                                v-if="currentUserAddress != null"
+                            >
                                 <input
                                     type="radio"
                                     name="shippingoption"
@@ -152,12 +155,15 @@
                             <!-- Submit form -->
                             <button
                                 class="btn btn-primary float-right"
-                                @click="editAddress"
+                                @click="addAddress"
                             >
                                 Save changes
                             </button>
                             <!-- Default billing address -->
-                            <label class="font-weight-bold col-6 col-md-8 pl-0">
+                            <label
+                                class="font-weight-bold col-6 col-md-8 pl-0"
+                                v-if="currentUserAddress != null"
+                            >
                                 <input
                                     type="radio"
                                     name="shippingoption"
@@ -176,6 +182,7 @@
 
 <script>
 import db from "@/db.js";
+import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -192,9 +199,6 @@ export default {
         };
     },
     computed: {
-        currentUser() {
-            return this.$store.state.currentUser;
-        },
         currentUserAddress() {
             return this.$store.state.currentUserAddress;
         },
@@ -202,33 +206,13 @@ export default {
             return this.$store.state.currentUserSecondAddress;
         },
     },
-    mounted: function() {
-        if (this.$route.params.id == "1st") {
-            this.type = this.currentUserAddress.type;
-            this.title = this.currentUserAddress.title;
-            this.fname = this.currentUserAddress.fname;
-            this.lname = this.currentUserAddress.lname;
-            this.streetAndNumber = this.currentUserAddress.street;
-            this.zip = this.currentUserAddress.zip;
-            this.city = this.currentUserAddress.city;
-            this.country = this.currentUserAddress.country;
-        } else {
-            this.type = this.currentUserSecondAddress.type;
-            this.title = this.currentUserSecondAddress.title;
-            this.fname = this.currentUserSecondAddress.fname;
-            this.lname = this.currentUserSecondAddress.lname;
-            this.streetAndNumber = this.currentUserSecondAddress.street;
-            this.zip = this.currentUserSecondAddress.zip;
-            this.city = this.currentUserSecondAddress.city;
-            this.country = this.currentUserSecondAddress.country;
-        }
-    },
     methods: {
-        async editAddress() {
+        async addAddress() {
             this.number =
-                this.$route.params.id == "1st" ? "address1" : "address2";
+                this.currentUserAddress == null ? "address1" : "address2";
+            this.ship = this.currentUserAddress == null ? "both" : this.ship;
             await db.addAddress(
-                this.currentUser.uid,
+                this.$store.state.currentUser.uid,
                 this.number,
                 this.type,
                 this.title,
@@ -240,6 +224,27 @@ export default {
                 this.country,
                 this.ship
             );
+            if (this.number == "address1") {
+                this.getAddress();
+            } else {
+                let shipValue = this.ship == "ship" ? "bill" : "ship";
+                await db.updateAddress(
+                    this.$store.state.currentUser.uid,
+                    "address1",
+                    shipValue
+                );
+                await this.getAddress();
+                await this.getSecondAddress();
+            }
+        },
+        async getAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getAddress(user.uid, "address1");
+            this.$router.push("/account/address");
+        },
+        async getSecondAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getSecondAddress(user.uid, "address2");
             this.$router.push("/account/address");
         },
     },

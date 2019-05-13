@@ -13,6 +13,12 @@ export default new Vuex.Store({
         setCurrentUserData(state, payload) {
             state.currentUserData = payload;
         },
+        setCurrentUserAddress(state, payload) {
+            state.currentUserAddress = payload;
+        },
+        setCurrentUserSecondAddress(state, payload) {
+            state.currentUserSecondAddress = payload;
+        },
     },
     actions: {},
     plugins: [createPersistedState()],

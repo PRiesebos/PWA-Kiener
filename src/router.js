@@ -59,9 +59,18 @@ let router = new Router({
             },
         },
         {
-            path: "/account/address/edit",
+            path: "/account/address/edit/:id",
             name: "addressEdit",
             component: () => import("./views/AddressEdit.vue"),
+            meta: {
+                layout: "default",
+                auth: true,
+            },
+        },
+        {
+            path: "/account/address/add",
+            name: "addressAdd",
+            component: () => import("./views/AddressAdd.vue"),
             meta: {
                 layout: "default",
                 auth: true,

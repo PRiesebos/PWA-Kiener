@@ -170,6 +170,8 @@ export default {
                     this.errors.showPasswordError = true;
                 } else {
                     if (this.currentUser.uid != null) {
+                        this.getAddress();
+                        this.getSecondAddress();
                         this.getUser();
                     }
                 }
@@ -183,6 +185,14 @@ export default {
             } else {
                 this.$router.push("/account/overview");
             }
+        },
+        async getAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getAddress(user.uid, "address1");
+        },
+        async getSecondAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getSecondAddress(user.uid, "address2");
         },
         async resetPassword() {
             let result = await db.resetPassword(this.email);

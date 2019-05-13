@@ -32,31 +32,57 @@ db.addAddress = async (
     userObject,
     number,
     type,
+    title,
     fname,
     lname,
     street,
     city,
     zip,
     country,
-    ship,
-    bill
+    ship
 ) => {
     try {
         await docUser
             .doc(userObject)
-            .collection("Addresses")
+            .collection("addresses")
             .doc(number)
             .set({
                 type,
+                title,
                 fname,
                 lname,
                 street,
                 city,
                 zip,
                 country,
-                shipping: ship,
-                billing: bill,
+                ship,
             });
+    } catch (error) {
+        return error;
+    }
+};
+db.updateAddress = async (userObject, number, ship) => {
+    try {
+        await docUser
+            .doc(userObject)
+            .collection("addresses")
+            .doc(number)
+            .update({
+                ship,
+            });
+        return true;
+    } catch (error) {
+        return error;
+    }
+};
+db.deleteAddress = async (userObject, number) => {
+    try {
+        await docUser
+            .doc(userObject)
+            .collection("addresses")
+            .doc(number)
+            .delete();
+        return true;
     } catch (error) {
         return error;
     }
@@ -72,6 +98,46 @@ db.getUser = async user => {
                     store.commit("setCurrentUserData", doc.data());
                 } else {
                     console.log("No such document or data already stored");
+                }
+            });
+    } catch (error) {
+        return error;
+    }
+};
+
+db.getAddress = async (user, address) => {
+    try {
+        await docUser
+            .doc(user)
+            .collection("addresses")
+            .doc(address)
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    store.commit("setCurrentUserAddress", doc.data());
+                } else {
+                    console.log("No such document or data already stored");
+                    store.commit("setCurrentUserAddress", null);
+                }
+            });
+    } catch (error) {
+        return error;
+    }
+};
+
+db.getSecondAddress = async (user, address) => {
+    try {
+        await docUser
+            .doc(user)
+            .collection("addresses")
+            .doc(address)
+            .get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    store.commit("setCurrentUserSecondAddress", doc.data());
+                } else {
+                    console.log("No such document or data already stored");
+                    store.commit("setCurrentUserSecondAddress", null);
                 }
             });
     } catch (error) {
@@ -146,6 +212,8 @@ db.signOut = async () => {
         await firebase.auth().signOut();
 
         store.commit("setCurrentUserData", null);
+        store.commit("setCurrentUserAddress", null);
+        store.commit("setCurrentUserSecondAddress", null);
 
         return true;
     } catch (error) {

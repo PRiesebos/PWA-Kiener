@@ -364,7 +364,6 @@ export default {
                     this.newEmail
                 );
                 if (dbinfo) {
-                    console.log(dbinfo);
                     this.errors = 0;
                     this.newEmail = "";
                     this.newEmailCheck = "";
@@ -471,7 +470,7 @@ export default {
 <style scoped>
 @media (min-width: 992px) {
     .custom-align {
-        height: 278px;
+        height: 271px;
     }
 }
 .sticky-top {

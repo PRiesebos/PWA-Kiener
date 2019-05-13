@@ -184,8 +184,6 @@ export default {
             let result = await db.signUp(this.email, this.password);
             if (result) {
                 this.addUser();
-            } else {
-                console.log(result.message);
             }
         },
         async addUser() {

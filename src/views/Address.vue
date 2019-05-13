@@ -2,8 +2,11 @@
     <div>
         <p class="h1 ml-2 mb-3">Addresses</p>
         <div class="row ml-2 mr-1">
-            <div class="custom-card col-lg-4 col-md-5 col-12 mr-3 px-0">
-                <router-link to="/account/address/edit">
+            <div
+                class="custom-card col-lg-4 col-md-5 col-12 mr-3 px-0"
+                v-if="this.currentUserSecondAddress == null"
+            >
+                <router-link to="/account/address/add">
                     <div class="custom-card-body">
                         <div class="m-auto py-5">
                             <font-awesome-icon
@@ -18,31 +21,92 @@
                     </div>
                 </router-link>
             </div>
-            <div class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0">
+            <!-- First address -->
+            <div
+                class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0"
+                v-if="this.currentUserAddress != null"
+            >
                 <div class="card-body">
                     <ul class="list-unstyled">
-                        <li class="font-weight-bold">John Doe</li>
-                        <li>De Hoogte 3</li>
-                        <li>1234 AB, Leek, Drenthe</li>
-                        <li>Netherlands</li>
-                        <li>Phone number: +31507384219</li>
+                        <li class="font-weight-bold">
+                            {{ fname }} {{ lname }}
+                        </li>
+                        <li>{{ streetAndNumber }}</li>
+                        <li>{{ zip }} {{ city }}</li>
+                        <li>{{ country }}</li>
                     </ul>
                     <!-- address type (bill,ship,both) -->
-                    <p class="small font-weight-bold">
+                    <p
+                        class="small font-weight-bold"
+                        v-if="currentUserAddress.ship == 'both'"
+                    >
                         Billing and shipping address
+                    </p>
+                    <p
+                        class="small font-weight-bold"
+                        v-if="currentUserAddress.ship == 'ship'"
+                    >
+                        Shipping address
+                    </p>
+                    <p
+                        class="small font-weight-bold"
+                        v-if="currentUserAddress.ship == 'bill'"
+                    >
+                        Billing address
                     </p>
                     <div class="row pl-2">
                         <router-link
-                            to="/account/address/edit"
+                            to="/account/address/edit/1st"
                             class="btn btn-link btn-sm pt-0"
                             >Edit</router-link
                         >
                         |
-                        <router-link
-                            to="/account/address/edit"
+                        <button
                             class="btn btn-link btn-sm pt-0"
-                            >Delete</router-link
+                            @click="deleteAddress('address1')"
                         >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Second address -->
+            <div
+                class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0 ml-3"
+                v-if="this.currentUserSecondAddress != null"
+            >
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="font-weight-bold">
+                            {{ altFname }} {{ altLname }}
+                        </li>
+                        <li>{{ altStreetAndNumber }}</li>
+                        <li>{{ altZip }} {{ altCity }}</li>
+                        <li>{{ altCountry }}</li>
+                    </ul>
+                    <!-- address type (bill,ship) -->
+                    <p
+                        class="small font-weight-bold"
+                        v-if="currentUserSecondAddress.ship == 'ship'"
+                    >
+                        Shipping address
+                    </p>
+                    <p class="small font-weight-bold" v-if="altShip == 'bill'">
+                        Billing address
+                    </p>
+                    <div class="row pl-2">
+                        <router-link
+                            to="/account/address/edit/2nd"
+                            class="btn btn-link btn-sm pt-0"
+                            >Edit</router-link
+                        >
+                        |
+                        <button
+                            class="btn btn-link btn-sm pt-0"
+                            @click="deleteAddress('address2')"
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -51,17 +115,68 @@
 </template>
 
 <script>
+import db from "@/db.js";
+import store from "@/store.js";
 export default {
     data() {
-        return {};
+        return {
+            fname: "",
+            lname: "",
+            streetAndNumber: "",
+            zip: "",
+            city: "",
+            country: "",
+            ship: "",
+            altFname: "",
+            altLname: "",
+            altStreetAndNumber: "",
+            altZip: "",
+            altCity: "",
+            altCountry: "",
+            altShip: "",
+            number: "",
+        };
     },
     computed: {
         currentUserData() {
             return this.$store.state.currentUserData;
         },
+        currentUserAddress() {
+            return this.$store.state.currentUserAddress;
+        },
+        currentUserSecondAddress() {
+            return this.$store.state.currentUserSecondAddress;
+        },
+    },
+    mounted: function() {
+        if (this.currentUserAddress != null) {
+            this.fname = this.currentUserAddress.fname;
+            this.lname = this.currentUserAddress.lname;
+            this.streetAndNumber = this.currentUserAddress.street;
+            this.zip = this.currentUserAddress.zip;
+            this.city = this.currentUserAddress.city;
+            this.country = this.currentUserAddress.country;
+            this.ship = this.currentUserAddress.ship;
+            if (this.currentUserSecondAddress != null) {
+                this.altFname = this.currentUserSecondAddress.fname;
+                this.altLname = this.currentUserSecondAddress.lname;
+                this.streetAndNumber = this.currentUserSecondAddress.streetAndNumber;
+                this.altZip = this.currentUserSecondAddress.zip;
+                this.altCity = this.currentUserSecondAddress.city;
+                this.altCountry = this.currentUserSecondAddress.country;
+                this.altShip = this.currentUserSecondAddress.ship;
+            }
+        }
     },
     methods: {
-        addAddress() {},
+        async deleteAddress(number) {
+            await db.deleteAddress(this.$store.state.currentUser.uid, number);
+            if (number == "address1") {
+                store.commit("setCurrentUserAddress", null);
+            } else {
+                store.commit("setCurrentUserSecondAddress", null);
+            }
+        },
     },
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="vh-100 mb-5"></div>
+        <div class="vh-100"></div>
+        <div class="vh-100 bg-dark"></div>
     </div>
 </template>
 

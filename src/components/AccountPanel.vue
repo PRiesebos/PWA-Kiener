@@ -70,10 +70,7 @@ export default {
     methods: {
         async signOut() {
             this.$router.push({ name: "home" });
-            let result = await db.signOut();
-            if (result.message) {
-                console.log(result.message);
-            }
+            await db.signOut();
         },
         onScroll2() {
             if (window.innerWidth >= 575) {
