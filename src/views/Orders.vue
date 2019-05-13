@@ -5,12 +5,10 @@
             <p>Here you can find your orders according to date.</p>
             <div class="alert alert-warning">
                 <div class="row">
-                    <div class="col-auto align-self-start">
-                        <font-awesome-icon icon="exclamation-triangle" />
-                    </div>
-                    <div class="col">
-                        You have not recently ordered.
-                    </div>
+                    <p class="ml-3 mb-0">
+                        <font-awesome-icon icon="exclamation-triangle" /> You
+                        have not recently ordered.
+                    </p>
                 </div>
             </div>
         </div>

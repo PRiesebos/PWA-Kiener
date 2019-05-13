@@ -57,17 +57,26 @@
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/address"
+                                <router-link
+                                    to="/account/address"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Addresses</router-link
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/paymentmethods"
+                                <router-link
+                                    to="/account/paymentmethods"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Payment methods</router-link
                                 >
                             </li>
                             <li>
-                                <router-link to="/account/orders"
+                                <router-link
+                                    to="/account/orders"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse.show, .dropdown-menu"
                                     >Orders</router-link
                                 >
                             </li>
@@ -105,10 +114,7 @@ export default {
     methods: {
         async signOut() {
             this.$router.push({ name: "home" });
-            let result = await db.signOut();
-            if (result.message) {
-                console.log(result.message);
-            }
+            await db.signOut();
         },
     },
 };
@@ -120,5 +126,6 @@ ul > li > a {
 }
 .dropdown-menu {
     min-width: 200px;
+    z-index: 1021;
 }
 </style>

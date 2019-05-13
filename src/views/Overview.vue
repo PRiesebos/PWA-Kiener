@@ -1,5 +1,19 @@
 <template>
     <div class="text-center">
+        <div v-if="verifyEmail">
+            <div class="alert alert-info" role="alert">
+                Your verification email has been send.
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                    @click="verifyEmail = false"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
         <div v-if="newsletter">
             <div class="alert alert-info" role="alert">
                 Your subscription has changed.
@@ -27,12 +41,19 @@
                 <div class="overview-block">
                     <p class="font-weight-bold">Profile</p>
                     <hr class="w-100 my-3" />
+                    <button
+                        v-if="currentUser.emailVerified == false"
+                        class="btn btn-info mb-2 btn-block"
+                        @click="sendVerificationEmail"
+                    >
+                        Verify email
+                    </button>
                     <p class="my-1">
                         {{ currentUserData.name }}
                     </p>
-                    <p class="my-1">{{ currentUserData.email }}</p>
+                    <p class="my-1">{{ currentUser.email }}</p>
                     <p class="my-1">
-                        Verified email: {{ currentUser.emailVerified }}
+                        Email verified: {{ currentUser.emailVerified }}
                     </p>
                 </div>
                 <router-link to="profile">
@@ -82,7 +103,7 @@
                         {{ currentUserData.country }}
                     </p>
                 </div>
-                <router-link to="addresses">
+                <router-link to="address">
                     <button class="btn btn-outline-dark mt-5">
                         Change billing address
                     </button>
@@ -99,7 +120,7 @@
                     </p>
                     <p v-else>No shipping address set</p>
                 </div>
-                <router-link to="addresses">
+                <router-link to="address">
                     <button class="btn btn-outline-dark mt-5">
                         Add different billing address
                     </button>
@@ -126,10 +147,12 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
 export default {
     data() {
         return {
             newsletter: false,
+            verifyEmail: false,
         };
     },
     computed: {
@@ -138,6 +161,13 @@ export default {
         },
         currentUserData() {
             return this.$store.state.currentUserData;
+        },
+    },
+    methods: {
+        sendVerificationEmail() {
+            this.verifyEmail = true;
+            let user = firebase.auth().currentUser;
+            user.sendEmailVerification();
         },
     },
 };

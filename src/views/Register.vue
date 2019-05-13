@@ -83,7 +83,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="mb-0" for="inputPassword"
+                                        <label
+                                            class="mb-0"
+                                            for="inputPasswordCheck"
                                             >Re-enter password</label
                                         >
                                         <input
@@ -182,8 +184,6 @@ export default {
             let result = await db.signUp(this.email, this.password);
             if (result) {
                 this.addUser();
-            } else {
-                console.log(result.message);
             }
         },
         async addUser() {

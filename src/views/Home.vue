@@ -29,7 +29,7 @@ export default {};
 <style lang="scss" scoped>
 .homepage {
     background-position: right top;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 48px);
     background-size: auto 100%;
     background-image: url("../assets/images/t-shirt-black-home.webp"),
         linear-gradient(to bottom, #2f2f2f 0%, #1e1e1e 100%);

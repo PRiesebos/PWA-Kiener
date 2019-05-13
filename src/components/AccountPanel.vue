@@ -1,5 +1,11 @@
 <template>
-    <div class="sticky-top">
+    <div
+        class="sticky-top"
+        :class="{
+            'custom-margin-top': showNavbar,
+            'custom-margin-top2': !showNavbar,
+        }"
+    >
         <div class="border rounded col-md-12">
             <div>
                 <p class="font-weight-bold mt-3 text-break">
@@ -28,16 +34,13 @@
                     <li class="my-1">
                         <router-link to="/account/orders">Orders</router-link>
                     </li>
-                    <div>
-                        <hr class="w-100" />
-                        <button
-                            class="btn btn-primary mb-2 w-100"
-                            @click="signOut"
-                        >
-                            Log Out
-                        </button>
-                    </div>
                 </ul>
+                <div>
+                    <hr class="w-100" />
+                    <button class="btn btn-primary mb-2 w-100" @click="signOut">
+                        Log Out
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -48,19 +51,43 @@ import db from "@/db";
 export default {
     name: "AccountPanel",
     data() {
-        return {};
+        return {
+            showNavbar: true,
+        };
     },
     computed: {
         currentUserData() {
             return this.$store.state.currentUserData;
         },
     },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll2);
+    },
+
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.onScroll2);
+    },
     methods: {
         async signOut() {
             this.$router.push({ name: "home" });
-            let result = await db.signOut();
-            if (result.message) {
-                console.log(result.message);
+            await db.signOut();
+        },
+        onScroll2() {
+            if (window.innerWidth >= 575) {
+                const currentScrollPosition =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScrollPosition < 0) {
+                    return;
+                }
+                if (
+                    Math.abs(currentScrollPosition - this.lastScrollPosition) <
+                    56
+                ) {
+                    return;
+                }
+                this.showNavbar =
+                    currentScrollPosition < this.lastScrollPosition;
+                this.lastScrollPosition = currentScrollPosition;
             }
         },
     },
@@ -70,5 +97,11 @@ export default {
 <style scoped>
 ul > li > a {
     color: black;
+}
+.custom-margin-top {
+    top: 66px !important;
+}
+.custom-margin-top2 {
+    top: 10px !important;
 }
 </style>

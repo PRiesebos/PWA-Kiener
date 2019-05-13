@@ -11,14 +11,14 @@ export default {
 };
 </script>
 <template>
-    <div>
+    <div class="wrapper">
         <nav-bar />
-        <div class="container">
+        <div class="content container mt-5">
             <div class="row mt-5">
-                <div class="col-4 col-md-4 col-lg-2 pl-0">
+                <div class="col-4 col-md-4 col-lg-2 pr-0 pl-3">
                     <account-panel />
                 </div>
-                <div class="col-8 col-md-8 col-lg-10">
+                <div class="col-8 col-md-8 col-lg-10 pr-3">
                     <slot />
                 </div>
             </div>
@@ -26,3 +26,25 @@ export default {
         <footer-bar />
     </div>
 </template>
+
+<style scoped>
+html {
+    display: flex;
+}
+
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.footer {
+    flex-shrink: 0;
+}
+
+.content {
+    flex-grow: 1;
+}
+</style>
