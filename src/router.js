@@ -18,6 +18,14 @@ let router = new Router({
             component: () => import("./views/About.vue"),
         },
         {
+            path: "/cart",
+            name: "cart",
+            component: () => import("./views/ShoppingCart.vue"),
+            meta: {
+                layout: "default",
+            },
+        },
+        {
             path: "/test",
             name: "test",
             component: () => import("./views/Test.vue"),

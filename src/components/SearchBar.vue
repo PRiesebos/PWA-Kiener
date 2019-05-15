@@ -16,27 +16,27 @@
 <style lang="scss" scoped>
 @media (min-width: 576px) and (max-width: 679px) {
     .searchBar {
-        width: 114px;
+        width: 80px;
     }
 }
 @media (min-width: 680px) {
     .searchBar {
-        width: 210px;
+        width: 180px;
     }
 }
 @media (min-width: 800px) {
     .searchBar {
-        width: 330px;
+        width: 300px;
     }
 }
 @media (min-width: 992px) {
     .searchBar {
-        width: 345px;
+        width: 300px;
     }
 }
 @media (min-width: 1200px) {
     .searchBar {
-        width: 465px;
+        width: 400px;
     }
 }
 </style>

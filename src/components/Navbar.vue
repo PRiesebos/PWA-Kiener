@@ -11,7 +11,7 @@
             <div class="container">
                 <router-link
                     to="/"
-                    class="navbar-brand custom-margin-brand"
+                    class="navbar-brand custom-margin-brand mr-auto"
                     data-toggle="collapse"
                     data-target=".navbar-collapse.show"
                     v-bind:class="{
@@ -20,6 +20,52 @@
                     }"
                     >PWA-Webshop</router-link
                 >
+                <ul class="navbar-nav d-none d-sm-block">
+                    <li
+                        class="nav-item pb-0 pt-1"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show"
+                    >
+                        <router-link
+                            to="/products"
+                            class="nav-link"
+                            v-bind:class="{
+                                'text-light': page,
+                                'text-dark': !page,
+                            }"
+                            >Products</router-link
+                        >
+                    </li>
+                </ul>
+                <div class="d-sm-none mr-1">
+                    <MyAccount />
+                </div>
+                <div class="nav-item pr-0 d-sm-none">
+                    <router-link
+                        to="/cart"
+                        class="nav-link p-0"
+                        v-bind:class="{
+                            'text-light': page,
+                            'text-dark': !page,
+                        }"
+                    >
+                        <font-awesome-icon
+                            icon="shopping-cart"
+                            size="2x"
+                            v-bind:class="{
+                                'text-light': page,
+                                'text-dark': !page,
+                            }"
+                        /><span
+                            class="badge"
+                            v-bind:class="{
+                                'badge-light': page,
+                                'badge-dark': !page,
+                            }"
+                            >{{ cartCount }}</span
+                        >
+                    </router-link>
+                </div>
                 <button
                     class="navbar-toggler custom-margin-toggle"
                     type="button"
@@ -49,38 +95,34 @@
                         <li class="nav-item custom-margin-navitems">
                             <SearchBar />
                         </li>
-                        <li class="dropdown nav-item custom-margin-account">
+                        <li class="d-none d-sm-block mr-1">
                             <MyAccount />
                         </li>
-                        <li
-                            class="nav-item"
-                            data-toggle="collapse"
-                            data-target=".navbar-collapse.show"
-                        >
+                        <li class="nav-item pr-4 d-none d-sm-block">
                             <router-link
-                                to="/about"
-                                class="nav-link custom-margin-navitems"
+                                to="/cart"
+                                class="nav-link p-0 custom-margin-navitems shopping-cart-center"
                                 v-bind:class="{
                                     'text-light': page,
                                     'text-dark': !page,
                                 }"
-                                >About</router-link
                             >
-                        </li>
-                        <li
-                            class="nav-item pr-0"
-                            data-toggle="collapse"
-                            data-target=".navbar-collapse.show"
-                        >
-                            <router-link
-                                to="/products"
-                                class="nav-link custom-margin-navitems custom-margin-rightmostitem"
-                                v-bind:class="{
-                                    'text-light': page,
-                                    'text-dark': !page,
-                                }"
-                                >Products</router-link
-                            >
+                                <font-awesome-icon
+                                    icon="shopping-cart"
+                                    size="2x"
+                                    v-bind:class="{
+                                        'text-light': page,
+                                        'text-dark': !page,
+                                    }"
+                                /><span
+                                    class="badge"
+                                    v-bind:class="{
+                                        'badge-light': page,
+                                        'badge-dark': !page,
+                                    }"
+                                    >{{ cartCount }}</span
+                                >
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -116,6 +158,9 @@ export default {
                 return true;
             }
         },
+        cartCount() {
+            return this.$store.state.cartCount;
+        },
     },
     methods: {
         onScroll() {
@@ -150,26 +195,28 @@ export default {
     .custom-margin-brand {
         margin-left: 1rem;
     }
-    .custom-margin-rightmostitem {
-        margin-right: 2rem;
-    }
 }
 @media (max-width: 575px) {
     .dropdown {
         margin-top: 10px;
     }
-
     .custom-margin-navitems {
         margin-left: 1rem;
-        margin-right: 0.75rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.25rem;
     }
     .custom-margin-toggle {
         margin-right: 0.5rem;
     }
     .custom-margin-account {
         margin-left: 1rem;
-        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
     }
+}
+.shopping-cart-center {
+    margin-top: 2px;
 }
 .navbar-toggler:focus {
     outline: 0px;
@@ -180,7 +227,7 @@ export default {
 .navbar {
     position: fixed;
     width: 100vw;
-    height: 56px;
+    height: 53px;
     z-index: 9999;
     transform: translate3d(0, 0, 0);
     transition: 0.1s all ease-out;

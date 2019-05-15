@@ -19,6 +19,8 @@ import {
     faTimes,
     faExclamationTriangle,
     faPlus,
+    faMinus,
+    faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -29,7 +31,9 @@ library.add(
     faTimes,
     faUser,
     faExclamationTriangle,
-    faPlus
+    faPlus,
+    faMinus,
+    faShoppingCart
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

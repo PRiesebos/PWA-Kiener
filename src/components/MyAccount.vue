@@ -1,10 +1,18 @@
 <template>
     <div>
-        <button class="btn btn-light" data-toggle="dropdown">
-            <font-awesome-icon :icon="['far', 'user']" /> My account
+        <button
+            class="btn btn-light text-truncate custom-max-width"
+            data-toggle="dropdown"
+        >
+            <font-awesome-icon :icon="['far', 'user']" />
+            {{
+                currentUserData != null
+                    ? "Hello, " + currentUserData.name.split(" ", 1)
+                    : "Sign in"
+            }}
         </button>
         <div>
-            <ul class="dropdown-menu dropdown-menu-right mt-2">
+            <ul class="dropdown-menu dropdown-menu-custom-right">
                 <li class="px-3 py-2">
                     <form class="form" role="form" @submit.prevent>
                         <p class="font-weight-bold">My account</p>
@@ -34,7 +42,7 @@
                             <div v-if="currentUser == null">
                                 <hr class="w-100" />
                                 <p>
-                                    Sing up or register to buy our merchandise.
+                                    Sing in or register to buy our merchandise.
                                 </p>
                             </div>
                         </div>
@@ -110,6 +118,9 @@ export default {
         currentUser() {
             return this.$store.state.currentUser;
         },
+        currentUserData() {
+            return this.$store.state.currentUserData;
+        },
     },
     methods: {
         async signOut() {
@@ -127,5 +138,11 @@ ul > li > a {
 .dropdown-menu {
     min-width: 200px;
     z-index: 1021;
+}
+.custom-max-width {
+    max-width: 160px;
+}
+.dropdown-menu-custom-right {
+    left: auto;
 }
 </style>
