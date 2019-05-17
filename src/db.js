@@ -120,6 +120,7 @@ db.getAddress = async (user, address) => {
                     store.commit("setCurrentUserAddress", null);
                 }
             });
+        return true;
     } catch (error) {
         return error;
     }
@@ -140,6 +141,7 @@ db.getSecondAddress = async (user, address) => {
                     store.commit("setCurrentUserSecondAddress", null);
                 }
             });
+        return true;
     } catch (error) {
         return error;
     }

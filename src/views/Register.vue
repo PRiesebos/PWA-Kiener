@@ -33,7 +33,8 @@
                                             v-on:blur="nameBlured = true"
                                         />
                                         <div class="invalid-feedback">
-                                            Enter your name
+                                            Enter your name. Can't be longer
+                                            than 25 characters.
                                         </div>
                                     </div>
                                     <div class="form-group">

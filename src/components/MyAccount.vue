@@ -132,15 +132,22 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 575px) {
+    .custom-max-width {
+        max-width: 140px;
+    }
+}
+@media (min-width: 575px) {
+    .custom-max-width {
+        max-width: 160px;
+    }
+}
 ul > li > a {
     color: black;
 }
 .dropdown-menu {
     min-width: 200px;
     z-index: 1021;
-}
-.custom-max-width {
-    max-width: 160px;
 }
 .dropdown-menu-custom-right {
     left: auto;

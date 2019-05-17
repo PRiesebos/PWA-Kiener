@@ -72,7 +72,7 @@
             </div>
             <!-- Second address -->
             <div
-                class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0 ml-3"
+                class="card custom-card-plain col-lg-4 col-md-5 col-12 px-0 custom-card-align"
                 v-if="this.currentUserSecondAddress != null"
             >
                 <div class="card-body">
@@ -117,6 +117,7 @@
 <script>
 import db from "@/db.js";
 import store from "@/store.js";
+import firebase from "firebase/app";
 export default {
     data() {
         return {
@@ -173,9 +174,30 @@ export default {
             await db.deleteAddress(this.$store.state.currentUser.uid, number);
             if (number == "address1") {
                 store.commit("setCurrentUserAddress", null);
+                await db.updateAddress(
+                    this.$store.state.currentUser.uid,
+                    "address2",
+                    "both"
+                );
+                await this.getSecondAddress();
             } else {
                 store.commit("setCurrentUserSecondAddress", null);
+                await db.updateAddress(
+                    this.$store.state.currentUser.uid,
+                    "address1",
+                    "both"
+                );
+                await this.getAddress();
             }
+        },
+        async getAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getAddress(user.uid, "address1");
+            this.$router.push("/account/address");
+        },
+        async getSecondAddress() {
+            let user = await firebase.auth().currentUser;
+            await db.getSecondAddress(user.uid, "address2");
         },
     },
 };
@@ -192,6 +214,9 @@ export default {
     .list-unstyled {
         margin-bottom: 63px;
     }
+    .custom-card-align {
+        margin-top: 1rem;
+    }
 }
 @media (min-width: 768px) {
     .custom-card-body {
@@ -199,6 +224,9 @@ export default {
     }
     .list-unstyled {
         margin-bottom: 90px;
+    }
+    .custom-card-align {
+        margin-left: 1rem;
     }
 }
 

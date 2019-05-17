@@ -8,17 +8,20 @@
                 'bg-white': !page,
             }"
         >
-            <div class="container">
+            <div
+                class="container"
+                v-bind:class="{ 'bg-dark': page, 'bg-white': !page }"
+            >
                 <router-link
                     to="/"
-                    class="navbar-brand custom-margin-brand mr-auto"
+                    class="navbar-brand custom-margin-brand mr-auto font-weight-bold"
                     data-toggle="collapse"
                     data-target=".navbar-collapse.show"
                     v-bind:class="{
                         'text-light': page,
                         'text-dark': !page,
                     }"
-                    >PWA-Webshop</router-link
+                    >PWA</router-link
                 >
                 <ul class="navbar-nav d-none d-sm-block">
                     <li
@@ -214,6 +217,17 @@ export default {
         margin-bottom: 0.5rem;
         margin-top: 0.5rem;
     }
+    #navbarSupportedContent {
+        position: absolute;
+        z-index: 1;
+        margin-top: 50px;
+        width: 100vw;
+    }
+}
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
 }
 .shopping-cart-center {
     margin-top: 2px;
