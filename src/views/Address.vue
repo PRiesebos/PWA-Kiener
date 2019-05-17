@@ -161,7 +161,7 @@ export default {
             if (this.currentUserSecondAddress != null) {
                 this.altFname = this.currentUserSecondAddress.fname;
                 this.altLname = this.currentUserSecondAddress.lname;
-                this.streetAndNumber = this.currentUserSecondAddress.streetAndNumber;
+                this.altStreetAndNumber = this.currentUserSecondAddress.street;
                 this.altZip = this.currentUserSecondAddress.zip;
                 this.altCity = this.currentUserSecondAddress.city;
                 this.altCountry = this.currentUserSecondAddress.country;
