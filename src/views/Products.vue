@@ -1,121 +1,120 @@
 <template>
-    <div class="container">
-        <div class="row mt-4">
-            <div class="col-md-4">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-4">
                 <h1>Products</h1>
-                <p class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10 p-0">
+                <p class="col-12 col-md-12 p-0 mb-3">
                     This will be an introduction text for the products on this
                     page. We could also tell a bit about the demonstrative
                     purpose of this shop.
                 </p>
             </div>
-            <div class="col-md-4">
-                <div class="card mb-3">
+            <div class="col-md-8 d-flex flex-wrap px-0">
+                <div
+                    class="mb-3 col-6 p-2 custom-card rounded-lg"
+                    v-for="product in sanitizedData"
+                    :key="product.id"
+                >
                     <img
-                        src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
                         class="card-img-top"
                         alt="..."
+                        :src="product.productImage"
                     />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
+                    <div class="card-body px-2">
+                        <h5
+                            class="card-title"
+                            v-text="product.productName"
+                        ></h5>
                         <h6 class="card-subtitle mb-2 text-muted">
                             Card subtitle
                         </h6>
-                        <p class="card-text">
+                        <p
+                            class="card-text"
+                            v-text="product.productDescription"
+                        >
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <div class="card mb-3">
-                    <img
-                        src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Card subtitle
-                        </h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <img
-                        src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Card subtitle
-                        </h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <img
-                        src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Card subtitle
-                        </h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-                <div class="card mb-3">
-                    <img
-                        src="https://mollie.staging.kiener.nl/media/image/72/bc/b8/_96A2789_600x600@2x.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Card subtitle
-                        </h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <div class="row mx-1">
+                            <p
+                                class="d-inline font-weight-bold col-12 col-md-6 pl-0"
+                            >
+                                € {{ product.productPrice.toFixed(2) }}
+                            </p>
+                            <button
+                                class="btn btn-primary col-12 col-md-6"
+                                @click="addToCart(product)"
+                            >
+                                <font-awesome-icon icon="shopping-cart" />
+                                Add to cart
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss" scoped>
+
+<script>
+import axios from "axios";
+export default {
+    data() {
+        return {
+            sanitizedData: [],
+            products: [],
+        };
+    },
+    methods: {
+        addToCart(product) {
+            this.$store.commit("addToCart", product);
+        },
+        storeData() {
+            const test = [];
+            this.products.forEach(function(arrayItem) {
+                test.push({
+                    productName: arrayItem.fields.productName.stringValue,
+                    productDescription:
+                        arrayItem.fields.productDescription.stringValue,
+                    productID: arrayItem.fields.productID.integerValue,
+                    productPrice: arrayItem.fields.productPrice.doubleValue,
+                    productImage: arrayItem.fields.productImage.stringValue,
+                });
+            });
+            this.sanitizedData = test;
+        },
+    },
+    mounted() {
+        axios
+            .get(
+                "https://firestore.googleapis.com/v1beta1/projects/vuejs-http-53bfb/databases/(default)/documents/products"
+            )
+            .then(response => {
+                this.products = response.data.documents;
+                this.storeData();
+            });
+    },
+};
+</script>
+<style scoped>
 @media (max-width: 992px) {
     .container {
-        max-width: 100%;
         width: 100%;
+        max-width: 100%;
     }
+}
+.custom-card:after {
+    content: "";
+    display: block;
+    border: 1px solid black;
+}
+.custom-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.custom-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: -5px;
+    transform: translateY(-3px);
+    transition: box-shadow 0.2s ease, transform 0.3s ease;
 }
 </style>

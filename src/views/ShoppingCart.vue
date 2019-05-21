@@ -10,7 +10,9 @@
                 >
                     <hr class="w-100" />
                     <div class="d-flex justify-content-between">
-                        <div class="mt-2 col-2">{{ item.title }}</div>
+                        <div class="mt-2 col-2 col-md-3">
+                            {{ item.productName }}
+                        </div>
                         <div class="p-0">
                             <button
                                 class="btn btn-secondary btn-quantity"
@@ -31,7 +33,7 @@
                             </button>
                         </div>
                         <div class="mt-2 text-dark col-2 p-0">
-                            Price: ${{ item.totalPrice }}
+                            Price: €{{ item.totalPrice.toFixed(2) }}
                         </div>
                         <button
                             class="removeBtn btn"
@@ -67,7 +69,7 @@
                     <p class="mb-0 text-dark">
                         Total products
                         <span class="text-dark font-weight-bold float-right"
-                            >$ {{ totalPrice }}</span
+                            >€ {{ totalPrice }}</span
                         >
                     </p>
                     <p class="mb-0 text-dark">
@@ -79,7 +81,7 @@
                     <hr class="w-100 my-1 border-dark" />
                     <p class="text-dark font-weight-bold mt-1">
                         Total
-                        <strong class="float-right">$ {{ totalPrice }}</strong>
+                        <strong class="float-right">€ {{ totalPrice }}</strong>
                     </p>
                     <button class="btn btn-primary float-right shadow-sm">
                         > To Checkout

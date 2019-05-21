@@ -16,6 +16,7 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 const docUser = db.collection("users");
 
+//firestore functions
 db.addUser = async (userObject, email, name) => {
     try {
         await docUser.doc(userObject).set({

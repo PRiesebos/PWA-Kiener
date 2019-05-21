@@ -13,11 +13,6 @@ let router = new Router({
             component: require("@/views/Home.vue").default,
         },
         {
-            path: "/about",
-            name: "about",
-            component: () => import("./views/About.vue"),
-        },
-        {
             path: "/cart",
             name: "cart",
             component: () => import("./views/ShoppingCart.vue"),

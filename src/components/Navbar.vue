@@ -101,7 +101,7 @@
                         <li class="d-none d-sm-block mr-1">
                             <MyAccount />
                         </li>
-                        <li class="nav-item pr-4 d-none d-sm-block">
+                        <li class="nav-item pr-2 d-none d-sm-block">
                             <router-link
                                 to="/cart"
                                 class="nav-link p-0 custom-margin-navitems shopping-cart-center"
