@@ -94,11 +94,6 @@
 
 <script>
 export default {
-    data() {
-        return {
-            itemCount: "",
-        };
-    },
     computed: {
         totalPrice() {
             let total = 0;

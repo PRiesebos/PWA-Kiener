@@ -94,14 +94,25 @@
                     }"
                     id="navbarSupportedContent"
                 >
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item custom-margin-navitems d-sm-none">
+                            <router-link
+                                to="/products"
+                                class="nav-link"
+                                v-bind:class="{
+                                    'text-light': page,
+                                    'text-dark': !page,
+                                }"
+                                >Products</router-link
+                            >
+                        </li>
                         <li class="nav-item custom-margin-navitems">
                             <SearchBar />
                         </li>
                         <li class="d-none d-sm-block mr-1">
                             <MyAccount />
                         </li>
-                        <li class="nav-item pr-2 d-none d-sm-block">
+                        <li class="nav-item pr-4 d-none d-sm-block">
                             <router-link
                                 to="/cart"
                                 class="nav-link p-0 custom-margin-navitems shopping-cart-center"
@@ -220,7 +231,7 @@ export default {
     #navbarSupportedContent {
         position: absolute;
         z-index: 1;
-        margin-top: 50px;
+        margin-top: 75px;
         width: 100vw;
     }
 }

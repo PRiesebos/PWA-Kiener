@@ -25,7 +25,6 @@ let router = new Router({
             name: "test",
             component: () => import("./views/Test.vue"),
             meta: {
-                layout: "default",
                 auth: true,
             },
         },
@@ -33,6 +32,11 @@ let router = new Router({
             path: "/products",
             name: "products",
             component: () => import("./views/Products.vue"),
+        },
+        {
+            path: "/products/:id",
+            name: "product",
+            component: () => import("./views/Product.vue"),
         },
         {
             path: "/account/overview",

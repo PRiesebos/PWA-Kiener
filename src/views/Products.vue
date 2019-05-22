@@ -9,45 +9,113 @@
                     purpose of this shop.
                 </p>
             </div>
-            <div class="col-md-8 d-flex flex-wrap px-0">
+            <!-- First load -->
+            <div
+                class="col-md-8 d-flex flex-wrap px-0"
+                v-if="typeof productData != 'object'"
+            >
                 <div
                     class="mb-3 col-6 p-2 custom-card rounded-lg"
                     v-for="product in sanitizedData"
                     :key="product.id"
                 >
-                    <img
-                        class="card-img-top"
-                        alt="..."
-                        :src="product.productImage"
-                    />
-                    <div class="card-body px-2">
-                        <h5
-                            class="card-title"
-                            v-text="product.productName"
-                        ></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            Card subtitle
-                        </h6>
-                        <p
-                            class="card-text"
-                            v-text="product.productDescription"
-                        >
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
-                        <div class="row mx-1">
+                    <div>
+                        <router-link :to="'/products/' + product.productID">
+                            <img
+                                class="card-img-top"
+                                alt="..."
+                                :src="product.productImage"
+                            />
+                        </router-link>
+
+                        <div class="card-body pt-0 px-2">
+                            <router-link
+                                :to="'/products/' + product.productID"
+                                class="text-dark pt-3 pb-2 h5 d-block"
+                                v-text="product.productName"
+                            >
+                            </router-link>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Card subtitle
+                            </h6>
                             <p
-                                class="d-inline font-weight-bold col-12 col-md-6 pl-0"
+                                class="card-text"
+                                v-text="product.productDescription"
                             >
-                                € {{ product.productPrice.toFixed(2) }}
+                                Some quick example text to build on the card
+                                title and make up the bulk of the card's
+                                content.
                             </p>
-                            <button
-                                class="btn btn-primary col-12 col-md-6"
-                                @click="addToCart(product)"
+                            <div class="row mx-1">
+                                <p
+                                    class="d-inline font-weight-bold col-12 col-md-6 pl-0"
+                                >
+                                    € {{ product.productPrice.toFixed(2) }}
+                                </p>
+                                <button
+                                    class="btn btn-primary col-12 col-md-6"
+                                    @click="addToCart(product)"
+                                >
+                                    <font-awesome-icon icon="shopping-cart" />
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Stored in state -->
+            <div
+                class="col-md-8 d-flex flex-wrap px-0"
+                v-if="typeof productData == 'object'"
+            >
+                <div
+                    class="mb-3 col-6 p-2 custom-card rounded-lg"
+                    v-for="productData in productData"
+                    :key="productData.id"
+                >
+                    <div>
+                        <router-link :to="'/products/' + productData.productID">
+                            <img
+                                class="card-img-top"
+                                alt="..."
+                                :src="productData.productImage"
+                            />
+                        </router-link>
+
+                        <div class="card-body pt-0 px-2">
+                            <router-link
+                                :to="'/products/' + productData.productID"
+                                class="text-dark pt-3 pb-2 h5 d-block"
+                                v-text="productData.productName"
                             >
-                                <font-awesome-icon icon="shopping-cart" />
-                                Add to cart
-                            </button>
+                            </router-link>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Card subtitle
+                            </h6>
+                            <p
+                                class="card-text"
+                                v-text="productData.productDescription"
+                            >
+                                Some quick example text to build on the card
+                                title and make up the bulk of the card's
+                                content.
+                            </p>
+                            <div class="row mx-1">
+                                <p
+                                    class="d-inline font-weight-bold col-12 col-md-6 pl-0"
+                                >
+                                    €
+                                    {{ productData.productPrice.toFixed(2) }}
+                                </p>
+                                <button
+                                    class="btn btn-primary col-12 col-md-6"
+                                    @click="addToCart(productData)"
+                                >
+                                    <font-awesome-icon icon="shopping-cart" />
+                                    Add to cart
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,34 +133,44 @@ export default {
             products: [],
         };
     },
+    computed: {
+        productData() {
+            return this.$store.state.productData;
+        },
+    },
     methods: {
         addToCart(product) {
             this.$store.commit("addToCart", product);
         },
         storeData() {
-            const test = [];
-            this.products.forEach(function(arrayItem) {
-                test.push({
-                    productName: arrayItem.fields.productName.stringValue,
-                    productDescription:
-                        arrayItem.fields.productDescription.stringValue,
-                    productID: arrayItem.fields.productID.integerValue,
-                    productPrice: arrayItem.fields.productPrice.doubleValue,
-                    productImage: arrayItem.fields.productImage.stringValue,
+            if (typeof this.productData != "object") {
+                const test = [];
+                this.products.forEach(function(arrayItem) {
+                    test.push({
+                        productName: arrayItem.fields.productName.stringValue,
+                        productDescription:
+                            arrayItem.fields.productDescription.stringValue,
+                        productID: arrayItem.fields.productID.integerValue,
+                        productPrice: arrayItem.fields.productPrice.doubleValue,
+                        productImage: arrayItem.fields.productImage.stringValue,
+                    });
                 });
-            });
-            this.sanitizedData = test;
+                this.sanitizedData = test;
+                this.$store.commit("setProductData", this.sanitizedData);
+            }
         },
     },
     mounted() {
-        axios
-            .get(
-                "https://firestore.googleapis.com/v1beta1/projects/vuejs-http-53bfb/databases/(default)/documents/products"
-            )
-            .then(response => {
-                this.products = response.data.documents;
-                this.storeData();
-            });
+        if (typeof this.productData != "object") {
+            axios
+                .get(
+                    "https://firestore.googleapis.com/v1beta1/projects/vuejs-http-53bfb/databases/(default)/documents/products"
+                )
+                .then(response => {
+                    this.products = response.data.documents;
+                    this.storeData();
+                });
+        }
     },
 };
 </script>

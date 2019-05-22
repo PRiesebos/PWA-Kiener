@@ -25,6 +25,9 @@ export default new Vuex.Store({
         setCurrentUserSecondAddress(state, payload) {
             state.currentUserSecondAddress = payload;
         },
+        setProductData(state, payload) {
+            state.productData = payload;
+        },
         addToCart(state, item) {
             let found = state.cart.find(
                 product => product.productID == item.productID

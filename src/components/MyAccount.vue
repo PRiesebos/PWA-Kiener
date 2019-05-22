@@ -12,7 +12,7 @@
             }}
         </button>
         <div>
-            <ul class="dropdown-menu dropdown-menu-custom-right">
+            <ul class="dropdown-menu dropdown-menu-custom-right col-1">
                 <li class="px-3 py-2">
                     <form class="form" role="form" @submit.prevent>
                         <p class="font-weight-bold">My account</p>
