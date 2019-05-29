@@ -4,36 +4,48 @@
             <hr class="w-100" />
             <div class="d-flex justify-content-between">
                 <div>
-                    <p class="h3 mb-3">PWA-Webshop</p>
+                    <p class="h3 mb-3">Mollie</p>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Payments</router-link
+                            <a
+                                href="https://mollie.staging.kiener.nl/Payments"
+                                class="text-dark"
+                                >Payments</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Recurring</router-link
+                            <a
+                                href="https://www.mollie.com/nl/recurring"
+                                class="text-dark"
+                                >Recurring</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Pricing</router-link
+                            <a
+                                href="https://www.mollie.com/en/pricing/"
+                                class="text-dark"
+                                >Pricing</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Developers</router-link
+                            <a
+                                href="https://www.mollie.com/en/developers"
+                                class="text-dark"
+                                >Developers</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Partners</router-link
+                            <a
+                                href="https://www.mollie.com/en/partners/"
+                                class="text-dark"
+                                >Partners</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Enterprise</router-link
+                            <a
+                                href="https://www.mollie.com/en/enterprise/"
+                                class="text-dark"
+                                >Enterprise</a
                             >
                         </li>
                     </ul>
@@ -42,28 +54,38 @@
                     <p class="h3 mb-3">Features</p>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Overview</router-link
+                            <a
+                                href="https://www.mollie.com/en/features"
+                                class="text-dark"
+                                >Overview</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Dashboard</router-link
+                            <a
+                                href="https://www.mollie.com/en/features/dashboard"
+                                class="text-dark"
+                                >Dashboard</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Checkout</router-link
+                            <a
+                                href="https://www.mollie.com/en/features/checkout"
+                                class="text-dark"
+                                >Checkout</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Multicurrency</router-link
+                            <a
+                                href="https://www.mollie.com/en/features/multicurrency/"
+                                class="text-dark"
+                                >Multicurrency</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Security</router-link
+                            <a
+                                href="https://www.mollie.com/en/features/security"
+                                class="text-dark"
+                                >Security</a
                             >
                         </li>
                     </ul>
@@ -72,28 +94,38 @@
                     <p class="h3 mb-3">Support</p>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Support</router-link
+                            <a
+                                href="https://help.mollie.com/hc/en-us"
+                                class="text-dark"
+                                >Support</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Paid with Mollie</router-link
+                            <a
+                                href="https://www.mollie.com/en/consumers"
+                                class="text-dark"
+                                >Paid with Mollie</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Status</router-link
+                            <a
+                                href="https://status.mollie.com/"
+                                class="text-dark"
+                                >Status</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Changelog</router-link
+                            <a
+                                href="https://docs.mollie.com/changelog/v2/changelog"
+                                class="text-dark"
+                                >Changelog</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Contact Support</router-link
+                            <a
+                                href="https://www.mollie.com/en/contact/"
+                                class="text-dark"
+                                >Contact Support</a
                             >
                         </li>
                     </ul>
@@ -102,28 +134,34 @@
                     <p class="h3 mb-3">Company</p>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >About</router-link
+                            <a
+                                href="https://www.mollie.com/en/about"
+                                class="text-dark"
+                                >About</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Careers</router-link
+                            <a href="https://jobs.mollie.com/" class="text-dark"
+                                >Careers</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Blog</router-link
+                            <a href="https://blog.mollie.com/" class="text-dark"
+                                >Blog</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >News</router-link
+                            <a
+                                href="https://www.mollie.com/en/news"
+                                class="text-dark"
+                                >News</a
                             >
                         </li>
                         <li>
-                            <router-link to="/" class="text-dark"
-                                >Contact</router-link
+                            <a
+                                href="https://www.mollie.com/en/contact/"
+                                class="text-dark"
+                                >Contact</a
                             >
                         </li>
                     </ul>
@@ -152,7 +190,7 @@
                                 href="#collapseOne"
                                 aria-expanded="false"
                                 aria-controls="collapseOne"
-                                >PWA-Webshop</a
+                                >Mollie</a
                             >
                         </h4>
                     </div>
@@ -165,33 +203,45 @@
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Payments</router-link
+                                    <a
+                                        href="https://mollie.staging.kiener.nl/Payments"
+                                        class="text-dark"
+                                        >Payments</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Recurring</router-link
+                                    <a
+                                        href="https://www.mollie.com/nl/recurring"
+                                        class="text-dark"
+                                        >Recurring</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Pricing</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/pricing/"
+                                        class="text-dark"
+                                        >Pricing</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Developers</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/developers"
+                                        class="text-dark"
+                                        >Developers</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Partners</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/partners/"
+                                        class="text-dark"
+                                        >Partners</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Enterprise</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/enterprise/"
+                                        class="text-dark"
+                                        >Enterprise</a
                                     >
                                 </li>
                             </ul>
@@ -230,28 +280,38 @@
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Overview</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/features"
+                                        class="text-dark"
+                                        >Overview</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Dashboard</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/features/dashboard"
+                                        class="text-dark"
+                                        >Dashboard</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Checkout</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/features/checkout"
+                                        class="text-dark"
+                                        >Checkout</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Multicurrency</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/features/multicurrency/"
+                                        class="text-dark"
+                                        >Multicurrency</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Security</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/features/security"
+                                        class="text-dark"
+                                        >Security</a
                                     >
                                 </li>
                             </ul>
@@ -290,28 +350,38 @@
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Support</router-link
+                                    <a
+                                        href="https://help.mollie.com/hc/en-us"
+                                        class="text-dark"
+                                        >Support</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Paid with Mollie</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/consumers"
+                                        class="text-dark"
+                                        >Paid with Mollie</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Status</router-link
+                                    <a
+                                        href="https://status.mollie.com/"
+                                        class="text-dark"
+                                        >Status</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Changelog</router-link
+                                    <a
+                                        href="https://docs.mollie.com/changelog/v2/changelog"
+                                        class="text-dark"
+                                        >Changelog</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Contact Support</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/contact/"
+                                        class="text-dark"
+                                        >Contact Support</a
                                     >
                                 </li>
                             </ul>
@@ -350,28 +420,38 @@
                         <div class="card-block">
                             <ul class="widget-list list-unstyled">
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >About</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/about"
+                                        class="text-dark"
+                                        >About</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Careers</router-link
+                                    <a
+                                        href="https://jobs.mollie.com/"
+                                        class="text-dark"
+                                        >Careers</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Blog</router-link
+                                    <a
+                                        href="https://blog.mollie.com/"
+                                        class="text-dark"
+                                        >Blog</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >News</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/news"
+                                        class="text-dark"
+                                        >News</a
                                     >
                                 </li>
                                 <li>
-                                    <router-link to="/" class="text-dark"
-                                        >Contact</router-link
+                                    <a
+                                        href="https://www.mollie.com/en/contact/"
+                                        class="text-dark"
+                                        >Contact</a
                                     >
                                 </li>
                             </ul>
@@ -392,7 +472,6 @@
 <script>
 export default {
     name: "FooterComp",
-    props: {},
 };
 </script>
 

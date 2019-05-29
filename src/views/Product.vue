@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 px-0 mt-5">
+            <div class="col-12 px-0 my-5">
                 <p class="h2 font-weight-bold">Description</p>
                 <hr class="w-100" />
                 <p class="font-weight-bold">

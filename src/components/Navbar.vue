@@ -40,7 +40,7 @@
                         >
                     </li>
                 </ul>
-                <div class="d-sm-none mr-1">
+                <div class="d-sm-none mr-2">
                     <MyAccount />
                 </div>
                 <div class="nav-item pr-0 d-sm-none">
@@ -106,10 +106,10 @@
                                 >Products</router-link
                             >
                         </li>
-                        <li class="nav-item custom-margin-navitems">
+                        <!-- <li class="nav-item custom-margin-navitems">
                             <SearchBar />
-                        </li>
-                        <li class="d-none d-sm-block mr-1">
+                        </li> -->
+                        <li class="d-none d-sm-block mr-2">
                             <MyAccount />
                         </li>
                         <li class="nav-item pr-4 d-none d-sm-block">
@@ -146,7 +146,6 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar";
 import MyAccount from "@/components/MyAccount";
 export default {
     name: "Navbar",
@@ -163,7 +162,7 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.onScroll);
     },
-    components: { SearchBar, MyAccount },
+    components: { MyAccount },
     computed: {
         page: function() {
             if (this.$route.name == "home") {
@@ -231,7 +230,7 @@ export default {
     #navbarSupportedContent {
         position: absolute;
         z-index: 1;
-        margin-top: 75px;
+        margin-top: 50px;
         width: 100vw;
     }
 }
