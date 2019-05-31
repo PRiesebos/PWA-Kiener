@@ -2,6 +2,74 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12 col-md-4">
+                <!-- Popup modal -->
+                <div class="custom-modal-bg" v-if="modal"></div>
+                <div class="custom-modal" v-if="modal">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Succes!</h3>
+                                <button class="btn" @click="modal = false">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="font-weight-bold">
+                                    Added product to cart.
+                                </p>
+                                <div class="d-flex flex-wrap">
+                                    <div class="col-6">
+                                        <img
+                                            :src="cartProduct.productImage"
+                                            alt="..."
+                                            height="150px"
+                                            width="140px"
+                                            class="img-fluid"
+                                        />
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="font-weight-bold">
+                                            {{ cartProduct.productName }}
+                                        </p>
+                                        <p>
+                                            Articlenumber:
+                                            {{ cartProduct.productID }}
+                                        </p>
+                                        <p>
+                                            Price:
+                                            {{
+                                                cartProduct.productPrice.toFixed(
+                                                    2
+                                                )
+                                            }}
+                                        </p>
+                                        <p>
+                                            Quantity: {{ cartProduct.quantity }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="m-2 d-flex flex-column">
+                                    <router-link
+                                        to="/cart"
+                                        class="btn btn-primary mb-2"
+                                        @click="modal = false"
+                                        >To cart
+                                    </router-link>
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        @click="modal = false"
+                                    >
+                                        Continue shopping
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product page -->
                 <h1>Products</h1>
                 <p class="col-12 col-md-12 p-0 mb-3 text-justify">
                     This will be an introduction text for the products on this
@@ -187,7 +255,11 @@
                                 </p>
                                 <button
                                     class="btn btn-primary col-12 col-md-6"
-                                    @click="addToCart(productData)"
+                                    @click="
+                                        addToCart(productData),
+                                            (modal = true),
+                                            sendPopupItem(productData)
+                                    "
                                 >
                                     <font-awesome-icon
                                         icon="shopping-cart"
@@ -213,6 +285,8 @@ export default {
             clothing: false,
             food: false,
             utility: false,
+            modal: false,
+            cartProduct: [],
         };
     },
     computed: {
@@ -261,6 +335,9 @@ export default {
     methods: {
         addToCart(product) {
             this.$store.commit("addToCart", product);
+        },
+        sendPopupItem(product) {
+            this.cartProduct = product;
         },
         storeData() {
             if (typeof this.productData != "object") {
@@ -316,5 +393,24 @@ export default {
     margin-top: -5px;
     transform: translateY(-3px);
     transition: box-shadow 0.2s ease, transform 0.3s ease;
+}
+.custom-modal {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    outline: 0;
+    display: block;
+}
+.custom-modal-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000009c;
+    z-index: 1000;
 }
 </style>
