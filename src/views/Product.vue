@@ -1,6 +1,69 @@
 <template>
     <div class="container mt-4">
         <div class="justify-content-center">
+            <!-- Popup modal -->
+            <div class="custom-modal-bg" v-if="modal"></div>
+            <div class="custom-modal" v-if="modal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Succes!</h3>
+                            <button class="btn" @click="modal = false">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="font-weight-bold">
+                                Added product to cart.
+                            </p>
+                            <div class="d-flex flex-wrap">
+                                <div class="col-6">
+                                    <img
+                                        :src="cartProduct.productImage"
+                                        alt="..."
+                                        height="150px"
+                                        width="140px"
+                                        class="img-fluid"
+                                    />
+                                </div>
+                                <div class="col-6">
+                                    <p class="font-weight-bold">
+                                        {{ cartProduct.productName }}
+                                    </p>
+                                    <p>
+                                        Articlenumber:
+                                        {{ cartProduct.productID }}
+                                    </p>
+                                    <p>
+                                        Price:
+                                        {{
+                                            cartProduct.productPrice.toFixed(2)
+                                        }}
+                                    </p>
+                                    <p>Quantity: {{ cartProduct.quantity }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="m-2 d-flex flex-column">
+                                <router-link
+                                    to="/cart"
+                                    class="btn btn-primary mb-2"
+                                    @click="modal = false"
+                                    >To cart
+                                </router-link>
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    @click="modal = false"
+                                >
+                                    Continue shopping
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="bg-light py-4 col-12">
                 <div class="d-flex flex-wrap">
                     <div class="col-12 col-md-6">
@@ -33,28 +96,15 @@
                             Prices incl. VAT plus shipping costs
                         </p>
                         <div>
-                            <!-- Adding custom amount to cart needs fixing -->
-
-                            <!-- <button
-                                class="btn btn-secondary btn-quantity"
-                                type="button"
-                                name="button"
-                                @click="itemCount--"
-                            >
-                                -
-                            </button>
-                            <p class="d-inline mx-3">{{ itemCount }}</p>
-                            <button
-                                class="btn btn-secondary btn-quantity mr-4"
-                                type="button"
-                                name="button"
-                                @click="itemCount++"
-                            >
-                                +
-                            </button> -->
                             <button
                                 class="btn btn-primary"
-                                @click="setCart(productData[productNumber])"
+                                @click="
+                                    setCart(productData[productNumber]),
+                                        (modal = true),
+                                        sendPopupItem(
+                                            productData[productNumber]
+                                        )
+                                "
                             >
                                 <font-awesome-icon icon="shopping-cart" />
                                 Add to cart
@@ -107,6 +157,7 @@ export default {
         return {
             productNumber: "",
             itemCount: "1",
+            modal: false,
         };
     },
     computed: {
@@ -123,6 +174,9 @@ export default {
     methods: {
         setCart(product) {
             this.$store.commit("addToCart", product);
+        },
+        sendPopupItem(product) {
+            this.cartProduct = product;
         },
     },
 };

@@ -394,23 +394,4 @@ export default {
     transform: translateY(-3px);
     transition: box-shadow 0.2s ease, transform 0.3s ease;
 }
-.custom-modal {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    z-index: 1050;
-    width: 100%;
-    height: 100%;
-    outline: 0;
-    display: block;
-}
-.custom-modal-bg {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0000009c;
-    z-index: 1000;
-}
 </style>
