@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/messaging";
 import store from "@/store";
 
 var config = {
@@ -13,8 +14,66 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
 const db = firebase.firestore();
 const docUser = db.collection("users");
+
+// Retrieve Firebase Messaging object.
+const messaging = firebase.messaging();
+
+// Cloud messaging (push notifications)
+
+messaging.usePublicVapidKey(
+    "BPriu3TMWJwpPf6b3gPbzLqGDLnK0zk3zhsp05a8TdFXmmMROe8MOZEX0D5H2lxVfFx7-W3UnfW9OXnmdTAekks"
+);
+
+db.retrieveToken = async token => {
+    messaging
+        .getToken()
+        .then(function(currentToken) {
+            if (currentToken) {
+                db.sendTokenToServer(currentToken);
+            } else {
+                console.log(
+                    "No Instance ID token available. Request permission to generate one."
+                );
+                db.setTokenSentToServer(false);
+            }
+        })
+        .catch(function(err) {
+            console.log("An error occurred while retrieving token. ", err);
+            db.setTokenSentToServer(false);
+        });
+};
+
+messaging.onTokenRefresh(function() {
+    messaging
+        .getToken()
+        .then(function(refreshedToken) {
+            console.log("Token refreshed.");
+            // Indicate that the new Instance ID token has not yet been sent to the app server.
+            setTokenSentToServer(false);
+            // Send Instance ID token to app server.
+            db.sendTokenToServer(refreshedToken);
+        })
+        .catch(function(err) {
+            console.log("Unable to retrieve refreshed token ", err);
+        });
+});
+
+function setTokenSentToServer(sent) {
+    window.localStorage.setItem("sentToServer", sent ? "1" : "0");
+}
+
+db.sendTokenToServer = async refreshedToken => {
+    try {
+        docUser.doc("userToken").set({
+            token: refreshedToken,
+        });
+    } catch (error) {
+        return error;
+    }
+};
 
 //firestore functions
 db.addUser = async (userObject, email, name) => {

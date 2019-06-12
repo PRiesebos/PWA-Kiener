@@ -30,10 +30,18 @@
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-primary" @click="test">Log token</button>
+        <button class="btn btn-primary" @click="requestPerm">
+            Req perm
+        </button>
     </div>
 </template>
 
 <script>
+import db from "@/db";
+import "firebase/messaging";
+import firebase from "firebase/app";
+const messaging = firebase.messaging();
 export default {
     name: "app",
     data() {
@@ -48,6 +56,39 @@ export default {
         filterProducts() {
             return this.productData.filter(product => {
                 return product.productName.match(this.search);
+            });
+        },
+    },
+    methods: {
+        test() {
+            messaging
+                .getToken()
+                .then(function(currentToken) {
+                    if (currentToken) {
+                        db.sendTokenToServer(currentToken);
+                    } else {
+                        // Show permission request.
+                        console.log(
+                            "No Instance ID token available. Request permission to generate one."
+                        );
+                    }
+                })
+                .catch(function(err) {
+                    console.log(
+                        "An error occurred while retrieving token. ",
+                        err
+                    );
+                });
+        },
+        requestPerm() {
+            Notification.requestPermission().then(function(permission) {
+                if (permission === "granted") {
+                    console.log("Notification permission granted.");
+                    // TODO(developer): Retrieve an Instance ID token for use with FCM.
+                    // ...
+                } else {
+                    console.log("Unable to get permission to notify.");
+                }
             });
         },
     },
